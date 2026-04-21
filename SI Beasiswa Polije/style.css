@@ -1,0 +1,1439 @@
+:root {
+    --primary-cyan: #11bee6;
+    --dark-cyan: #0b9ac7;
+    --text-white: #ffffff;
+    --text-dark: #333333;
+    --bg-black: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Background abu-abu terang untuk bagian bawah */
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Memindahkan background gradient ke hero-wrapper */
+.hero-wrapper {
+    background: linear-gradient(135deg, #e4fbff 0%, #76dcf8 45%, #15bce6 100%);
+    position: relative;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Navbar */
+header {
+    padding: 25px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: var(--primary-cyan);
+    font-weight: 500;
+}
+
+.logo-text strong {
+    font-weight: 700;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-cyan);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--dark-cyan);
+}
+
+.login-btn {
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 26px;
+    color: var(--primary-cyan);
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 50px 20px 180px; /* Padding bawah extra untuk mengakomodir tinggi wave SVG */
+    position: relative;
+    z-index: 2;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 520px;
+}
+
+.hero-content h1 {
+    font-size: 46px;
+    color: var(--text-white);
+    font-weight: 500;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.hero-content h1 strong {
+    font-weight: 700;
+}
+
+.welcome-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.welcome-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-right: 1px solid #eee;
+    padding-right: 15px;
+}
+
+.welcome-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.welcome-logo span {
+    font-size: 14px;
+    color: var(--primary-cyan);
+    line-height: 1.2;
+}
+
+.welcome-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: var(--text-white);
+    line-height: 1.7;
+    margin-bottom: 35px;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.icon-circle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    background-color: var(--text-white);
+    color: var(--bg-black);
+    border-radius: 50%;
+    font-size: 13px;
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image-mask {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
+    overflow: hidden;
+}
+
+.image-mask img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wave-container {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 1;
+}
+
+.wave-container svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 250px;
+}
+
+/* Info Beasiswa Section Styles */
+.info-section-wrapper {
+    background: linear-gradient(135deg, #e4fbff 0%, #76dcf8 45%, #15bce6 100%);
+    padding: 80px 20px;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.info-content {
+    flex: 1;
+    max-width: 520px;
+}
+
+.info-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-divider {
+    border: none;
+    border-top: 2px solid #5ab0c6;
+    margin-bottom: 25px;
+    width: 60%;
+}
+
+.info-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.info-rounded-img {
+    width: 100%;
+    max-width: 450px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.btn-bagikan {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.btn-bagikan:hover {
+    transform: translateY(-3px);
+}
+
+.btn-bagikan .icon-circle-black {
+    background-color: #ffffff;
+    color: #000000;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #65d071;
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+}
+
+.btn-whatsapp i {
+    font-size: 18px;
+}
+
+/* Jenis Beasiswa Section */
+.jenis-beasiswa-section {
+    padding: 80px 20px;
+    background-color: #e2eff5;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 50px;
+}
+
+.jenis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.jenis-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 35px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.jenis-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.jenis-card p {
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.7;
+}
+
+/* Responsive adjustment for new section */
+@media (max-width: 992px) {
+    .jenis-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 30px;
+    }
+    
+    .hero-content {
+        margin-bottom: 50px;
+        max-width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    /* Tampilan menu mobile */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 85px;
+        left: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 100;
+        gap: 20px;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .image-mask {
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 14px;
+    }
+    
+    .btn-primary {
+        padding: 10px 24px;
+        font-size: 15px;
+    }
+    
+    .image-mask {
+        max-width: 300px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+}
+
+/* =========================================
+   Scholarship List Section
+========================================= */
+.scholarships-section {
+    display: flex;
+    gap: 30px;
+    padding: 50px 20px 80px;
+    align-items: flex-start;
+}
+
+/* --- Sidebar Filter --- */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.filter-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.filter-box h3 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+}
+
+.filter-group {
+    border-top: 1px solid #f0f0f0;
+    padding: 20px 0;
+}
+
+.filter-group:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.filter-header h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.filter-header i {
+    font-size: 12px;
+    color: #888;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.filter-options label input[type="checkbox"] {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-cyan);
+    cursor: pointer;
+}
+
+.filter-options label span {
+    margin-left: auto;
+    color: #999;
+}
+
+/* --- Main Content --- */
+.main-content {
+    flex: 1;
+    min-width: 0; /* Mencegah overflow pada flex item */
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    font-size: 15px;
+    outline: none;
+    color: #333;
+}
+
+.search-bar input::placeholder {
+    color: #bbb;
+}
+
+.search-bar i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+}
+
+/* Month Selector */
+.month-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.month-selector::-webkit-scrollbar {
+    height: 4px;
+}
+.month-selector::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+
+.year-nav {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    gap: 15px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.year-nav button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 12px;
+}
+
+.months {
+    display: flex;
+    gap: 8px;
+}
+
+.months button {
+    padding: 10px 16px;
+    background: #ffffff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.months button.active {
+    background: #e8f9fd;
+    color: var(--primary-cyan);
+}
+
+.months button:hover:not(.active) {
+    background: #f5f5f5;
+}
+
+/* Scholarship Grid */
+.scholarship-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* Scholarship Card */
+.scholarship-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f4f4f4;
+}
+
+.card-image {
+    width: 100%;
+    height: 220px;
+    background: #f0f0f0;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-body h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+.card-body p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.badges span {
+    background: #e0f8fc;
+    color: var(--dark-cyan);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.meta-item span {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+}
+
+.meta-item strong {
+    font-size: 12px;
+    color: var(--text-dark);
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.btn-status {
+    background: #c5f2fb;
+    color: #0b9ac7;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-status:hover {
+    background: #b1ebf7;
+}
+
+.btn-detail {
+    background: transparent;
+    color: var(--text-dark);
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-detail:hover {
+    background: #f8f9fa;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.page-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.page-btn:hover {
+    transform: translateY(-2px);
+    background-color: #f8f9fa;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.page-btn.active {
+    background-color: #ffffff; /* Sesuai gambar, background tetap putih */
+    /* Kita bisa tambahkan sedikit beda di box-shadow atau warna font jika ingin terlihat aktif, 
+       tapi di gambar tampak sama semua. Mari tambahkan shadow agar yg aktif sedikit menonjol */
+    box-shadow: 0 4px 20px rgba(17, 190, 230, 0.2); 
+    border: 2px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+}
+
+.page-nav {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.page-nav:hover {
+    transform: scale(1.1);
+}
+
+.page-dots {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 2px;
+}
+
+/* Responsive tambahan untuk Scholarship Section */
+@media (max-width: 992px) {
+    .scholarships-section {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .scholarship-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   Detail Page Styles
+========================================= */
+.detail-page {
+    background-color: #dceef9;
+}
+
+.detail-header {
+    padding: 25px 0;
+    position: relative;
+    z-index: 10;
+    /* Inherit background or leave transparent to show body bg */
+}
+
+.detail-main {
+    padding: 30px 20px 80px;
+}
+
+.detail-card {
+    background: #ffffff;
+    border: 3px solid var(--primary-cyan);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+.detail-top {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 35px;
+    align-items: flex-start;
+}
+
+.detail-poster {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.detail-poster img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.detail-info {
+    flex: 1;
+}
+
+.detail-info h1 {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.detail-info p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.detail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.detail-badges span {
+    background: #cbf2fb;
+    color: var(--primary-cyan);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.detail-date {
+    display: inline-block;
+    background: #cbf2fb;
+    color: var(--primary-cyan);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.detail-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.detail-req h2, .detail-benefit h2 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.detail-req ul, .detail-benefit ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.detail-req li, .detail-benefit li {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-action {
+    flex: 1;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.btn-simulasi {
+    color: #333;
+}
+
+.btn-daftar {
+    color: var(--primary-cyan);
+}
+
+/* =========================================
+   Footer Styles
+========================================= */
+.site-footer {
+    background-color: #8eddef;
+    padding-top: 60px;
+    color: #111;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+.about-col h3 strong {
+    font-weight: 700;
+}
+
+.about-col p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--bg-black);
+    color: #fff;
+}
+
+.links-col ul {
+    list-style: none;
+}
+
+.links-col ul li {
+    margin-bottom: 12px;
+}
+
+.links-col ul li a {
+    color: #111;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.links-col ul li a::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #111;
+}
+
+.contact-col ul {
+    list-style: none;
+}
+
+.contact-col ul li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-col ul li i {
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.partner-box {
+    background: #fff;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.footer-bottom {
+    background-color: #e5f6fc;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 13px;
+    color: #555;
+}
+
+/* =========================================
+   Alur Beasiswa Section
+========================================= */
+.alur-beasiswa-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, #e4fbff 0%, #15bce6 100%);
+}
+
+.alur-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.alur-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.alur-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: #11bee6;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.3;
+}
+
+.step-line {
+    height: 3px;
+    width: 30px;
+    background-color: #000000;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   Pustaka Section
+========================================= */
+.pustaka-section {
+    padding: 80px 20px;
+    background-color: #e2eff5;
+}
+
+.pustaka-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.pustaka-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    gap: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.pustaka-img {
+    flex-shrink: 0;
+    width: 150px;
+}
+
+.pustaka-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+
+.pustaka-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.pustaka-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.pustaka-info p {
+    font-size: 13px;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.pustaka-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pustaka-actions button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-see {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.btn-see:hover {
+    background: #f8f9fa;
+}
+
+.btn-download {
+    background: #a9e8f6;
+    color: #11bee6;
+    border: none;
+}
+
+.btn-download:hover {
+    background: #90dff1;
+}
+
+@media (max-width: 992px) {
+    .alur-row {
+        flex-wrap: wrap;
+    }
+    
+    .pustaka-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .pustaka-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .pustaka-img {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+/* =========================================
+   FAQ Section
+========================================= */
+.faq-section {
+    padding: 80px 20px;
+    background-color: #e2eff5;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    z-index: 1;
+}
+
+.faq-title::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #11bee6;
+    z-index: -1;
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.faq-icon {
+    width: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 15px;
+    color: #000000;
+}
+
+.faq-text {
+    flex: 1;
+}
+
+.faq-arrow {
+    font-size: 14px;
+    color: #000000;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 25px 20px 64px;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-answer hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+/* Responsive detail page */
+@media (max-width: 992px) {
+    .detail-bottom {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .detail-badges {
+        justify-content: center;
+    }
+    
+    .detail-actions {
+        flex-direction: column;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
