@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pengaturan akun Beasiswa POLIJE.">
+  <title>Settings — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar-main">
+    <div class="container-custom d-flex justify-content-between align-items-center">
+      <a href="main.html" class="navbar-brand">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="main.html#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#tentang-kami">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Panduan</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Pustaka</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#faq">FAQ</a></li>
+        </ul>
+        <div class="profile-icon" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar">
+          <i class="bi bi-person"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Sidebar -->
+  <div class="offcanvas offcanvas-end profile-sidebar" tabindex="-1" id="profileSidebar">
+    <div class="offcanvas-header">
+      <div class="profile-info w-100">
+        <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
+        <div class="profile-name" id="sidebarName">Pengguna</div>
+        <div class="profile-role" id="sidebarRole">Mahasiswa</div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <ul class="sidebar-menu">
+        <li><a href="settings.html" style="background: var(--primary-lighter);"><i class="bi bi-gear"></i> Settings</a></li>
+        <li><a href="messages.html"><i class="bi bi-envelope"></i> Pesan</a></li>
+        <li class="divider"></li>
+        <li><a href="#" class="logout" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SETTINGS CONTENT -->
+  <div class="settings-page">
+    <div class="container-custom" style="max-width: 800px;">
+      <h2 class="fw-poppins mb-4"><i class="bi bi-gear"></i> Pengaturan Akun</h2>
+
+      <!-- Mahasiswa Settings -->
+      <div id="mahasiswaSettings">
+        <div class="settings-card animate-fade-in-up">
+          <h4><i class="bi bi-person-vcard"></i> Informasi Umum</h4>
+          <div class="settings-field"><span class="field-label">Nama Lengkap</span><span class="field-value" id="sNama">Ahmad Rizki Pratama</span></div>
+          <div class="settings-field"><span class="field-label">Email</span><span class="field-value" id="sEmail">ahmad.rizki@student.polije.ac.id</span></div>
+          <div class="settings-field"><span class="field-label">NIM</span><span class="field-value" id="sNim">E41212345</span></div>
+          <div class="settings-field"><span class="field-label">Jenis Kelamin</span><span class="field-value" id="sGender">Laki-laki</span></div>
+        </div>
+
+        <div class="settings-card animate-fade-in-up delay-1">
+          <h4><i class="bi bi-mortarboard"></i> Informasi Akademik</h4>
+          <div class="settings-field"><span class="field-label">Program Studi</span><span class="field-value" id="sProdi">Teknik Informatika</span></div>
+          <div class="settings-field"><span class="field-label">Jurusan</span><span class="field-value" id="sJurusan">Teknologi Informasi</span></div>
+          <div class="settings-field"><span class="field-label">Angkatan</span><span class="field-value" id="sAngkatan">2022</span></div>
+          <div class="settings-field"><span class="field-label">Semester</span><span class="field-value" id="sSemester">5</span></div>
+          <div class="settings-field"><span class="field-label">IPK Terakhir</span><span class="field-value" id="sIpk">3.65</span></div>
+        </div>
+      </div>
+
+      <!-- Mitra Settings -->
+      <div id="mitraSettings" style="display: none;">
+        <div class="settings-card animate-fade-in-up">
+          <h4><i class="bi bi-building"></i> Informasi Mitra</h4>
+          <div class="settings-field"><span class="field-label">Nama Perusahaan</span><span class="field-value">Prestasi Kita Foundation</span></div>
+          <div class="settings-field"><span class="field-label">Email</span><span class="field-value">admin@prestasikita.com</span></div>
+          <div class="settings-field"><span class="field-label">Bidang</span><span class="field-value">Pendidikan & Sosial</span></div>
+          <div class="settings-field"><span class="field-label">Alamat</span><span class="field-value">Jakarta Selatan, DKI Jakarta</span></div>
+          <div class="settings-field"><span class="field-label">Telepon</span><span class="field-value">+62 812 3456 7890</span></div>
+          <div class="settings-field"><span class="field-label">Website</span><span class="field-value">https://prestasikita.com</span></div>
+        </div>
+      </div>
+
+      <!-- Admin Settings -->
+      <div id="adminSettings" style="display: none;">
+        <div class="settings-card animate-fade-in-up">
+          <h4><i class="bi bi-shield-check"></i> Informasi Admin</h4>
+          <div class="settings-field"><span class="field-label">Nama</span><span class="field-value">Admin Beasiswa Polije</span></div>
+          <div class="settings-field"><span class="field-label">Email</span><span class="field-value">admin@beasiswa.polije.ac.id</span></div>
+          <div class="settings-field"><span class="field-label">NIP</span><span class="field-value">198501152010011001</span></div>
+          <div class="settings-field"><span class="field-label">Jabatan</span><span class="field-value">Koordinator Beasiswa</span></div>
+          <div class="settings-field"><span class="field-label">Unit</span><span class="field-value">Bagian Kemahasiswaan</span></div>
+          <div class="settings-field"><span class="field-label">Telepon</span><span class="field-value">+62 8222 3333 444</span></div>
+        </div>
+      </div>
+
+      <!-- Change Password -->
+      <div class="settings-card animate-fade-in-up delay-2">
+        <h4><i class="bi bi-key"></i> Ubah Password</h4>
+        <form onsubmit="changePassword(event)">
+          <div class="form-group">
+            <label for="currentPw">Password Saat Ini</label>
+            <input type="password" class="form-control" id="currentPw" placeholder="Masukkan password saat ini">
+          </div>
+          <div class="form-group">
+            <label for="newPw">Password Baru</label>
+            <input type="password" class="form-control" id="newPw" placeholder="Minimal 8 karakter">
+          </div>
+          <div class="form-group">
+            <label for="confirmPw">Konfirmasi Password Baru</label>
+            <input type="password" class="form-control" id="confirmPw" placeholder="Ulangi password baru">
+          </div>
+          <button type="submit" class="btn-edit-profile mt-2">Ubah Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-bottom">Copyright &copy; 2026 Beasiswa POLIJE</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function handleLogout() { localStorage.clear(); window.location.href = 'index.html'; }
+
+    function changePassword(e) {
+      e.preventDefault();
+      const newPw = document.getElementById('newPw').value;
+      const confirmPw = document.getElementById('confirmPw').value;
+      if (newPw !== confirmPw) { alert('Password tidak cocok!'); return; }
+      if (newPw.length < 8) { alert('Password minimal 8 karakter!'); return; }
+      alert('Password berhasil diubah! (simulasi)');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const role = localStorage.getItem('userRole') || 'mahasiswa';
+      document.getElementById('mahasiswaSettings').style.display = role === 'mahasiswa' ? 'block' : 'none';
+      document.getElementById('mitraSettings').style.display = role === 'mitra' ? 'block' : 'none';
+      document.getElementById('adminSettings').style.display = role === 'admin' ? 'block' : 'none';
+
+      const name = localStorage.getItem('userName') || (role === 'mahasiswa' ? 'Ahmad Rizki Pratama' : role === 'mitra' ? 'Prestasi Kita Foundation' : 'Admin Beasiswa Polije');
+      document.getElementById('sidebarName').textContent = name;
+      document.getElementById('sidebarRole').textContent = role.charAt(0).toUpperCase() + role.slice(1);
+    });
+  </script>
+</body>
+</html>

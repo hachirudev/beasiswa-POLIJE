@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Beranda Beasiswa POLIJE — Temukan beasiswa yang sesuai untuk Anda. Lihat daftar beasiswa, panduan, pustaka, dan FAQ.">
+  <title>Beranda — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== NAVBAR MAIN ===== -->
+  <nav class="navbar-main" id="navbar-main">
+    <div class="container-custom d-flex justify-content-between align-items-center">
+      <a href="main.html" class="navbar-brand">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <ul class="nav" id="mainNav">
+          <li class="nav-item"><a class="nav-link active" href="#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tentang-kami">Tentang Kami</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#panduan" role="button" data-bs-toggle="dropdown" aria-expanded="false">Panduan</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#alur-beasiswa">Alur Beasiswa</a></li>
+              <li><a class="dropdown-item" href="#jenis-beasiswa">Jenis Beasiswa</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#pustaka">Pustaka</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+        <div class="profile-icon" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar" aria-controls="profileSidebar" id="profileBtn">
+          <i class="bi bi-person"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PROFILE SIDEBAR (Offcanvas) ===== -->
+  <div class="offcanvas offcanvas-end profile-sidebar" tabindex="-1" id="profileSidebar">
+    <div class="offcanvas-header">
+      <div class="profile-info w-100">
+        <div class="profile-avatar">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        <div class="profile-name" id="sidebarName">Ahmad Rizki Pratama</div>
+        <div class="profile-role" id="sidebarRole">Mahasiswa</div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <ul class="sidebar-menu">
+        <li><a href="settings.html"><i class="bi bi-gear"></i> Settings</a></li>
+        <li><a href="messages.html"><i class="bi bi-envelope"></i> Pesan <span class="badge bg-danger ms-2" id="msgBadge">2</span></a></li>
+        <li class="divider"></li>
+        <li><a href="#" class="logout" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===============================================
+       SECTION 1: BERANDA — Daftar Beasiswa
+       =============================================== -->
+  <section id="beranda" class="section-beranda">
+    <div class="container-custom">
+      <div class="beranda-layout">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar" id="filterSidebar">
+          <h5>Filter Beasiswa</h5>
+          <hr>
+
+          <!-- Jenjang Beasiswa -->
+          <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleFilterSection(this)">
+              <h6>Jenjang Beasiswa</h6>
+              <i class="bi bi-chevron-up"></i>
+            </div>
+            <div class="filter-options" id="filterJenjang">
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="D2" onchange="applyFilters()"> D2</label>
+                <span class="count">(2)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="D3" onchange="applyFilters()"> D3</label>
+                <span class="count">(8)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="D4" onchange="applyFilters()"> D4</label>
+                <span class="count">(20)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="S1" onchange="applyFilters()"> S1</label>
+                <span class="count">(654)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="S2" onchange="applyFilters()"> S2</label>
+                <span class="count">(883)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="jenjang" value="S3" onchange="applyFilters()"> S3</label>
+                <span class="count">(333)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tipe Pendanaan -->
+          <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleFilterSection(this)">
+              <h6>Tipe Pendanaan Beasiswa</h6>
+              <i class="bi bi-chevron-up"></i>
+            </div>
+            <div class="filter-options" id="filterPendanaan">
+              <div class="filter-option">
+                <label><input type="radio" name="pendanaan" value="Fully Funded" onchange="applyFilters()"> Fully Funded</label>
+                <span class="count">(854)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="pendanaan" value="Partially Funded" onchange="applyFilters()"> Partially Funded</label>
+                <span class="count">(530)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="pendanaan" value="Self Funded" onchange="applyFilters()"> Self Funded</label>
+                <span class="count">(240)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tipe Beasiswa -->
+          <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleFilterSection(this)">
+              <h6>Tipe Beasiswa</h6>
+              <i class="bi bi-chevron-up"></i>
+            </div>
+            <div class="filter-options" id="filterTipe">
+              <div class="filter-option">
+                <label><input type="radio" name="tipeBeasiswa" value="Company/Institution Scholarship" onchange="applyFilters()"> Company/Institution Scholarship</label>
+                <span class="count">(246)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="tipeBeasiswa" value="Government Scholarship" onchange="applyFilters()"> Government Scholarship</label>
+                <span class="count">(462)</span>
+              </div>
+              <div class="filter-option">
+                <label><input type="radio" name="tipeBeasiswa" value="University Scholarship" onchange="applyFilters()"> University Scholarship</label>
+                <span class="count">(826)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Filters -->
+          <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleFilterSection(this)">
+              <h6>Filter Tambahan</h6>
+              <i class="bi bi-chevron-up"></i>
+            </div>
+            <div class="filter-options">
+              <div class="filter-option">
+                <label><input type="checkbox" id="filterPrestasi" onchange="applyFilters()"> Prestasi</label>
+              </div>
+              <div class="filter-option">
+                <label><input type="checkbox" id="filterPemerintah" onchange="applyFilters()"> Pemerintah</label>
+              </div>
+              <div class="filter-option">
+                <label><input type="checkbox" id="filterSKTM" onchange="applyFilters()"> SKTM</label>
+              </div>
+              <div class="form-group mt-2">
+                <label class="small fw-semibold">IPK Minimum</label>
+                <input type="number" class="form-control form-control-sm" id="filterIPK" min="0" max="4" step="0.01" placeholder="0.00" onchange="applyFilters()">
+              </div>
+              <div class="form-group mt-2">
+                <label class="small fw-semibold">Semester</label>
+                <select class="form-control form-control-sm" id="filterSemester" onchange="applyFilters()">
+                  <option value="">Semua</option>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6">Semester 6</option>
+                  <option value="7">Semester 7</option>
+                  <option value="8">Semester 8</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+          <!-- Search Bar -->
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cari Beasiswa" oninput="applyFilters()">
+            <button class="search-btn" onclick="applyFilters()"><i class="bi bi-search"></i></button>
+          </div>
+
+          <!-- Time Filter -->
+          <div class="time-filter">
+            <div class="year-nav">
+              <div class="year-display" id="yearDisplay">2025</div>
+              <button class="year-btn" onclick="changeYear(-1)"><i class="bi bi-chevron-left"></i></button>
+              <button class="year-btn" onclick="changeYear(1)"><i class="bi bi-chevron-right"></i></button>
+            </div>
+            <div class="month-pills" id="monthPills">
+              <button class="month-pill" data-month="1" onclick="selectMonth(1)">JAN</button>
+              <button class="month-pill" data-month="2" onclick="selectMonth(2)">FEB</button>
+              <button class="month-pill active" data-month="3" onclick="selectMonth(3)">MAR</button>
+              <button class="month-pill" data-month="4" onclick="selectMonth(4)">APR</button>
+              <button class="month-pill" data-month="5" onclick="selectMonth(5)">MEI</button>
+              <button class="month-pill" data-month="6" onclick="selectMonth(6)">JUN</button>
+              <button class="month-pill" data-month="7" onclick="selectMonth(7)">JUL</button>
+              <button class="month-pill" data-month="8" onclick="selectMonth(8)">AGU</button>
+              <button class="month-pill" data-month="9" onclick="selectMonth(9)">SEP</button>
+              <button class="month-pill" data-month="10" onclick="selectMonth(10)">OKT</button>
+              <button class="month-pill" data-month="11" onclick="selectMonth(11)">NOV</button>
+              <button class="month-pill" data-month="12" onclick="selectMonth(12)">DES</button>
+            </div>
+          </div>
+
+          <!-- Beasiswa Grid -->
+          <div class="beasiswa-grid" id="beasiswaGrid">
+            <!-- Populated by JavaScript -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination-custom" id="pagination">
+            <!-- Populated by JavaScript -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       SECTION 2: TENTANG KAMI
+       =============================================== -->
+  <div class="section-separator"></div>
+  <section id="tentang-kami" class="about-section">
+    <div class="container-custom">
+      <div class="about-content">
+        <div class="about-text animate-fade-in-up">
+          <h2>Beasiswa POLIJE</h2>
+          <div class="about-logo-box">
+            <img src="assets/images/logo polije.png" alt="Logo">
+            <div class="logo-text">
+              Beasiswa<br><span>POLIJE</span>
+            </div>
+          </div>
+          <p style="font-weight: 600; font-size: 1.05rem; color: #333; margin-bottom: 10px;">Selamat datang di Beasiswa Polije.</p>
+          <p>Penyediakan informasi terpusat yang tersedia di Politeknik Negeri Jember (Polije). mengenai berbagai program beasiswa. Sistem menampilkan daftar beasiswa, persyaratan, jadwal pendaftaran, serta pengumuman, agar informasi mudah diakses, jelas, dan terorganisir.</p>
+          <hr>
+          <a href="#" class="btn-bagikan" onclick="shareWebsite()">
+            <i class="bi bi-arrow-right-circle-fill"></i> BAGIKAN
+          </a>
+          <br>
+          <a href="https://wa.me/6282223333444" class="whatsapp-badge mt-3" target="_blank">
+            <i class="bi bi-whatsapp"></i> +62 8222 3333 444
+          </a>
+        </div>
+        <div class="about-image animate-fade-in delay-3">
+          <img src="assets/images/tugu square.png" alt="Tugu Polije">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       SECTION 3A: JENIS BEASISWA
+       =============================================== -->
+  <div class="section-separator"></div>
+  <section id="jenis-beasiswa" class="jenis-section">
+    <div class="container-custom">
+      <h2 class="section-title">Jenis Beasiswa</h2>
+      <div class="jenis-grid">
+        <div class="jenis-card animate-fade-in-up delay-1">
+          <h5>Company/Institution Scholarship</h5>
+          <p>Company/Institution Scholarship adalah beasiswa yang diberikan oleh perusahaan atau lembaga untuk membantu biaya pendidikan pelajar atau mahasiswa, biasanya sebagai bentuk dukungan pengembangan sumber daya manusia dan tanggung jawab sosial, dengan syarat tertentu seperti prestasi atau kondisi ekonomi.</p>
+        </div>
+        <div class="jenis-card animate-fade-in-up delay-2">
+          <h5>Government Scholarship</h5>
+          <p>Government Scholarship adalah beasiswa yang diberikan oleh pemerintah untuk membantu pelajar atau mahasiswa dalam membiayai pendidikan, baik di dalam maupun luar negeri. Program ini bertujuan meningkatkan kualitas sumber daya manusia dan pemerataan akses pendidikan.</p>
+        </div>
+        <div class="jenis-card animate-fade-in-up delay-3">
+          <h5>University Scholarship</h5>
+          <p>University Scholarship adalah beasiswa yang diberikan langsung oleh perguruan tinggi kepada mahasiswa untuk membantu biaya pendidikan. Beasiswa ini biasanya diberikan berdasarkan prestasi akademik, non-akademik, atau kondisi ekonomi, yang bertujuan untuk mendukung mahasiswa dimasa kuliah.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       SECTION 3B: ALUR BEASISWA
+       =============================================== -->
+  <section id="alur-beasiswa" class="alur-section">
+    <div class="container-custom">
+      <h2 class="section-title">Alur Beasiswa</h2>
+      <div class="alur-container">
+        <div class="alur-step">
+          <div class="alur-number">1</div>
+          <div class="alur-text">Mencari Informasi Beasiswa</div>
+        </div>
+        <span class="alur-dash">—</span>
+        <div class="alur-step">
+          <div class="alur-number">2</div>
+          <div class="alur-text">Memahami Persyaratan</div>
+        </div>
+        <span class="alur-dash">—</span>
+        <div class="alur-step">
+          <div class="alur-number">3</div>
+          <div class="alur-text">Menyiapkan Dokumen</div>
+        </div>
+        <span class="alur-dash">—</span>
+        <div class="alur-step">
+          <div class="alur-number">4</div>
+          <div class="alur-text">Mendaftar Beasiswa</div>
+        </div>
+      </div>
+      <div class="alur-container mt-4">
+        <div class="alur-step">
+          <div class="alur-number">5</div>
+          <div class="alur-text">Seleksi Administrasi</div>
+        </div>
+        <span class="alur-dash">—</span>
+        <div class="alur-step">
+          <div class="alur-number">6</div>
+          <div class="alur-text">Tes / Wawancara</div>
+        </div>
+        <span class="alur-dash">—</span>
+        <div class="alur-step">
+          <div class="alur-number">7</div>
+          <div class="alur-text">Pengumuman Hasil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       SECTION 4: PUSTAKA
+       =============================================== -->
+  <div class="section-wave">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#E8F4F8" d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z"/>
+    </svg>
+  </div>
+  <section id="pustaka" class="pustaka-section">
+    <div class="container-custom">
+      <h2 class="section-title">Pustaka</h2>
+      <div class="pustaka-grid" id="pustakaGrid">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       SECTION 5: FAQ
+       =============================================== -->
+  <div class="section-separator"></div>
+  <section id="faq" class="faq-section">
+    <div class="container-custom">
+      <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+      <div class="faq-list" id="faqList">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================
+       FOOTER
+       =============================================== -->
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>Beasiswa <strong>POLIJE</strong></h5>
+          <p>Website yang menyediakan informasi terpusat yang tersedia di Politeknik Negeri Jember (Polije). mengenai berbagai program beasiswa. Sistem menampilkan daftar beasiswa, persyaratan, jadwal pendaftaran, serta pengumuman, agar informasi mudah diakses, jelas, dan terorganisir.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Tentang Beasiswa.POLIJE</h5>
+          <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#beranda">Beasiswa</a></li>
+            <li><a href="#tentang-kami">Tentang Kami</a></li>
+            <li><a href="#panduan">Panduan</a></li>
+            <li><a href="#pustaka">Pustaka</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Hubungi Kami</h5>
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <span>+62 8222 3333 444</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <span>beasiswa@polije.ac.id</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Gedung A3 (Asah Asih Asuh), Jl. Mastrip, Kotak Pos 164, Jember 68101, Jawa Timur, Indonesia.</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Partnership</h5>
+          <div class="partnership-grid">
+            <div class="partnership-box"></div>
+            <div class="partnership-box"></div>
+            <div class="partnership-box"></div>
+            <div class="partnership-box"></div>
+            <div class="partnership-box"></div>
+            <div class="partnership-box"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Copyright &copy; 2026 Beasiswa POLIJE
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/beasiswa-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

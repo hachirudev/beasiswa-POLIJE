@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulasi pendaftaran beasiswa di Beasiswa POLIJE.">
+  <title>Simulasi Pendaftaran — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar-main">
+    <div class="container-custom d-flex justify-content-between align-items-center">
+      <a href="main.html" class="navbar-brand">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="main.html#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#beranda">Beasiswa</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#tentang-kami">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Panduan</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Pustaka</a></li>
+        </ul>
+        <div class="profile-icon" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar">
+          <i class="bi bi-person"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Sidebar -->
+  <div class="offcanvas offcanvas-end profile-sidebar" tabindex="-1" id="profileSidebar">
+    <div class="offcanvas-header">
+      <div class="profile-info w-100">
+        <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
+        <div class="profile-name">Ahmad Rizki Pratama</div>
+        <div class="profile-role">Mahasiswa</div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <ul class="sidebar-menu">
+        <li><a href="settings.html"><i class="bi bi-gear"></i> Settings</a></li>
+        <li><a href="messages.html"><i class="bi bi-envelope"></i> Pesan</a></li>
+        <li class="divider"></li>
+        <li><a href="#" class="logout" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SIMULASI FORM -->
+  <div class="simulasi-page">
+    <div class="container-custom" style="max-width: 800px;">
+
+      <div class="simulasi-header animate-fade-in-up">
+        <h2><i class="bi bi-clipboard-data"></i> Simulasi Pendaftaran Beasiswa</h2>
+        <p class="text-muted mt-2" id="beasiswaName">Beasiswa Pendidikan Prestasi Kita BATCH #5</p>
+      </div>
+
+      <form id="simulasiForm" onsubmit="handleSimulasi(event)">
+
+        <!-- Informasi Pribadi -->
+        <div class="form-section animate-fade-in-up delay-1">
+          <h4><i class="bi bi-person-vcard"></i> Informasi Pribadi</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="namaLengkap">Nama Lengkap</label>
+                <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan nama lengkap" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="nim">NIM</label>
+                <input type="text" class="form-control" id="nim" placeholder="Contoh: E41212345" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="prodi">Program Studi</label>
+                <select class="form-select" id="prodi" required>
+                  <option value="">Pilih Program Studi</option>
+                  <option>Teknik Informatika</option>
+                  <option>Teknologi Informasi</option>
+                  <option>Manajemen Informatika</option>
+                  <option>Teknik Energi Terbarukan</option>
+                  <option>Mesin Otomotif</option>
+                  <option>Teknik Mesin</option>
+                  <option>Akuntansi</option>
+                  <option>Manajemen Agribisnis</option>
+                  <option>Produksi Pertanian</option>
+                  <option>Budidaya Tanaman Perkebunan</option>
+                  <option>Produksi Tanaman Hortikultura</option>
+                  <option>Manajemen Agroindustri</option>
+                  <option>Teknologi Pengolahan Hasil Ternak</option>
+                  <option>Kesehatan Hewan</option>
+                  <option>Bahasa Inggris Terapan</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="angkatan">Angkatan</label>
+                <select class="form-select" id="angkatan" required>
+                  <option value="">Pilih</option>
+                  <option>2020</option>
+                  <option>2021</option>
+                  <option>2022</option>
+                  <option>2023</option>
+                  <option>2024</option>
+                  <option>2025</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="semester">Semester Saat Ini</label>
+                <select class="form-select" id="semester" required>
+                  <option value="">Pilih</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option>
+                  <option>5</option><option>6</option><option>7</option><option>8</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="ipk">IPK Terakhir</label>
+                <input type="number" class="form-control" id="ipk" min="0" max="4" step="0.01" placeholder="Contoh: 3.50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="jenisKelamin">Jenis Kelamin</label>
+                <select class="form-select" id="jenisKelamin" required>
+                  <option value="">Pilih</option>
+                  <option>Laki-laki</option>
+                  <option>Perempuan</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informasi Orang Tua -->
+        <div class="form-section animate-fade-in-up delay-2">
+          <h4><i class="bi bi-people"></i> Informasi Orang Tua / Wali</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="namaOrtu">Nama Orang Tua / Wali</label>
+                <input type="text" class="form-control" id="namaOrtu" placeholder="Masukkan nama orang tua/wali" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="pekerjaanOrtu">Pekerjaan Orang Tua / Wali</label>
+                <input type="text" class="form-control" id="pekerjaanOrtu" placeholder="Contoh: Wiraswasta, PNS, dll." required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="penghasilan">Perkiraan Penghasilan</label>
+                <select class="form-select" id="penghasilan" required>
+                  <option value="">Pilih</option>
+                  <option>&lt; Rp 1.500.000</option>
+                  <option>Rp 1.500.000 - Rp 3.000.000</option>
+                  <option>Rp 3.000.000 - Rp 5.000.000</option>
+                  <option>Rp 5.000.000 - Rp 8.000.000</option>
+                  <option>&gt; Rp 8.000.000</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="tanggungan">Jumlah Tanggungan Keluarga</label>
+                <input type="number" class="form-control" id="tanggungan" min="1" max="20" placeholder="Contoh: 3" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="sktm">SKTM (Surat Keterangan Tidak Mampu)</label>
+                <select class="form-select" id="sktm" required>
+                  <option value="">Pilih</option>
+                  <option value="ada">Ada</option>
+                  <option value="tidak">Tidak Ada</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informasi Lainnya -->
+        <div class="form-section animate-fade-in-up delay-3">
+          <h4><i class="bi bi-info-circle"></i> Informasi Lainnya</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="aktifKuliah">Aktif Kuliah</label>
+                <select class="form-select" id="aktifKuliah" required>
+                  <option value="">Pilih</option>
+                  <option value="ya">Ya</option>
+                  <option value="tidak">Tidak</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="statusBeasiswaLain">Status Beasiswa Lain</label>
+                <select class="form-select" id="statusBeasiswaLain" required>
+                  <option value="">Pilih</option>
+                  <option value="tidak">Tidak Ada</option>
+                  <option value="ada">Ada</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="organisasi">Organisasi</label>
+                <input type="text" class="form-control" id="organisasi" placeholder="Tuliskan organisasi yang diikuti atau 'Tidak ada'">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="prestasi">Prestasi Akademik / Non-Akademik</label>
+                <input type="text" class="form-control" id="prestasi" placeholder="Tuliskan prestasi atau 'Tidak ada'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motivasi -->
+        <div class="form-section animate-fade-in-up delay-4">
+          <h4><i class="bi bi-chat-heart"></i> Motivasi</h4>
+          <div class="form-group">
+            <label for="motivasi">Mengapa Anda mendaftar beasiswa ini?</label>
+            <textarea class="form-control" id="motivasi" rows="5" placeholder="Tuliskan motivasi Anda mendaftar beasiswa ini..." required></textarea>
+          </div>
+        </div>
+
+        <!-- Upload Dokumen -->
+        <div class="form-section animate-fade-in-up delay-5">
+          <h4><i class="bi bi-cloud-arrow-up"></i> Upload Dokumen</h4>
+          <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <i class="bi bi-cloud-arrow-up-fill d-block"></i>
+            <p>Klik atau seret file ke sini untuk upload dokumen<br><small class="text-muted">Format: PDF, DOC, DOCX (Max 10MB)</small></p>
+          </div>
+          <input type="file" id="fileInput" style="display: none;" accept=".pdf,.doc,.docx" onchange="handleFileSelect(this)">
+          <div id="filePreview" class="mt-3"></div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-submit-form animate-fade-in-up">
+          <i class="bi bi-send-fill"></i> Kirim Simulasi Pendaftaran
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-bottom">Copyright &copy; 2026 Beasiswa POLIJE</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/beasiswa-data.js"></script>
+  <script>
+    function handleLogout() { localStorage.clear(); window.location.href = 'index.html'; }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
+      const b = beasiswaData.find(x => x.id === id) || beasiswaData[0];
+      document.getElementById('beasiswaName').textContent = b.judul;
+    });
+
+    function handleFileSelect(input) {
+      const file = input.files[0];
+      if (file) {
+        document.getElementById('filePreview').innerHTML = `
+          <div class="d-flex align-items-center gap-3 p-3 bg-light rounded">
+            <i class="bi bi-file-earmark-text" style="font-size: 1.5rem; color: var(--primary);"></i>
+            <div>
+              <strong>${file.name}</strong><br>
+              <small class="text-muted">${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-danger ms-auto" onclick="removeFile()">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function removeFile() {
+      document.getElementById('fileInput').value = '';
+      document.getElementById('filePreview').innerHTML = '';
+    }
+
+    function handleSimulasi(e) {
+      e.preventDefault();
+
+      // Collect form data (in real app, send to backend)
+      const formData = {
+        namaLengkap: document.getElementById('namaLengkap').value,
+        nim: document.getElementById('nim').value,
+        prodi: document.getElementById('prodi').value,
+        angkatan: document.getElementById('angkatan').value,
+        semester: document.getElementById('semester').value,
+        ipk: document.getElementById('ipk').value,
+        jenisKelamin: document.getElementById('jenisKelamin').value,
+        namaOrtu: document.getElementById('namaOrtu').value,
+        pekerjaanOrtu: document.getElementById('pekerjaanOrtu').value,
+        penghasilan: document.getElementById('penghasilan').value,
+        tanggungan: document.getElementById('tanggungan').value,
+        sktm: document.getElementById('sktm').value,
+        aktifKuliah: document.getElementById('aktifKuliah').value,
+        statusBeasiswaLain: document.getElementById('statusBeasiswaLain').value,
+        organisasi: document.getElementById('organisasi').value,
+        prestasi: document.getElementById('prestasi').value,
+        motivasi: document.getElementById('motivasi').value
+      };
+
+      console.log('Simulasi data:', formData);
+
+      // Show success modal
+      alert('Simulasi pendaftaran berhasil dikirim! Data Anda akan direview oleh admin. Periksa halaman Pesan untuk melihat hasil review.');
+      window.location.href = 'main.html';
+    }
+  </script>
+</body>
+</html>

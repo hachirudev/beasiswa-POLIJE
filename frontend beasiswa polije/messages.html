@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pesan dan hasil simulasi beasiswa.">
+  <title>Pesan — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar-main">
+    <div class="container-custom d-flex justify-content-between align-items-center">
+      <a href="main.html" class="navbar-brand">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="main.html#beranda">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#tentang-kami">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Panduan</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#pustaka">Pustaka</a></li>
+          <li class="nav-item"><a class="nav-link" href="main.html#faq">FAQ</a></li>
+        </ul>
+        <div class="profile-icon" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar">
+          <i class="bi bi-person"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Sidebar -->
+  <div class="offcanvas offcanvas-end profile-sidebar" tabindex="-1" id="profileSidebar">
+    <div class="offcanvas-header">
+      <div class="profile-info w-100">
+        <div class="profile-avatar"><i class="bi bi-person-fill"></i></div>
+        <div class="profile-name">Ahmad Rizki Pratama</div>
+        <div class="profile-role">Mahasiswa</div>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+      <ul class="sidebar-menu">
+        <li><a href="settings.html"><i class="bi bi-gear"></i> Settings</a></li>
+        <li><a href="messages.html" style="background: var(--primary-lighter);"><i class="bi bi-envelope"></i> Pesan</a></li>
+        <li class="divider"></li>
+        <li><a href="#" class="logout" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MESSAGES CONTENT -->
+  <div class="inbox-page">
+    <div class="container-custom" style="max-width: 800px;">
+      <h2 class="fw-poppins mb-4"><i class="bi bi-envelope"></i> Pesan — Hasil Simulasi</h2>
+
+      <div class="inbox-list animate-fade-in-up">
+        <!-- Message 1 - Reviewed -->
+        <div class="inbox-item" onclick="showMessage(1)" style="cursor: pointer;">
+          <div class="inbox-icon">
+            <i class="bi bi-check-circle-fill" style="color: var(--success);"></i>
+          </div>
+          <div class="inbox-content">
+            <div class="inbox-subject"><strong>Hasil Simulasi: Beasiswa KIP Kuliah 2024</strong></div>
+            <div class="inbox-preview">Status: ✅ Berpotensi Lulus — Skor: 92/100</div>
+          </div>
+          <div class="inbox-date">20 Mar 2024</div>
+        </div>
+
+        <!-- Message 2 - Reviewed -->
+        <div class="inbox-item" onclick="showMessage(2)" style="cursor: pointer;">
+          <div class="inbox-icon">
+            <i class="bi bi-x-circle-fill" style="color: var(--danger);"></i>
+          </div>
+          <div class="inbox-content">
+            <div class="inbox-subject"><strong>Hasil Simulasi: Beasiswa Bank Indonesia</strong></div>
+            <div class="inbox-preview">Status: ❌ Belum Memenuhi Syarat — Skor: 58/100</div>
+          </div>
+          <div class="inbox-date">8 Apr 2024</div>
+        </div>
+
+        <!-- Message 3 - Pending -->
+        <div class="inbox-item unread" onclick="showMessage(3)" style="cursor: pointer;">
+          <div class="inbox-icon">
+            <i class="bi bi-clock-fill" style="color: var(--warning);"></i>
+          </div>
+          <div class="inbox-content">
+            <div class="inbox-subject"><strong>Simulasi: Beasiswa Pendidikan Prestasi Kita BATCH #5</strong></div>
+            <div class="inbox-preview">Status: ⏳ Menunggu Review Admin</div>
+          </div>
+          <div class="inbox-date">15 Mar 2024</div>
+        </div>
+      </div>
+
+      <!-- Message Detail (hidden by default) -->
+      <div id="messageDetail" class="mt-4" style="display: none;">
+        <div class="settings-card animate-fade-in-up">
+          <h4 id="msgTitle">Hasil Simulasi</h4>
+          <div class="settings-field"><span class="field-label">Beasiswa</span><span class="field-value" id="msgBeasiswa">—</span></div>
+          <div class="settings-field"><span class="field-label">Tanggal Submit</span><span class="field-value" id="msgSubmit">—</span></div>
+          <div class="settings-field"><span class="field-label">Tanggal Review</span><span class="field-value" id="msgReview">—</span></div>
+          <div class="settings-field"><span class="field-label">Status</span><span class="field-value" id="msgStatus">—</span></div>
+          <div class="settings-field"><span class="field-label">Skor</span><span class="field-value" id="msgSkor">—</span></div>
+          <hr>
+          <h6 class="fw-semibold mb-2">Komentar Admin:</h6>
+          <p id="msgKomentar" style="color: var(--text-secondary); line-height: 1.7; font-size: 0.9rem;">—</p>
+          <button class="btn-edit-profile mt-3" onclick="document.getElementById('messageDetail').style.display='none';">
+            <i class="bi bi-arrow-left"></i> Kembali
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-bottom">Copyright &copy; 2026 Beasiswa POLIJE</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function handleLogout() { localStorage.clear(); window.location.href = 'index.html'; }
+
+    const messages = [
+      {
+        id: 1,
+        beasiswa: "Beasiswa KIP Kuliah 2024",
+        tanggalSubmit: "18 Maret 2024, 14:20",
+        tanggalReview: "20 Maret 2024, 09:15",
+        status: "✅ Berpotensi Lulus",
+        skor: "92/100",
+        komentar: "Berkas lengkap dan memenuhi semua persyaratan. IPK sangat baik, aktif berorganisasi, dan memiliki latar belakang ekonomi yang sesuai dengan kriteria KIP Kuliah. Sangat direkomendasikan."
+      },
+      {
+        id: 2,
+        beasiswa: "Beasiswa Bank Indonesia",
+        tanggalSubmit: "5 April 2024, 16:10",
+        tanggalReview: "8 April 2024, 11:30",
+        status: "❌ Belum Memenuhi Syarat",
+        skor: "58/100",
+        komentar: "IPK memenuhi syarat minimal, namun tidak ada prestasi dan organisasi yang menjadi nilai tambah. Disarankan untuk aktif berorganisasi dan meningkatkan portfolio prestasi sebelum mendaftar kembali."
+      },
+      {
+        id: 3,
+        beasiswa: "Beasiswa Pendidikan Prestasi Kita BATCH #5",
+        tanggalSubmit: "15 Maret 2024, 10:30",
+        tanggalReview: "Menunggu review...",
+        status: "⏳ Menunggu Review Admin",
+        skor: "—",
+        komentar: "Formulir Anda sedang dalam proses review oleh admin. Silakan cek kembali nanti."
+      }
+    ];
+
+    function showMessage(id) {
+      const msg = messages.find(m => m.id === id);
+      if (!msg) return;
+
+      document.getElementById('msgTitle').textContent = 'Hasil Simulasi — ' + msg.beasiswa;
+      document.getElementById('msgBeasiswa').textContent = msg.beasiswa;
+      document.getElementById('msgSubmit').textContent = msg.tanggalSubmit;
+      document.getElementById('msgReview').textContent = msg.tanggalReview;
+      document.getElementById('msgStatus').textContent = msg.status;
+      document.getElementById('msgSkor').textContent = msg.skor;
+      document.getElementById('msgKomentar').textContent = msg.komentar;
+
+      document.getElementById('messageDetail').style.display = 'block';
+      document.getElementById('messageDetail').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

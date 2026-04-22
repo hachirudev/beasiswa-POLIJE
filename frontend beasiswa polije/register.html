@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar akun Beasiswa POLIJE untuk mahasiswa dan mitra.">
+  <title>Daftar — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card animate-fade-in-up">
+      <div class="auth-logo">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </div>
+
+      <h2>Buat Akun</h2>
+      <p class="auth-subtitle">Daftar untuk mengakses layanan beasiswa</p>
+
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <!-- Role selector -->
+        <div class="form-group">
+          <label>Daftar sebagai</label>
+          <div class="role-selector">
+            <div class="role-option active" data-role="mahasiswa" onclick="selectRegRole(this)">
+              <i class="bi bi-mortarboard"></i><br>Mahasiswa
+            </div>
+            <div class="role-option" data-role="mitra" onclick="selectRegRole(this)">
+              <i class="bi bi-building"></i><br>Mitra
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regName">Nama Lengkap</label>
+          <input type="text" class="form-control" id="regName" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <input type="email" class="form-control" id="regEmail" placeholder="contoh@email.com" required>
+        </div>
+
+        <!-- Mahasiswa specific fields -->
+        <div id="mahasiswaFields">
+          <div class="form-group">
+            <label for="regNIM">NIM</label>
+            <input type="text" class="form-control" id="regNIM" placeholder="Masukkan NIM">
+          </div>
+          <div class="form-group">
+            <label for="regProdi">Program Studi</label>
+            <select class="form-control" id="regProdi">
+              <option value="">Pilih Program Studi</option>
+              <option>Teknik Informatika</option>
+              <option>Teknologi Informasi</option>
+              <option>Manajemen Informatika</option>
+              <option>Teknik Energi Terbarukan</option>
+              <option>Mesin Otomotif</option>
+              <option>Teknik Mesin</option>
+              <option>Akuntansi</option>
+              <option>Manajemen Agribisnis</option>
+              <option>Produksi Pertanian</option>
+              <option>Budidaya Tanaman Perkebunan</option>
+              <option>Produksi Tanaman Hortikultura</option>
+              <option>Manajemen Agroindustri</option>
+              <option>Teknologi Pengolahan Hasil Ternak</option>
+              <option>Kesehatan Hewan</option>
+              <option>Bahasa Inggris Terapan</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Mitra specific fields -->
+        <div id="mitraFields" style="display: none;">
+          <div class="form-group">
+            <label for="regCompany">Nama Perusahaan/Lembaga</label>
+            <input type="text" class="form-control" id="regCompany" placeholder="Masukkan nama perusahaan">
+          </div>
+          <div class="form-group">
+            <label for="regBidang">Bidang Usaha</label>
+            <input type="text" class="form-control" id="regBidang" placeholder="Contoh: Pendidikan, Teknologi, dll.">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="regPassword" placeholder="Minimal 8 karakter" required>
+            <button type="button" class="btn position-absolute top-50 end-0 translate-middle-y" onclick="togglePassword('regPassword', this)" style="border:none; color:#aaa;">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPasswordConfirm">Konfirmasi Password</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="regPasswordConfirm" placeholder="Ulangi password" required>
+            <button type="button" class="btn position-absolute top-50 end-0 translate-middle-y" onclick="togglePassword('regPasswordConfirm', this)" style="border:none; color:#aaa;">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-auth">Daftar</button>
+      </form>
+
+      <p class="auth-footer">
+        Sudah punya akun? <a href="login.html">Masuk</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let selectedRole = 'mahasiswa';
+
+    function selectRegRole(el) {
+      document.querySelectorAll('.role-option').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+      selectedRole = el.dataset.role;
+
+      document.getElementById('mahasiswaFields').style.display = selectedRole === 'mahasiswa' ? 'block' : 'none';
+      document.getElementById('mitraFields').style.display = selectedRole === 'mitra' ? 'block' : 'none';
+    }
+
+    function togglePassword(fieldId, btn) {
+      const input = document.getElementById(fieldId);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('bi-eye', 'bi-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.replace('bi-eye-slash', 'bi-eye');
+      }
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const pw = document.getElementById('regPassword').value;
+      const pwConfirm = document.getElementById('regPasswordConfirm').value;
+
+      if (pw !== pwConfirm) {
+        alert('Password tidak cocok!');
+        return;
+      }
+      if (pw.length < 8) {
+        alert('Password minimal 8 karakter!');
+        return;
+      }
+
+      // Simulate register
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userRole', selectedRole);
+      localStorage.setItem('userEmail', document.getElementById('regEmail').value);
+      localStorage.setItem('userName', document.getElementById('regName').value);
+
+      if (selectedRole === 'mitra') {
+        window.location.href = 'mitra-dashboard.html';
+      } else {
+        window.location.href = 'main.html';
+      }
+    }
+  </script>
+</body>
+</html>

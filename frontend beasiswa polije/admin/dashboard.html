@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Admin Beasiswa POLIJE — Review simulasi pendaftaran beasiswa.">
+  <title>Admin Dashboard — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa POLIJE</span>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="dashboard.html" class="active"><i class="bi bi-clipboard-data"></i> Review Simulasi</a></li>
+        <li><a href="beasiswa.html"><i class="bi bi-mortarboard"></i> Kelola Beasiswa</a></li>
+        <li><a href="pustaka.html"><i class="bi bi-book"></i> Kelola Pustaka</a></li>
+        <li><a href="faq.html"><i class="bi bi-question-circle"></i> Kelola FAQ</a></li>
+        <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
+          <a href="../main.html"><i class="bi bi-house"></i> Ke Beranda</a>
+        </li>
+        <li>
+          <a href="../settings.html"><i class="bi bi-gear"></i> Settings</a>
+        </li>
+        <li>
+          <a href="#" onclick="localStorage.clear(); window.location.href='../index.html';"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ADMIN CONTENT -->
+    <main class="admin-content">
+      <div class="admin-header">
+        <h2><i class="bi bi-clipboard-data"></i> Review Simulasi Pendaftaran</h2>
+        <div class="d-flex align-items-center gap-3">
+          <span class="text-muted">Admin Beasiswa Polije</span>
+          <div class="profile-icon" style="border-color: var(--primary);">
+            <i class="bi bi-person-fill" style="color: var(--primary);"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-number" id="pendingCount">3</div>
+          <div class="stat-label">Pending / Perlu Review</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color: var(--success);" id="reviewedCount">2</div>
+          <div class="stat-label">Sudah Direview</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="color: var(--text-dark);" id="totalCount">5</div>
+          <div class="stat-label">Total Formulir</div>
+        </div>
+      </div>
+
+      <!-- Filter / Search -->
+      <div class="d-flex gap-3 mb-3">
+        <div class="search-container" style="flex:1; margin-bottom:0;">
+          <input type="text" id="searchSimulasi" placeholder="Cari nama mahasiswa atau beasiswa..." oninput="filterSimulasi()">
+          <button class="search-btn"><i class="bi bi-search"></i></button>
+        </div>
+        <select class="form-select" style="width: auto; border: 2px solid #ddd; border-radius: 12px;" id="filterStatus" onchange="filterSimulasi()">
+          <option value="">Semua Status</option>
+          <option value="pending">Pending</option>
+          <option value="reviewed">Reviewed</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="admin-table">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Mahasiswa</th>
+              <th>Beasiswa</th>
+              <th>Tanggal Submit</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="simulasiTableBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/beasiswa-data.js"></script>
+  <script>
+    function formatDateTime(ds) {
+      const d = new Date(ds);
+      const m = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+      return d.getDate() + ' ' + m[d.getMonth()] + ' ' + d.getFullYear() + ', ' +
+        String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSimulasiTable(simulasiData);
+      updateCounts();
+    });
+
+    function updateCounts() {
+      const pending = simulasiData.filter(s => s.status === 'pending').length;
+      const reviewed = simulasiData.filter(s => s.status === 'reviewed').length;
+      document.getElementById('pendingCount').textContent = pending;
+      document.getElementById('reviewedCount').textContent = reviewed;
+      document.getElementById('totalCount').textContent = simulasiData.length;
+    }
+
+    function renderSimulasiTable(data) {
+      const tbody = document.getElementById('simulasiTableBody');
+      tbody.innerHTML = data.map((s, i) => `
+        <tr style="cursor:pointer;" onclick="window.location.href='review-detail.html?id=${s.id}'">
+          <td>${i + 1}</td>
+          <td><strong>${s.namaMahasiswa}</strong></td>
+          <td>${s.namaBeasiswa}</td>
+          <td>${formatDateTime(s.tanggalSubmit)}</td>
+          <td>
+            <span class="status-badge ${s.status}">${s.status === 'pending' ? 'Pending' : 'Reviewed'}</span>
+          </td>
+          <td>
+            <a href="review-detail.html?id=${s.id}" class="btn-action">
+              <i class="bi bi-eye"></i> Lihat
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterSimulasi() {
+      const query = document.getElementById('searchSimulasi').value.toLowerCase();
+      const status = document.getElementById('filterStatus').value;
+
+      let filtered = simulasiData.filter(s => {
+        const matchSearch = s.namaMahasiswa.toLowerCase().includes(query) || s.namaBeasiswa.toLowerCase().includes(query);
+        const matchStatus = !status || s.status === status;
+        return matchSearch && matchStatus;
+      });
+
+      renderSimulasiTable(filtered);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login ke akun Beasiswa POLIJE untuk mengakses daftar beasiswa dan fitur lainnya.">
+  <title>Login — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card animate-fade-in-up">
+      <div class="auth-logo">
+        <img src="assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa <strong>POLIJE</strong></span>
+      </div>
+
+      <h2>Masuk</h2>
+      <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" class="form-control" id="loginEmail" placeholder="contoh@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="loginPassword" placeholder="Masukkan password" required>
+            <button type="button" class="btn position-absolute top-50 end-0 translate-middle-y" onclick="togglePassword('loginPassword', this)" style="border:none; color:#aaa;">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Role selector for demo purposes -->
+        <div class="form-group">
+          <label>Masuk sebagai</label>
+          <div class="role-selector">
+            <div class="role-option active" data-role="mahasiswa" onclick="selectLoginRole(this)">
+              <i class="bi bi-mortarboard"></i><br>Mahasiswa
+            </div>
+            <div class="role-option" data-role="mitra" onclick="selectLoginRole(this)">
+              <i class="bi bi-building"></i><br>Mitra
+            </div>
+            <div class="role-option" data-role="admin" onclick="selectLoginRole(this)">
+              <i class="bi bi-shield-check"></i><br>Admin
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-auth">Masuk</button>
+      </form>
+
+      <p class="auth-footer">
+        Belum punya akun? <a href="register.html">Daftar Sekarang</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let selectedRole = 'mahasiswa';
+
+    function selectLoginRole(el) {
+      document.querySelectorAll('.role-option').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+      selectedRole = el.dataset.role;
+    }
+
+    function togglePassword(fieldId, btn) {
+      const input = document.getElementById(fieldId);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('bi-eye', 'bi-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.replace('bi-eye-slash', 'bi-eye');
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+
+      // Simulate login — store role + user info
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userRole', selectedRole);
+      localStorage.setItem('userEmail', email);
+
+      // Redirect based on role
+      if (selectedRole === 'admin') {
+        window.location.href = 'admin/dashboard.html';
+      } else if (selectedRole === 'mitra') {
+        window.location.href = 'mitra-dashboard.html';
+      } else {
+        window.location.href = 'main.html';
+      }
+    }
+  </script>
+</body>
+</html>

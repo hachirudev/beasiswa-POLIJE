@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detail review simulasi pendaftaran beasiswa.">
+  <title>Review Detail — Beasiswa POLIJE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- ADMIN SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/images/logo polije.png" alt="Logo Polije">
+        <span>Beasiswa POLIJE</span>
+      </div>
+      <ul class="admin-nav">
+        <li><a href="dashboard.html" class="active"><i class="bi bi-clipboard-data"></i> Review Simulasi</a></li>
+        <li><a href="beasiswa.html"><i class="bi bi-mortarboard"></i> Kelola Beasiswa</a></li>
+        <li><a href="pustaka.html"><i class="bi bi-book"></i> Kelola Pustaka</a></li>
+        <li><a href="faq.html"><i class="bi bi-question-circle"></i> Kelola FAQ</a></li>
+        <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px;">
+          <a href="../main.html"><i class="bi bi-house"></i> Ke Beranda</a>
+        </li>
+        <li><a href="#" onclick="localStorage.clear(); window.location.href='../index.html';"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- ADMIN CONTENT -->
+    <main class="admin-content">
+      <div class="admin-header">
+        <div>
+          <a href="dashboard.html" class="text-muted" style="font-size: 0.9rem;"><i class="bi bi-arrow-left"></i> Kembali ke Daftar</a>
+          <h2 class="mt-2"><i class="bi bi-file-earmark-text"></i> Detail Formulir Simulasi</h2>
+        </div>
+      </div>
+
+      <!-- Beasiswa Info -->
+      <div class="review-data">
+        <h4><i class="bi bi-mortarboard"></i> Beasiswa yang Didaftar</h4>
+        <div class="review-field">
+          <span class="field-label">Nama Beasiswa</span>
+          <span class="field-value" id="rBeasiswa">—</span>
+        </div>
+      </div>
+
+      <!-- Informasi Pribadi -->
+      <div class="review-data">
+        <h4><i class="bi bi-person-vcard"></i> Informasi Pribadi</h4>
+        <div class="review-field"><span class="field-label">Nama Lengkap</span><span class="field-value" id="rNama">—</span></div>
+        <div class="review-field"><span class="field-label">NIM</span><span class="field-value" id="rNim">—</span></div>
+        <div class="review-field"><span class="field-label">Program Studi</span><span class="field-value" id="rProdi">—</span></div>
+        <div class="review-field"><span class="field-label">Angkatan</span><span class="field-value" id="rAngkatan">—</span></div>
+        <div class="review-field"><span class="field-label">Semester</span><span class="field-value" id="rSemester">—</span></div>
+        <div class="review-field"><span class="field-label">IPK Terakhir</span><span class="field-value" id="rIpk">—</span></div>
+        <div class="review-field"><span class="field-label">Jenis Kelamin</span><span class="field-value" id="rGender">—</span></div>
+      </div>
+
+      <!-- Informasi Orang Tua -->
+      <div class="review-data">
+        <h4><i class="bi bi-people"></i> Informasi Orang Tua / Wali</h4>
+        <div class="review-field"><span class="field-label">Nama Orang Tua</span><span class="field-value" id="rOrtu">—</span></div>
+        <div class="review-field"><span class="field-label">Pekerjaan</span><span class="field-value" id="rPekerjaan">—</span></div>
+        <div class="review-field"><span class="field-label">Penghasilan</span><span class="field-value" id="rPenghasilan">—</span></div>
+        <div class="review-field"><span class="field-label">Tanggungan</span><span class="field-value" id="rTanggungan">—</span></div>
+        <div class="review-field"><span class="field-label">SKTM</span><span class="field-value" id="rSktm">—</span></div>
+      </div>
+
+      <!-- Informasi Lainnya -->
+      <div class="review-data">
+        <h4><i class="bi bi-info-circle"></i> Informasi Lainnya</h4>
+        <div class="review-field"><span class="field-label">Aktif Kuliah</span><span class="field-value" id="rAktif">—</span></div>
+        <div class="review-field"><span class="field-label">Status Beasiswa Lain</span><span class="field-value" id="rStatusBeasiswa">—</span></div>
+        <div class="review-field"><span class="field-label">Organisasi</span><span class="field-value" id="rOrganisasi">—</span></div>
+        <div class="review-field"><span class="field-label">Prestasi</span><span class="field-value" id="rPrestasi">—</span></div>
+      </div>
+
+      <!-- Motivasi -->
+      <div class="review-data">
+        <h4><i class="bi bi-chat-heart"></i> Motivasi</h4>
+        <p id="rMotivasi" style="color: var(--text-secondary); line-height: 1.7; font-size: 0.9rem;">—</p>
+      </div>
+
+      <!-- Dokumen -->
+      <div class="review-data">
+        <h4><i class="bi bi-file-earmark"></i> Dokumen</h4>
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-file-earmark-pdf" style="font-size: 2rem; color: var(--danger);"></i>
+          <div>
+            <strong id="rDokumen">—</strong><br>
+            <a href="#" class="text-primary-custom" style="font-size: 0.85rem;">Download Dokumen</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- HASIL REVIEW (Admin fills this) -->
+      <div class="review-result">
+        <h4><i class="bi bi-clipboard-check"></i> Hasil Review Simulasi</h4>
+        <form id="reviewForm" onsubmit="submitReview(event)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="hasilSimulasi">Hasil Simulasi</label>
+                <select class="form-select" id="hasilSimulasi" required>
+                  <option value="">Pilih Hasil</option>
+                  <option value="Berpotensi Lulus">✅ Berpotensi Lulus</option>
+                  <option value="Belum Memenuhi Syarat">❌ Belum Memenuhi Syarat</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="skorFormulir">Skor Formulir (0-100)</label>
+                <input type="number" class="form-control" id="skorFormulir" min="0" max="100" placeholder="Masukkan skor" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="komentarAdmin">Komentar Admin</label>
+            <textarea class="form-control" id="komentarAdmin" rows="4" placeholder="Tuliskan komentar atau feedback untuk mahasiswa..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Timestamp Review</label>
+            <input type="text" class="form-control" id="timestampReview" readonly>
+          </div>
+          <button type="submit" class="btn-submit-form mt-3">
+            <i class="bi bi-check2-circle"></i> Simpan Review
+          </button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/beasiswa-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
+      const s = simulasiData.find(x => x.id === id);
+
+      if (!s) {
+        document.querySelector('.admin-content').innerHTML = '<div class="text-center p-5"><h3>Formulir tidak ditemukan</h3><a href="dashboard.html">Kembali</a></div>';
+        return;
+      }
+
+      // Fill data
+      document.getElementById('rBeasiswa').textContent = s.namaBeasiswa;
+      document.getElementById('rNama').textContent = s.namaMahasiswa;
+      document.getElementById('rNim').textContent = s.nim;
+      document.getElementById('rProdi').textContent = s.prodi;
+      document.getElementById('rAngkatan').textContent = s.angkatan;
+      document.getElementById('rSemester').textContent = s.semester;
+      document.getElementById('rIpk').textContent = s.ipk;
+      document.getElementById('rGender').textContent = s.jenisKelamin;
+      document.getElementById('rOrtu').textContent = s.namaOrtu;
+      document.getElementById('rPekerjaan').textContent = s.pekerjaanOrtu;
+      document.getElementById('rPenghasilan').textContent = s.penghasilan;
+      document.getElementById('rTanggungan').textContent = s.tanggungan + ' orang';
+      document.getElementById('rSktm').textContent = s.sktm ? 'Ada' : 'Tidak Ada';
+      document.getElementById('rAktif').textContent = s.aktifKuliah ? 'Ya' : 'Tidak';
+      document.getElementById('rStatusBeasiswa').textContent = s.statusBeasiswaLain ? 'Ada' : 'Tidak Ada';
+      document.getElementById('rOrganisasi').textContent = s.organisasi || 'Tidak ada';
+      document.getElementById('rPrestasi').textContent = s.prestasi || 'Tidak ada';
+      document.getElementById('rMotivasi').textContent = s.motivasi;
+      document.getElementById('rDokumen').textContent = s.dokumen;
+
+      // Set timestamp
+      document.getElementById('timestampReview').value = new Date().toLocaleString('id-ID');
+
+      // If already reviewed, fill the review form
+      if (s.hasilReview) {
+        document.getElementById('hasilSimulasi').value = s.hasilReview.hasilSimulasi;
+        document.getElementById('skorFormulir').value = s.hasilReview.skor;
+        document.getElementById('komentarAdmin').value = s.hasilReview.komentar;
+        const rd = new Date(s.hasilReview.tanggalReview);
+        document.getElementById('timestampReview').value = rd.toLocaleString('id-ID');
+      }
+    });
+
+    function submitReview(e) {
+      e.preventDefault();
+      alert('Review berhasil disimpan! Hasil simulasi telah dikirim ke mahasiswa.');
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>

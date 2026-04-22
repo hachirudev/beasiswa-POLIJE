@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#4FC3F7" stroke="#0288D1" stroke-width="2"/>
+  <!-- Inner shield -->
+  <path d="M50 15 L75 30 L75 55 Q75 75 50 90 Q25 75 25 55 L25 30 Z" fill="#E0F7FA" stroke="#0288D1" stroke-width="1.5"/>
+  <!-- Leaf/plant design -->
+  <path d="M50 35 Q55 45 50 65 Q45 45 50 35Z" fill="#4CAF50" stroke="#2E7D32" stroke-width="1"/>
+  <path d="M50 40 Q60 35 65 42 Q58 42 50 48Z" fill="#66BB6A"/>
+  <path d="M50 40 Q40 35 35 42 Q42 42 50 48Z" fill="#66BB6A"/>
+  <path d="M50 52 Q58 48 62 53 Q56 53 50 58Z" fill="#81C784"/>
+  <path d="M50 52 Q42 48 38 53 Q44 53 50 58Z" fill="#81C784"/>
+  <!-- Water drop -->
+  <circle cx="50" cy="72" r="5" fill="#0288D1"/>
+  <path d="M50 65 Q54 70 50 77 Q46 70 50 65Z" fill="#0288D1"/>
+</svg>
