@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- ========== HEAD ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Simulasi — Admin Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+            --sidebar-width: 260px;
+        }
+
+        /* CUSTOM CSS */
+        .sidebar-admin {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            z-index: 1040;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 1.25rem 1.3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: var(--color-white);
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand:hover {
+            color: var(--color-primary);
+        }
+
+        .sidebar-brand .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand .brand-text {
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-brand .brand-subtitle {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 1.2rem 1.3rem 0.45rem;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0.4rem 0.7rem;
+            flex: 1;
+        }
+
+        .sidebar-nav .nav-item {
+            margin-bottom: 2px;
+        }
+
+        .sidebar-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 0.85rem;
+            border-radius: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav .nav-link i {
+            font-size: 1.15rem;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav .nav-link:hover {
+            background-color: rgba(0, 180, 216, 0.12);
+            color: var(--color-primary);
+        }
+
+        .sidebar-nav .nav-link.active {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-white);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 180, 216, 0.3);
+        }
+
+        .sidebar-badge {
+            margin-left: auto;
+            background-color: #dc3545;
+            color: var(--color-white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--color-white);
+        }
+
+        .sidebar-footer .admin-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer .admin-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .sidebar-footer .admin-role {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .sidebar-footer .btn-logout {
+            margin-left: auto;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0.3rem;
+            cursor: pointer;
+        }
+
+        .sidebar-footer .btn-logout:hover {
+            color: #dc3545;
+        }
+
+        .main-content-admin {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            background-color: #f5f7fa;
+        }
+
+        .topbar-admin {
+            background-color: var(--color-white);
+            border-bottom: 1px solid #e9ecef;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-admin .page-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--color-text);
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-content-admin">
+        <div class="topbar-admin">
+            <h1 class="page-title">Review Simulasi</h1>
+            <span class="text-muted" style="font-size:0.85rem;"><i class="bi bi-funnel me-1"></i>Menampilkan: Semua
+                Status</span>
+        </div>
+
+        <!-- ========== KONTEN UTAMA ========== -->
+        <div class="p-4">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background: var(--color-lighter);">
+                            <tr>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Nama Mahasiswa</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Beasiswa</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Tanggal Submit</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Status</th>
+                                <th class="py-3 px-4 text-center" style="font-weight:600; border-bottom:none;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Pending pertama -->
+                            <tr style="background:#fffef5;">
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Ahmad Rizki Pratama</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41212345 • Teknik Informatika
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa KIP Kuliah 2024</td>
+                                <td class="py-3 px-4 text-muted">09 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#fff3cd;color:#856404;padding:.45em .7em;">Pending</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm fw-semibold"
+                                        style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"><i
+                                            class="bi bi-eye me-1"></i>Review</a>
+                                </td>
+                            </tr>
+                            <tr style="background:#fffef5;">
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Siti Nurhaliza</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41219876 • Manajemen Agribisnis
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa Djarum Plus 2024</td>
+                                <td class="py-3 px-4 text-muted">08 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#fff3cd;color:#856404;padding:.45em .7em;">Pending</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm fw-semibold"
+                                        style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"><i
+                                            class="bi bi-eye me-1"></i>Review</a>
+                                </td>
+                            </tr>
+                            <tr style="background:#fffef5;">
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Budi Santoso</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41215432 • Produksi Pertanian
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa Tanoto Foundation</td>
+                                <td class="py-3 px-4 text-muted">07 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#fff3cd;color:#856404;padding:.45em .7em;">Pending</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm fw-semibold"
+                                        style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"><i
+                                            class="bi bi-eye me-1"></i>Review</a>
+                                </td>
+                            </tr>
+                            <tr style="background:#fffef5;">
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Dewi Anggraini</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41218765 • Teknologi Informasi
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa PPA 2024</td>
+                                <td class="py-3 px-4 text-muted">06 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#fff3cd;color:#856404;padding:.45em .7em;">Pending</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm fw-semibold"
+                                        style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"><i
+                                            class="bi bi-eye me-1"></i>Review</a>
+                                </td>
+                            </tr>
+                            <tr style="background:#fffef5;">
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Eko Prasetyo</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41213456 • Teknik Energi
+                                        Terbarukan</div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa Bank Indonesia 2024</td>
+                                <td class="py-3 px-4 text-muted">05 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#fff3cd;color:#856404;padding:.45em .7em;">Pending</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm fw-semibold"
+                                        style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"><i
+                                            class="bi bi-eye me-1"></i>Review</a>
+                                </td>
+                            </tr>
+                            <!-- Sudah direview -->
+                            <tr>
+                                <td class="py-3 px-4">
+                                    <div class="fw-semibold">Rina Wulandari</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41211234 • Bahasa Inggris</div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Beasiswa PPA 2024</td>
+                                <td class="py-3 px-4 text-muted">01 Mei 2026</td>
+                                <td class="py-3 px-4"><span class="badge"
+                                        style="background:#e8f5e9;color:#28a745;padding:.45em .7em;">Lulus</span></td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="detail-review.html" class="btn btn-sm btn-outline-secondary fw-semibold"><i
+                                            class="bi bi-eye me-1"></i>Detail</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border-0">
+                                    <div class="fw-semibold">Joko Widodo</div>
+                                    <div class="text-muted" style="font-size:0.8rem;">E41217890 • Teknik Mesin</div>
+                                </td>
+                                <td class="py-3 px-4 text-muted border-0">Beasiswa KIP Kuliah 2024</td>
+                                <td class="py-3 px-4 text-muted border-0">28 Apr 2026</td>
+                                <td class="py-3 px-4 border-0"><span class="badge"
+                                        style="background:#f8d7da;color:#721c24;padding:.45em .7em;">Tidak Lulus</span>
+                                </td>
+                                <td class="py-3 px-4 text-center border-0">
+                                    <a href="detail-review.html" class="btn btn-sm btn-outline-secondary fw-semibold"><i
+                                            class="bi bi-eye me-1"></i>Detail</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ========== END KONTEN ========== -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // CUSTOM JS
+    </script>
+</body>
+
+</html>

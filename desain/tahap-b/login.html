@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- ========== HEAD ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk — Beasiswa POLIJE</title>
+    <meta name="description" content="Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasiswa.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Dari Tahap A
+       ============================================================ */
+    :root {
+        --color-primary:      #00B4D8;
+        --color-primary-dark:  #0096B4;
+        --color-secondary:    #007A94;
+        --color-light:        #90E0EF;
+        --color-lighter:      #CAF0F8;
+        --color-text:         #333333;
+        --color-text-muted:   #6c757d;
+        --color-white:        #ffffff;
+        --color-dark:         #03045E;
+    }
+
+    /* CUSTOM CSS */
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    /* --- Background --- */
+    .auth-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(160deg, var(--color-lighter) 0%, var(--color-light) 35%, var(--color-primary) 100%);
+        padding: 2rem 1rem;
+    }
+
+    /* --- Card --- */
+    .auth-card {
+        background-color: var(--color-white);
+        border-radius: 1.2rem;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+        padding: 2.5rem 2.5rem 2rem;
+        width: 100%;
+        max-width: 460px;
+    }
+
+    /* Brand header */
+    .auth-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 1.5rem;
+        text-decoration: none;
+        color: var(--color-primary);
+        font-weight: 700;
+        font-size: 1.15rem;
+    }
+
+    .auth-brand .brand-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .auth-title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--color-text);
+        margin-bottom: 0.25rem;
+    }
+
+    .auth-subtitle {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1.75rem;
+    }
+
+    /* Form labels & inputs */
+    .auth-card .form-label {
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: var(--color-text);
+        margin-bottom: 0.35rem;
+    }
+
+    .auth-card .form-control {
+        border: 1.5px solid #dee2e6;
+        border-radius: 0.55rem;
+        padding: 0.65rem 0.9rem;
+        font-size: 0.9rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .auth-card .form-control:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    .auth-card .form-control::placeholder {
+        color: #adb5bd;
+    }
+
+    /* Password toggle */
+    .input-password-wrapper {
+        position: relative;
+    }
+
+    .input-password-wrapper .form-control {
+        padding-right: 2.8rem;
+    }
+
+    .btn-toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--color-text-muted);
+        font-size: 1.1rem;
+        padding: 0;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s;
+    }
+
+    .btn-toggle-password:hover {
+        color: var(--color-primary);
+    }
+
+    /* Role selector */
+    .role-selector {
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .role-option {
+        flex: 1;
+        text-align: center;
+        border: 2px solid #dee2e6;
+        border-radius: 0.6rem;
+        padding: 0.7rem 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: var(--color-white);
+    }
+
+    .role-option:hover {
+        border-color: var(--color-primary);
+    }
+
+    .role-option.active {
+        border-color: var(--color-primary);
+        background-color: var(--color-lighter);
+    }
+
+    .role-option input[type="radio"] {
+        display: none;
+    }
+
+    .role-option .role-icon {
+        font-size: 1.3rem;
+        color: var(--color-text-muted);
+        display: block;
+        margin-bottom: 0.25rem;
+        transition: color 0.2s;
+    }
+
+    .role-option.active .role-icon {
+        color: var(--color-primary);
+    }
+
+    .role-option .role-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+
+    /* Submit button */
+    .btn-auth-submit {
+        width: 100%;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+        color: var(--color-white);
+        border: none;
+        border-radius: 0.55rem;
+        padding: 0.7rem;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-auth-submit:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
+        color: var(--color-white);
+    }
+
+    /* Footer link */
+    .auth-footer-text {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-top: 1.25rem;
+    }
+
+    .auth-footer-text a {
+        color: var(--color-primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .auth-footer-text a:hover {
+        color: var(--color-primary-dark);
+        text-decoration: underline;
+    }
+
+    /* Flash message area */
+    .auth-alert {
+        border-radius: 0.55rem;
+        font-size: 0.85rem;
+    }
+    </style>
+</head>
+<body>
+
+<!-- ========== KONTEN UTAMA ========== -->
+<div class="auth-page" id="login-page">
+    <div class="auth-card">
+        <!-- Brand -->
+        <a href="index.html" class="auth-brand">
+            <span class="brand-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </span>
+            Beasiswa POLIJE
+        </a>
+
+        <h1 class="auth-title">Masuk</h1>
+        <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
+
+        <!-- Flash message placeholder -->
+        <!-- <div class="alert alert-danger auth-alert" role="alert">Email atau password salah.</div> -->
+
+        <form id="form-login" method="POST" action="#">
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="input-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="input-email" name="email"
+                       placeholder="contoh@email.com" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="input-password" class="form-label">Password</label>
+                <div class="input-password-wrapper">
+                    <input type="password" class="form-control" id="input-password" name="password"
+                           placeholder="Masukkan password" required>
+                    <button type="button" class="btn-toggle-password" id="btn-toggle-password"
+                            aria-label="Tampilkan password">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Role selector -->
+            <div class="mb-3">
+                <label class="form-label">Masuk sebagai</label>
+                <div class="role-selector" id="role-selector">
+                    <label class="role-option active" data-role="mahasiswa">
+                        <input type="radio" name="role" value="mahasiswa" checked>
+                        <i class="bi bi-mortarboard role-icon"></i>
+                        <span class="role-label">Mahasiswa</span>
+                    </label>
+                    <label class="role-option" data-role="mitra">
+                        <input type="radio" name="role" value="mitra">
+                        <i class="bi bi-building role-icon"></i>
+                        <span class="role-label">Mitra</span>
+                    </label>
+                    <label class="role-option" data-role="admin">
+                        <input type="radio" name="role" value="admin">
+                        <i class="bi bi-shield-check role-icon"></i>
+                        <span class="role-label">Admin</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-auth-submit" id="btn-login-submit">Masuk</button>
+        </form>
+
+        <!-- Register link -->
+        <p class="auth-footer-text">
+            Belum punya akun? <a href="register-mahasiswa.html" id="link-daftar">Daftar Sekarang</a>
+        </p>
+    </div>
+</div>
+<!-- ========== END KONTEN ========== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// CUSTOM JS
+
+// Toggle password visibility
+(function () {
+    const btnToggle = document.getElementById('btn-toggle-password');
+    const inputPassword = document.getElementById('input-password');
+
+    if (btnToggle && inputPassword) {
+        btnToggle.addEventListener('click', function () {
+            const isPassword = inputPassword.type === 'password';
+            inputPassword.type = isPassword ? 'text' : 'password';
+            btnToggle.querySelector('i').className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
+        });
+    }
+})();
+
+// Role selector
+(function () {
+    const options = document.querySelectorAll('.role-option');
+
+    options.forEach(function (option) {
+        option.addEventListener('click', function () {
+            options.forEach(function (o) { o.classList.remove('active'); });
+            option.classList.add('active');
+            option.querySelector('input[type="radio"]').checked = true;
+        });
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- ========== HEAD ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+       CSS CUSTOM PROPERTIES — Diekstrak dari desain Figma
+       ============================================================ */
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+        }
+
+        /* CUSTOM CSS */
+
+        /* --- Footer --- */
+        .footer-beasiswa {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem;
+        }
+
+        .footer-beasiswa .footer-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-beasiswa .footer-description {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.65;
+        }
+
+        /* Section headings */
+        .footer-beasiswa .footer-heading {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        /* Links */
+        .footer-beasiswa .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-beasiswa .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-beasiswa .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+
+        .footer-beasiswa .footer-links a:hover {
+            color: var(--color-primary-dark);
+            padding-left: 4px;
+        }
+
+        /* Contact info */
+        .footer-beasiswa .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.88rem;
+        }
+
+        .footer-beasiswa .contact-item i {
+            color: var(--color-secondary);
+            font-size: 1.05rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Social icons */
+        .footer-social {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--color-text);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Partnership logos */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .partner-slot {
+            background-color: rgba(255, 255, 255, 0.65);
+            border-radius: 0.4rem;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            transition: background-color 0.2s;
+        }
+
+        .partner-slot:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Copyright bar */
+        .footer-copyright {
+            background-color: rgba(0, 0, 0, 0.04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== FOOTER ========== -->
+    <!-- [REQUIRE_ONCE: footer.php] -->
+    <footer class="footer-beasiswa" id="footer-beasiswa">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Kolom 1: Tentang -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand">Beasiswa POLIJE</div>
+                    <p class="footer-description">
+                        Website yang menyediakan informasi terpusat yang tersedia di Politeknik Negeri Jember (Polije),
+                        mengenai berbagai program beasiswa. Sistem menampilkan daftar beasiswa, persyaratan, jadwal
+                        pendaftaran, serta pengumuman, agar informasi mudah diakses, jelas, dan terorganisir.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" title="TikTok" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" title="Instagram" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Link navigasi -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Tentang Beasiswa.POLIJE</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Beasiswa</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Jenis Beasiswa</a></li>
+                        <li><a href="#">Alur Beasiswa</a></li>
+                        <li><a href="#">Pustaka</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3: Hubungi Kami -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Hubungi Kami</h5>
+                    <div class="contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>+62 8222 3333 444</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>beasiswa@polije.ac.id</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Gedung A3 (Asah Asih Asuh), Jl. Mastrip, Kotak Pos 164, Jember 68101, Jawa Timur,
+                            Indonesia.</span>
+                    </div>
+                </div>
+
+                <!-- Kolom 4: Partnership -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Partnership</h5>
+                    <div class="partner-grid">
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                        <div class="partner-slot">Partner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            Copyright &copy; 2026 Beasiswa POLIJE
+        </div>
+    </footer>
+    <!-- [END REQUIRE_ONCE] -->
+    <!-- ========== END FOOTER ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

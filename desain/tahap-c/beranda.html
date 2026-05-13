@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+        }
+
+        /* CUSTOM CSS */
+        .navbar-b {
+            background: var(--color-white);
+            border-bottom: 2px solid var(--color-light);
+            padding: .65rem 0
+        }
+
+        .navbar-b .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            text-decoration: none
+        }
+
+        .navbar-b .brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem
+        }
+
+        .navbar-b .nav-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+            font-size: .925rem;
+            padding: .5rem .9rem !important
+        }
+
+        .navbar-b .nav-link:hover,
+        .navbar-b .nav-link.active {
+            color: var(--color-primary-dark) !important;
+            font-weight: 600
+        }
+
+        .navbar-b .dropdown-menu {
+            border: 1px solid var(--color-light);
+            border-radius: .5rem;
+            box-shadow: 0 4px 16px rgba(0, 180, 216, .1)
+        }
+
+        .navbar-b .dropdown-item:hover {
+            background: var(--color-lighter);
+            color: var(--color-primary-dark)
+        }
+
+        .btn-profile {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: 0 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: .2s;
+            padding: 0
+        }
+
+        .btn-profile:hover {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .search-bar {
+            border: 2px solid var(--color-light);
+            border-radius: .6rem;
+            overflow: hidden;
+            display: flex;
+            background: #fff
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: .6rem 1rem;
+            font-size: .9rem
+        }
+
+        .search-bar button {
+            background: 0 0;
+            border: none;
+            padding: 0 1rem;
+            color: var(--color-text-muted);
+            font-size: 1.1rem
+        }
+
+        .year-nav {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin: 1rem 0 .5rem
+        }
+
+        .year-nav .year-label {
+            border: 2px solid var(--color-primary);
+            border-radius: .5rem;
+            padding: .3rem 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-text)
+        }
+
+        .year-nav button {
+            background: 0 0;
+            border: none;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            cursor: pointer
+        }
+
+        .month-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem;
+            margin-bottom: 1.25rem
+        }
+
+        .month-btn {
+            padding: .3rem .7rem;
+            border: 2px solid var(--color-primary);
+            border-radius: .4rem;
+            background: #fff;
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: .78rem;
+            cursor: pointer;
+            transition: .15s
+        }
+
+        .month-btn:hover,
+        .month-btn.active {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .filter-sidebar {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: .75rem;
+            padding: 1.25rem
+        }
+
+        .filter-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin-bottom: 1rem
+        }
+
+        .filter-section {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: .75rem;
+            margin-bottom: .75rem
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0
+        }
+
+        .filter-heading {
+            font-weight: 600;
+            font-size: .88rem;
+            color: var(--color-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .filter-heading i {
+            transition: .2s
+        }
+
+        .filter-options {
+            margin-top: .5rem
+        }
+
+        .filter-options .form-check {
+            margin-bottom: .3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .filter-options .form-check-label {
+            font-size: .85rem;
+            color: var(--color-text);
+            flex: 1
+        }
+
+        .filter-options .filter-count {
+            font-size: .78rem;
+            color: var(--color-text-muted);
+            margin-left: auto;
+            padding-left: .5rem
+        }
+
+        .filter-options .form-check-input:checked {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary)
+        }
+
+        .card-beasiswa {
+            border: 1px solid #e9ecef;
+            border-radius: .75rem;
+            overflow: hidden;
+            transition: transform .2s, box-shadow .2s;
+            background: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column
+        }
+
+        .card-beasiswa:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .08)
+        }
+
+        .card-beasiswa .poster {
+            width: 100%;
+            height: 220px;
+            object-fit: cover
+        }
+
+        .card-beasiswa .card-body {
+            padding: 1rem 1.1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        .card-beasiswa .beasiswa-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: .15rem
+        }
+
+        .card-beasiswa .beasiswa-penyelenggara {
+            font-size: .8rem;
+            color: var(--color-text-muted);
+            margin-bottom: .4rem
+        }
+
+        .card-beasiswa .beasiswa-desc {
+            font-size: .83rem;
+            color: var(--color-text-muted);
+            margin-bottom: .65rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: .15rem .55rem;
+            border-radius: .3rem;
+            font-size: .72rem;
+            font-weight: 600;
+            margin-right: .25rem;
+            margin-bottom: .25rem
+        }
+
+        .tag-jenjang {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .tag-tipe {
+            background: #ffc107;
+            color: var(--color-text)
+        }
+
+        .tag-pendanaan {
+            background: var(--color-light);
+            color: var(--color-secondary)
+        }
+
+        .date-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: .78rem;
+            color: var(--color-text-muted);
+            margin-top: .5rem
+        }
+
+        .date-row strong {
+            color: var(--color-text)
+        }
+
+        .status-badge {
+            display: block;
+            text-align: center;
+            padding: .4rem;
+            border-radius: .4rem;
+            font-size: .82rem;
+            font-weight: 600;
+            margin-top: .6rem
+        }
+
+        .status-dibuka {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .status-ditutup {
+            background: #dc3545;
+            color: #fff
+        }
+
+        .status-belum {
+            background: #ffc107;
+            color: var(--color-text)
+        }
+
+        .btn-see {
+            display: block;
+            text-align: center;
+            border: 2px solid var(--color-text);
+            border-radius: .5rem;
+            padding: .45rem;
+            font-weight: 600;
+            font-size: .88rem;
+            color: var(--color-text);
+            text-decoration: none;
+            margin-top: .6rem;
+            transition: .2s
+        }
+
+        .btn-see:hover {
+            background: var(--color-text);
+            color: #fff
+        }
+
+        .pagination .page-link {
+            color: var(--color-primary);
+            border-color: #dee2e6
+        }
+
+        .pagination .page-item.active .page-link {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: #fff
+        }
+
+        .footer-b {
+            background: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem
+        }
+
+        .footer-b .footer-heading {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem
+        }
+
+        .footer-b .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        .footer-b .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: .88rem
+        }
+
+        .footer-b .footer-links a:hover {
+            color: var(--color-primary-dark)
+        }
+
+        .footer-b .footer-links li {
+            margin-bottom: .5rem
+        }
+
+        .footer-b .contact-item {
+            display: flex;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            font-size: .88rem
+        }
+
+        .footer-b .contact-item i {
+            color: var(--color-secondary);
+            margin-top: 2px
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-text);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: .4rem;
+            transition: .2s
+        }
+
+        .footer-social a:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px)
+        }
+
+        .footer-copyright {
+            background: rgba(0, 0, 0, .04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted)
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== KONTEN UTAMA ========== -->
+    <div class="container py-4">
+        <div class="row g-4">
+            <!-- Sidebar Filter -->
+            <div class="col-lg-3">
+                <div class="filter-sidebar">
+                    <div class="filter-title">Filter Beasiswa</div>
+
+                    <div class="filter-section">
+                        <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fJenjang">Jenjang
+                            Beasiswa <i class="bi bi-chevron-up"></i></div>
+                        <div class="collapse show filter-options" id="fJenjang">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jD2"><label class="form-check-label" for="jD2">D2</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jD3"><label class="form-check-label" for="jD3">D3</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jD4"><label class="form-check-label" for="jD4">D4</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jS1"><label class="form-check-label" for="jS1">S1</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jS2"><label class="form-check-label" for="jS2">S2</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="jenjang[]"
+                                    id="jS3"><label class="form-check-label" for="jS3">S3</label><span
+                                    class="filter-count"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fPendanaan">Tipe
+                            Pendanaan Beasiswa <i class="bi bi-chevron-up"></i></div>
+                        <div class="collapse show filter-options" id="fPendanaan">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="pendanaan[]"
+                                    id="pFull"><label class="form-check-label" for="pFull">Fully Funded</label><span
+                                    class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="pendanaan[]"
+                                    id="pPartial"><label class="form-check-label" for="pPartial">Partially
+                                    Funded</label><span class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="pendanaan[]"
+                                    id="pSelf"><label class="form-check-label" for="pSelf">Self Funded</label><span
+                                    class="filter-count"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fTipe">Tipe Beasiswa <i
+                                class="bi bi-chevron-up"></i></div>
+                        <div class="collapse show filter-options" id="fTipe">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="tipe"
+                                    id="tCompany"><label class="form-check-label" for="tCompany">Company/Institution
+                                    Scholarship</label><span class="filter-count"></span></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="tipe"
+                                    id="tGov"><label class="form-check-label" for="tGov">Government
+                                    Scholarship</label><span class="filter-count"></span>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="tipe"
+                                    id="tUni"><label class="form-check-label" for="tUni">University
+                                    Scholarship</label><span class="filter-count"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fTambahan">Filter
+                            Tambahan <i class="bi bi-chevron-up"></i></div>
+                        <div class="collapse show filter-options" id="fTambahan">
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="fPrestasi"><label class="form-check-label" for="fPrestasi">Prestasi</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="fPemerintah"><label class="form-check-label"
+                                    for="fPemerintah">Pemerintah</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="fSKTM"><label
+                                    class="form-check-label" for="fSKTM">SKTM</label></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <label class="filter-heading mb-2">IPK Minimum</label>
+                        <input type="number" class="form-control form-control-sm" placeholder="0.00" step="0.01" min="0"
+                            max="4" id="filter-ipk">
+                    </div>
+
+                    <div class="filter-section">
+                        <label class="filter-heading mb-2">Semester</label>
+                        <select class="form-select form-select-sm" id="filter-semester">
+                            <option value="">Semua</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beasiswa Cards -->
+            <div class="col-lg-9">
+                <!-- Search -->
+                <div class="search-bar mb-3">
+                    <input type="text" placeholder="Cari Beasiswa" id="search-beasiswa">
+                    <button type="button"><i class="bi bi-search"></i></button>
+                </div>
+
+                <!-- Year & Month -->
+                <div class="year-nav">
+                    <span class="year-label" id="year-label">2025</span>
+                    <button id="btn-prev-year"><i class="bi bi-chevron-left"></i></button>
+                    <button id="btn-next-year"><i class="bi bi-chevron-right"></i></button>
+                </div>
+                <div class="month-bar" id="month-bar">
+                    <button class="month-btn" data-month="1">JAN</button><button class="month-btn"
+                        data-month="2">FEB</button>
+                    <button class="month-btn active" data-month="3">MAR</button><button class="month-btn"
+                        data-month="4">APR</button>
+                    <button class="month-btn" data-month="5">MEI</button><button class="month-btn"
+                        data-month="6">JUN</button>
+                    <button class="month-btn" data-month="7">JUL</button><button class="month-btn"
+                        data-month="8">AGU</button>
+                    <button class="month-btn" data-month="9">SEP</button><button class="month-btn"
+                        data-month="10">OKT</button>
+                    <button class="month-btn" data-month="11">NOV</button><button class="month-btn"
+                        data-month="12">DES</button>
+                </div>
+
+                <div class="row g-3" id="beasiswa-list">
+                    <!-- Card 1 -->
+                    <div class="col-md-6">
+                        <div class="card-beasiswa">
+                            <img src="https://placehold.co/600x300/00B4D8/ffffff?text=Beasiswa+Prestasi+Kita"
+                                class="poster" alt="Poster Beasiswa">
+                            <div class="card-body">
+                                <h5 class="beasiswa-title">Beasiswa Pendidikan Prestasi Kita BATCH #5</h5>
+                                <p class="beasiswa-penyelenggara"><i class="bi bi-building me-1"></i>Prestasi Kita
+                                    Foundation</p>
+                                <p class="beasiswa-desc">Beasiswa pendidikan kategori Beasiswa Prestasi, Ekonomi, Yatim,
+                                    Hafidz Al Qur'an, dan umum.</p>
+                                <div><span class="tag-badge tag-jenjang">D3</span><span
+                                        class="tag-badge tag-jenjang">D4</span><span
+                                        class="tag-badge tag-jenjang">S1</span><span
+                                        class="tag-badge tag-jenjang">S2</span><span
+                                        class="tag-badge tag-tipe">Swasta</span></div>
+                                <div class="date-row"><span>Mulai<br><strong>12 Februari 2024</strong></span><span
+                                        class="text-end">Deadline<br><strong>12 Mei 2024</strong></span></div>
+                                <div class="status-badge status-dibuka">Pendaftaran Dibuka</div>
+                                <a href="detail-beasiswa.html" class="btn-see">See Program Beasiswa</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="col-md-6">
+                        <div class="card-beasiswa">
+                            <img src="https://placehold.co/600x300/0096B4/ffffff?text=KIP+Kuliah+2024" class="poster"
+                                alt="Poster Beasiswa">
+                            <div class="card-body">
+                                <h5 class="beasiswa-title">Beasiswa KIP Kuliah 2024</h5>
+                                <p class="beasiswa-penyelenggara"><i class="bi bi-building me-1"></i>Kemendikbudristek
+                                </p>
+                                <p class="beasiswa-desc">Beasiswa bagi mahasiswa dari keluarga kurang mampu untuk
+                                    membiayai pendidikan di perguruan tinggi negeri.</p>
+                                <div><span class="tag-badge tag-jenjang">D3</span><span
+                                        class="tag-badge tag-jenjang">D4</span><span
+                                        class="tag-badge tag-jenjang">S1</span><span
+                                        class="tag-badge tag-tipe">Pemerintah</span></div>
+                                <div class="date-row"><span>Mulai<br><strong>15 Januari 2024</strong></span><span
+                                        class="text-end">Deadline<br><strong>31 Maret 2024</strong></span></div>
+                                <div class="status-badge status-ditutup">Pendaftaran Ditutup</div>
+                                <a href="detail-beasiswa.html" class="btn-see">See Program Beasiswa</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="col-md-6">
+                        <div class="card-beasiswa">
+                            <img src="https://placehold.co/600x300/007A94/ffffff?text=Djarum+Foundation" class="poster"
+                                alt="Poster Beasiswa">
+                            <div class="card-body">
+                                <h5 class="beasiswa-title">Beasiswa Djarum Foundation</h5>
+                                <p class="beasiswa-penyelenggara"><i class="bi bi-building me-1"></i>PT Djarum</p>
+                                <p class="beasiswa-desc">Beasiswa bagi mahasiswa berprestasi semester 4 ke atas untuk
+                                    pengembangan soft skills dan kepemimpinan.</p>
+                                <div><span class="tag-badge tag-jenjang">S1</span><span
+                                        class="tag-badge tag-pendanaan">Partially Funded</span><span
+                                        class="tag-badge tag-tipe">Swasta</span></div>
+                                <div class="date-row"><span>Mulai<br><strong>1 April 2024</strong></span><span
+                                        class="text-end">Deadline<br><strong>30 Juni 2024</strong></span></div>
+                                <div class="status-badge status-dibuka">Pendaftaran Dibuka</div>
+                                <a href="detail-beasiswa.html" class="btn-see">See Program Beasiswa</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="col-md-6">
+                        <div class="card-beasiswa">
+                            <img src="https://placehold.co/600x300/03045E/00B4D8?text=Tanoto+Foundation" class="poster"
+                                alt="Poster Beasiswa">
+                            <div class="card-body">
+                                <h5 class="beasiswa-title">Beasiswa Tanoto Foundation</h5>
+                                <p class="beasiswa-penyelenggara"><i class="bi bi-building me-1"></i>Tanoto Foundation
+                                </p>
+                                <p class="beasiswa-desc">Beasiswa TELADAN untuk mahasiswa aktif semester 2 yang memiliki
+                                    semangat kepemimpinan dan kepedulian sosial.</p>
+                                <div><span class="tag-badge tag-jenjang">S1</span><span
+                                        class="tag-badge tag-pendanaan">Partially Funded</span><span
+                                        class="tag-badge tag-tipe">Swasta</span></div>
+                                <div class="date-row"><span>Mulai<br><strong>1 Juni 2024</strong></span><span
+                                        class="text-end">Deadline<br><strong>15 Agustus 2024</strong></span></div>
+                                <div class="status-badge status-belum">Belum Dibuka</div>
+                                <a href="detail-beasiswa.html" class="btn-see">See Program Beasiswa</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="mt-4 d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#"><i
+                                    class="bi bi-chevron-left"></i></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END KONTEN ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // CUSTOM JS
+        // Month button toggle
+        document.querySelectorAll('.month-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.month-btn').forEach(function (b) { b.classList.remove('active') });
+                btn.classList.add('active');
+            });
+        });
+        // Year navigation
+        (function () {
+            var y = 2025;
+            document.getElementById('btn-prev-year').addEventListener('click', function () { y--; document.getElementById('year-label').textContent = y });
+            document.getElementById('btn-next-year').addEventListener('click', function () { y++; document.getElementById('year-label').textContent = y });
+        })();
+    </script>
+</body>
+
+</html>

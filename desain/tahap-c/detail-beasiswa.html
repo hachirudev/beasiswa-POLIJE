@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Beasiswa — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E
+        }
+
+        /* CUSTOM CSS */
+        body {
+            background: var(--color-lighter)
+        }
+
+        .navbar-b {
+            background: var(--color-white);
+            border-bottom: 2px solid var(--color-light);
+            padding: .65rem 0
+        }
+
+        .navbar-b .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            text-decoration: none
+        }
+
+        .navbar-b .brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem
+        }
+
+        .navbar-b .nav-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+            font-size: .925rem;
+            padding: .5rem .9rem !important
+        }
+
+        .navbar-b .nav-link:hover,
+        .navbar-b .nav-link.active {
+            color: var(--color-primary-dark) !important;
+            font-weight: 600
+        }
+
+        .navbar-b .dropdown-menu {
+            border: 1px solid var(--color-light);
+            border-radius: .5rem;
+            box-shadow: 0 4px 16px rgba(0, 180, 216, .1)
+        }
+
+        .navbar-b .dropdown-item:hover {
+            background: var(--color-lighter);
+            color: var(--color-primary-dark)
+        }
+
+        .btn-profile {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: 0 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            padding: 0;
+            transition: .2s
+        }
+
+        .btn-profile:hover {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .detail-card {
+            background: #fff;
+            border-radius: .85rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .05);
+            padding: 2rem;
+            margin-bottom: 1.5rem
+        }
+
+        .detail-top {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap
+        }
+
+        .detail-poster {
+            width: 280px;
+            flex-shrink: 0;
+            border-radius: .65rem;
+            overflow: hidden;
+            border: 2px solid var(--color-light)
+        }
+
+        .detail-poster img {
+            width: 100%;
+            height: auto;
+            display: block
+        }
+
+        .detail-info {
+            flex: 1;
+            min-width: 260px
+        }
+
+        .detail-info h1 {
+            font-weight: 700;
+            font-size: 1.55rem;
+            color: var(--color-text);
+            margin-bottom: .2rem
+        }
+
+        .detail-info .penyelenggara {
+            font-size: .9rem;
+            color: var(--color-text-muted);
+            margin-bottom: .5rem
+        }
+
+        .desc {
+            font-size: .92rem;
+            color: var(--color-text-muted);
+            line-height: 1.65;
+            margin-bottom: .85rem
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: .2rem .6rem;
+            border-radius: .3rem;
+            font-size: .75rem;
+            font-weight: 600;
+            margin-right: .3rem
+        }
+
+        .tag-jenjang {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .tag-tipe {
+            background: #ffc107;
+            color: var(--color-text)
+        }
+
+        .date-range {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: .92rem;
+            margin-top: .85rem
+        }
+
+        .section-divider {
+            border-top: 2px solid var(--color-light);
+            margin: 1.75rem 0
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-text);
+            font-style: italic;
+            margin-bottom: .85rem
+        }
+
+        .req-list,
+        .benefit-list {
+            padding-left: 1.2rem
+        }
+
+        .req-list li,
+        .benefit-list li {
+            font-size: .9rem;
+            color: var(--color-text);
+            margin-bottom: .45rem;
+            line-height: 1.5
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap
+        }
+
+        .btn-simulasi {
+            flex: 1;
+            text-align: center;
+            border: 2px solid var(--color-text);
+            border-radius: .55rem;
+            padding: .65rem 1rem;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: .2s;
+            background: #fff
+        }
+
+        .btn-simulasi:hover {
+            background: var(--color-text);
+            color: #fff
+        }
+
+        .btn-daftar {
+            flex: 1;
+            text-align: center;
+            border: 2px solid var(--color-primary);
+            border-radius: .55rem;
+            padding: .65rem 1rem;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: .2s;
+            background: #fff
+        }
+
+        .btn-daftar:hover {
+            background: var(--color-primary);
+            color: #fff
+        }
+
+        .footer-b {
+            background: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem
+        }
+
+        .footer-b .footer-heading {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem
+        }
+
+        .footer-b .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        .footer-b .footer-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: .88rem
+        }
+
+        .footer-b .footer-links a:hover {
+            color: var(--color-primary-dark)
+        }
+
+        .footer-b .footer-links li {
+            margin-bottom: .5rem
+        }
+
+        .footer-b .contact-item {
+            display: flex;
+            gap: .65rem;
+            margin-bottom: .75rem;
+            font-size: .88rem
+        }
+
+        .footer-b .contact-item i {
+            color: var(--color-secondary);
+            margin-top: 2px
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-text);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: .4rem;
+            transition: .2s
+        }
+
+        .footer-social a:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px)
+        }
+
+        .footer-copyright {
+            background: rgba(0, 0, 0, .04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted)
+        }
+
+        @media(max-width:767.98px) {
+            .detail-poster {
+                width: 100%
+            }
+
+            .detail-top {
+                flex-direction: column
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== KONTEN UTAMA ========== -->
+    <div class="container py-4">
+        <!-- Combined detail card -->
+        <div class="detail-card">
+            <!-- Top: poster + info -->
+            <div class="detail-top">
+                <div class="detail-poster">
+                    <img src="https://placehold.co/400x550/00B4D8/ffffff?text=Poster+Beasiswa"
+                        alt="Poster Beasiswa Djarum Foundation">
+                </div>
+                <div class="detail-info">
+                    <h1>Beasiswa Djarum Foundation</h1>
+                    <p class="penyelenggara"><i class="bi bi-building me-1"></i>PT Djarum</p>
+                    <p class="desc">Djarum Beasiswa Plus memberikan kesempatan bagi mahasiswa semester 4 untuk
+                        mengembangkan soft skills melalui berbagai pelatihan dan kegiatan.</p>
+                    <div>
+                        <span class="tag-badge tag-jenjang">S1</span>
+                        <span class="tag-badge tag-tipe">Swasta</span>
+                    </div>
+                    <p class="date-range"><i class="bi bi-calendar3 me-1"></i>1 April 2024 &ndash; 30 Juni 2024</p>
+                </div>
+            </div>
+
+            <!-- Persyaratan & Keuntungan — digabung dalam satu card -->
+            <div class="section-divider"></div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-12">
+                    <p class="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis nihil at
+                        deleniti amet
+                        dignissimos aperiam, doloremque, officia porro eaque illo quod explicabo odit vel placeat,
+                        quidem
+                        dolorem illum? Quas, voluptatem! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Reiciendis nihil at
+                        deleniti amet
+                        dignissimos aperiam, doloremque, officia porro eaque illo quod explicabo odit vel placeat,
+                        quidem
+                        dolorem illum? Quas, voluptatem! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Reiciendis nihil at
+                        deleniti amet
+                        dignissimos aperiam, doloremque, officia porro eaque illo quod explicabo odit vel placeat,
+                        quidem
+                        dolorem illum? Quas, voluptatem!</p>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="section-divider"></div>
+            <div class="action-buttons">
+                <a href="simulasi.html" class="btn-simulasi" id="btn-simulasi">
+                    <i class="bi bi-clipboard2-check me-1"></i>Simulasi Pendaftaran Beasiswa
+                </a>
+                <a href="#" class="btn-daftar" id="btn-daftar-beasiswa" target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-1"></i>Daftar Beasiswa
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END KONTEN ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // CUSTOM JS
+        // Detail page tidak memerlukan JS khusus
+    </script>
+</body>
+
+</html>

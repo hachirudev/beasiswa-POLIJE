@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenis Beasiswa — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+        }
+
+        body {
+            background: var(--color-lighter);
+            color: var(--color-text);
+        }
+
+        .navbar-b {
+            background: var(--color-white);
+            border-bottom: 2px solid var(--color-light);
+            padding: .65rem 0;
+        }
+
+        .navbar-b .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .navbar-b .brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .navbar-b .nav-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+            font-size: .925rem;
+            padding: .5rem .9rem !important;
+        }
+
+        .navbar-b .nav-link:hover,
+        .navbar-b .nav-link.active {
+            color: var(--color-primary-dark) !important;
+            font-weight: 600;
+        }
+
+        .btn-profile {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: 0 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            padding: 0;
+            transition: .2s;
+        }
+
+        .btn-profile:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 3.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .type-card {
+            background: var(--color-white);
+            border: none;
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            height: 100%;
+            transition: transform .3s ease, box-shadow .3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+        }
+
+        .type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+        }
+
+        .type-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--color-light);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .type-card:hover .type-icon {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .type-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .type-desc {
+            color: var(--color-text-muted);
+            font-size: .95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-b {
+            background: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem;
+            margin-top: 4rem;
+        }
+
+        .footer-copyright {
+            background: rgba(0, 0, 0, .04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== KONTEN UTAMA ========== -->
+    <div class="container py-5">
+        <h1 class="page-title">Kategori Jenis Beasiswa</h1>
+        <p class="page-subtitle">Politeknik Negeri Jember menyediakan akses ke berbagai jenis beasiswa untuk mendukung
+            perjalanan akademik mahasiswa. Kenali jenis beasiswa yang sesuai dengan profil Anda.</p>
+
+        <div class="row g-4">
+            <!-- Tipe 1 -->
+            <div class="col-md-4">
+                <div class="type-card">
+                    <div class="type-icon"><i class="bi bi-building-fill"></i></div>
+                    <h3 class="type-title">Company/Institution Scholarship</h3>
+                    <p class="type-desc">Company/Institution Scholarship adalah beasiswa yang
+                        diberikan oleh perusahaan
+                        atau lembaga untuk membantu biaya pendidikan pelajar atau mahasiswa, biasanya sebagai bentuk
+                        dukungan pengembangan sumber daya manusia dan tanggung jawab sosial, dengan syarat tertentu
+                        seperti prestasi atau kondisi ekonomi.</p>
+                </div>
+            </div>
+
+            <!-- Tipe 2 -->
+            <div class="col-md-4">
+                <div class="type-card">
+                    <div class="type-icon"><i class="bi bi-backpack-fill"></i></div>
+                    <h3 class="type-title">Government Scholarship</h3>
+                    <p class="type-desc">Government Scholarship adalah beasiswa yang diberikan oleh pemerintah untuk
+                        membantu pelajar atau mahasiswa dalam membiayai pendidikan, baik di dalam maupun luar negeri.
+                        Program ini bertujuan meningkatkan kualitas sumber daya manusia dan pemerataan akses pendidikan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tipe 3 -->
+            <div class="col-md-4">
+                <div class="type-card">
+                    <div class="type-icon"><i class="bi bi-award-fill"></i></div>
+                    <h3 class="type-title">University Scholarship</h3>
+                    <p class="type-desc">University Scholarship adalah beasiswa yang diberikan langsung oleh perguruan
+                        tinggi kepada mahasiswa untuk membantu biaya pendidikan. Beasiswa ini biasanya diberikan
+                        berdasarkan prestasi akademik, non-akademik, atau kondisi ekonomi, yang bertujuan untuk
+                        mendukung mahasiswa dimasa kuliah.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END KONTEN ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

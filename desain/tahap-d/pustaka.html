@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pustaka — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+        }
+
+        /* CUSTOM CSS */
+        body {
+            background: var(--color-lighter);
+        }
+
+        .navbar-b {
+            background: var(--color-white);
+            border-bottom: 2px solid var(--color-light);
+            padding: .65rem 0;
+        }
+
+        .navbar-b .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .navbar-b .brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .navbar-b .nav-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+            font-size: .925rem;
+            padding: .5rem .9rem !important;
+        }
+
+        .navbar-b .nav-link:hover,
+        .navbar-b .nav-link.active {
+            color: var(--color-primary-dark) !important;
+            font-weight: 600;
+        }
+
+        .btn-profile {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: 0 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            padding: 0;
+            transition: .2s;
+        }
+
+        .btn-profile:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--color-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .pustaka-card {
+            background: var(--color-white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+            transition: .3s;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, .05);
+        }
+
+        .pustaka-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .1);
+        }
+
+        .pustaka-img-container {
+            width: 35%;
+            background: #d5b996;
+            position: relative;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pustaka-img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            box-shadow: -2px 2px 10px rgba(0, 0, 0, .15);
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        .pustaka-body {
+            width: 65%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pustaka-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--color-dark);
+            font-style: italic;
+            margin-bottom: .5rem;
+        }
+
+        .pustaka-desc {
+            font-size: .9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .btn-download {
+            border: 2px solid var(--color-primary);
+            background: transparent;
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: .95rem;
+            padding: .6rem 1rem;
+            border-radius: .5rem;
+            text-align: center;
+            text-decoration: none;
+            transition: .2s;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .btn-download:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .pustaka-card {
+                flex-direction: column;
+            }
+
+            .pustaka-img-container {
+                width: 100%;
+                padding: 2rem;
+            }
+
+            .pustaka-body {
+                width: 100%;
+            }
+        }
+
+        .footer-b {
+            background: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem;
+            margin-top: 4rem;
+        }
+
+        .footer-copyright {
+            background: rgba(0, 0, 0, .04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== KONTEN UTAMA ========== -->
+    <div class="container py-5">
+        <h1 class="page-title">Pustaka</h1>
+
+        <div class="row g-4">
+            <!-- Pustaka Item 1 -->
+            <div class="col-lg-6">
+                <div class="pustaka-card">
+                    <div class="pustaka-img-container">
+                        <img src="https://placehold.co/300x400/ffffff/333333?text=CV+Template" alt="Preview Dokumen"
+                            class="pustaka-img">
+                    </div>
+                    <div class="pustaka-body">
+                        <h3 class="pustaka-title">Curriculum Vitae (CV)</h3>
+                        <p class="pustaka-desc">Curriculum Vitae (CV) adalah dokumen yang berisi ringkasan data diri,
+                            riwayat pendidikan, pengalaman organisasi atau kerja, prestasi, keterampilan, serta
+                            informasi pendukung lainnya yang menggambarkan kualitas dan kemampuan seseorang.</p>
+                        <a href="#" class="btn-download"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Download
+                            File</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pustaka Item 2 -->
+            <div class="col-lg-6">
+                <div class="pustaka-card">
+                    <div class="pustaka-img-container">
+                        <img src="https://placehold.co/300x400/ffffff/333333?text=Surat+Pernyataan"
+                            alt="Preview Dokumen" class="pustaka-img">
+                    </div>
+                    <div class="pustaka-body">
+                        <h3 class="pustaka-title">Surat Pernyataan Bebas Narkoba</h3>
+                        <p class="pustaka-desc">Surat pernyataan yang wajib dilampirkan jika ingin mendaftar beasiswa
+                            tertentu sebagai bukti bahwa pendaftar bebas dari penggunaan narkotika dan obat-obatan
+                            terlarang.</p>
+                        <a href="#" class="btn-download"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Download
+                            File</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pustaka Item 3 -->
+            <div class="col-lg-6">
+                <div class="pustaka-card">
+                    <div class="pustaka-img-container">
+                        <img src="https://placehold.co/300x400/ffffff/333333?text=Surat+Rekomendasi"
+                            alt="Preview Dokumen" class="pustaka-img">
+                    </div>
+                    <div class="pustaka-body">
+                        <h3 class="pustaka-title">Surat Rekomendasi</h3>
+                        <p class="pustaka-desc">Contoh surat rekomendasi dari dosen pembimbing akademik atau ketua
+                            program studi yang sering digunakan untuk pendaftaran beasiswa baik swasta maupun
+                            pemerintah.</p>
+                        <a href="#" class="btn-download"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Download
+                            File</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pustaka Item 4 -->
+            <div class="col-lg-6">
+                <div class="pustaka-card">
+                    <div class="pustaka-img-container">
+                        <img src="https://placehold.co/300x400/ffffff/333333?text=Format+Esai" alt="Preview Dokumen"
+                            class="pustaka-img">
+                    </div>
+                    <div class="pustaka-body">
+                        <h3 class="pustaka-title">Format Penulisan Esai</h3>
+                        <p class="pustaka-desc">Panduan dan format penulisan esai beasiswa yang mencakup struktur
+                            penulisan motivasi, pengalaman, dan rencana masa depan yang relevan dengan tujuan program
+                            beasiswa.</p>
+                        <a href="#" class="btn-download"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Download
+                            File</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========== END KONTEN ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // CUSTOM JS
+    </script>
+</body>
+
+</html>

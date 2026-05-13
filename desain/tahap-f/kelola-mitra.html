@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- ========== HEAD ========== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Mitra — Admin Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+            --sidebar-width: 260px;
+        }
+
+        /* CUSTOM CSS */
+        .sidebar-admin {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            z-index: 1040;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 1.25rem 1.3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: var(--color-white);
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand:hover {
+            color: var(--color-primary);
+        }
+
+        .sidebar-brand .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand .brand-text {
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.2;
+        }
+
+        .sidebar-brand .brand-subtitle {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 1.2rem 1.3rem 0.45rem;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0.4rem 0.7rem;
+            flex: 1;
+        }
+
+        .sidebar-nav .nav-item {
+            margin-bottom: 2px;
+        }
+
+        .sidebar-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 0.85rem;
+            border-radius: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav .nav-link i {
+            font-size: 1.15rem;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav .nav-link:hover {
+            background-color: rgba(0, 180, 216, 0.12);
+            color: var(--color-primary);
+        }
+
+        .sidebar-nav .nav-link.active {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-white);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 180, 216, 0.3);
+        }
+
+        .sidebar-badge {
+            margin-left: auto;
+            background-color: #dc3545;
+            color: var(--color-white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 50px;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--color-white);
+        }
+
+        .sidebar-footer .admin-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer .admin-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .sidebar-footer .admin-role {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .sidebar-footer .btn-logout {
+            margin-left: auto;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            padding: 0.3rem;
+            cursor: pointer;
+        }
+
+        .sidebar-footer .btn-logout:hover {
+            color: #dc3545;
+        }
+
+        .main-content-admin {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            background-color: #f5f7fa;
+        }
+
+        .topbar-admin {
+            background-color: var(--color-white);
+            border-bottom: 1px solid #e9ecef;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-admin .page-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 .25rem rgba(0, 180, 216, .25);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-content-admin">
+        <div class="topbar-admin">
+            <h1 class="page-title">Kelola Mitra</h1>
+            <button class="btn btn-sm fw-semibold"
+                style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;"
+                data-bs-toggle="modal" data-bs-target="#modalTambahMitra"><i class="bi bi-plus-lg me-1"></i>Tambah
+                Mitra</button>
+        </div>
+
+        <!-- ========== KONTEN UTAMA ========== -->
+        <div class="p-4">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead style="background: var(--color-lighter);">
+                            <tr>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none; width: 50px;">No</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Nama Mitra</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Bidang Usaha</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Email</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Telepon</th>
+                                <th class="py-3 px-4" style="font-weight:600; border-bottom:none;">Website</th>
+                                <th class="py-3 px-4 text-center" style="font-weight:600; border-bottom:none;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-3 px-4 text-muted">1</td>
+                                <td class="py-3 px-4">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width:34px;height:34px;background:var(--color-lighter);color:var(--color-primary);font-size:0.9rem;flex-shrink:0;">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <span class="fw-semibold">PT Djarum</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Manufaktur / FMCG</td>
+                                <td class="py-3 px-4 text-muted">scholarship@djarum.com</td>
+                                <td class="py-3 px-4 text-muted">+62 21 1234 5678</td>
+                                <td class="py-3 px-4"><a href="#"
+                                        style="color:var(--color-primary);text-decoration:none;font-size:0.9rem;">djarumbeasiswaplus.org</a>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <button class="btn btn-sm btn-outline-danger" title="Hapus" data-bs-toggle="modal"
+                                        data-bs-target="#modalHapusMitra"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-muted">2</td>
+                                <td class="py-3 px-4">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width:34px;height:34px;background:var(--color-lighter);color:var(--color-primary);font-size:0.9rem;flex-shrink:0;">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <span class="fw-semibold">Tanoto Foundation</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Yayasan Sosial</td>
+                                <td class="py-3 px-4 text-muted">info@tanotofoundation.org</td>
+                                <td class="py-3 px-4 text-muted">+62 21 9876 5432</td>
+                                <td class="py-3 px-4"><a href="#"
+                                        style="color:var(--color-primary);text-decoration:none;font-size:0.9rem;">tanotofoundation.org</a>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <button class="btn btn-sm btn-outline-danger" title="Hapus" data-bs-toggle="modal"
+                                        data-bs-target="#modalHapusMitra"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-muted">3</td>
+                                <td class="py-3 px-4">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width:34px;height:34px;background:var(--color-lighter);color:var(--color-primary);font-size:0.9rem;flex-shrink:0;">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <span class="fw-semibold">Bank Indonesia</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted">Perbankan / Keuangan</td>
+                                <td class="py-3 px-4 text-muted">beasiswa@bi.go.id</td>
+                                <td class="py-3 px-4 text-muted">+62 21 5000 111</td>
+                                <td class="py-3 px-4"><a href="#"
+                                        style="color:var(--color-primary);text-decoration:none;font-size:0.9rem;">bi.go.id</a>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <button class="btn btn-sm btn-outline-danger" title="Hapus" data-bs-toggle="modal"
+                                        data-bs-target="#modalHapusMitra"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-muted border-0">4</td>
+                                <td class="py-3 px-4 border-0">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width:34px;height:34px;background:var(--color-lighter);color:var(--color-primary);font-size:0.9rem;flex-shrink:0;">
+                                            <i class="bi bi-building"></i>
+                                        </div>
+                                        <span class="fw-semibold">Pertamina Foundation</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4 text-muted border-0">Energi / Migas</td>
+                                <td class="py-3 px-4 text-muted border-0">scholarship@pertaminafoundation.org</td>
+                                <td class="py-3 px-4 text-muted border-0">+62 21 7654 3210</td>
+                                <td class="py-3 px-4 border-0"><a href="#"
+                                        style="color:var(--color-primary);text-decoration:none;font-size:0.9rem;">pertaminafoundation.org</a>
+                                </td>
+                                <td class="py-3 px-4 text-center border-0">
+                                    <button class="btn btn-sm btn-outline-danger" title="Hapus" data-bs-toggle="modal"
+                                        data-bs-target="#modalHapusMitra"><i class="bi bi-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ========== END KONTEN ========== -->
+    </div>
+
+    <!-- Modal Tambah Mitra -->
+    <div class="modal fade" id="modalTambahMitra" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header"
+                    style="background:var(--color-lighter); border-bottom:1px solid var(--color-light);">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-plus-circle me-2"
+                            style="color:var(--color-primary);"></i>Tambah Akun Mitra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="#" method="POST">
+                    <div class="modal-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Nama Mitra</label>
+                                <input type="text" class="form-control" placeholder="Contoh: PT Djarum" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Bidang Usaha</label>
+                                <input type="text" class="form-control" placeholder="Contoh: Manufaktur / FMCG"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email</label>
+                                <input type="email" class="form-control" placeholder="Contoh: info@perusahaan.com"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Telepon</label>
+                                <input type="tel" class="form-control" placeholder="Contoh: +62 21 1234 5678" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Website</label>
+                                <input type="url" class="form-control" placeholder="Contoh: https://perusahaan.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Password</label>
+                                <input type="password" class="form-control" placeholder="Minimal 8 karakter" required>
+                                <div class="form-text">Password awal yang akan digunakan mitra untuk login.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn fw-semibold"
+                            style="background-color:var(--color-primary);border-color:var(--color-primary);color:#fff;">
+                            <i class="bi bi-person-plus-fill me-1"></i>Buat Akun Mitra
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hapus Mitra -->
+    <div class="modal fade" id="modalHapusMitra" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Konfirmasi Hapus</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus akun mitra ini?</p>
+                    <div class="alert alert-warning mb-0" style="font-size:0.88rem;">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                        <strong>Perhatian:</strong> Semua beasiswa yang diunggah oleh mitra ini juga akan terpengaruh.
+                        Tindakan ini tidak dapat dibatalkan.
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger">Hapus Mitra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // CUSTOM JS
+    </script>
+</body>
+
+</html>

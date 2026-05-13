@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alur Beasiswa — Beasiswa POLIJE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #00B4D8;
+            --color-primary-dark: #0096B4;
+            --color-secondary: #007A94;
+            --color-light: #90E0EF;
+            --color-lighter: #CAF0F8;
+            --color-text: #333333;
+            --color-text-muted: #6c757d;
+            --color-white: #ffffff;
+            --color-dark: #03045E;
+        }
+
+        body {
+            background: var(--color-lighter);
+            color: var(--color-text);
+        }
+
+        .navbar-b {
+            background: var(--color-white);
+            border-bottom: 2px solid var(--color-light);
+            padding: .65rem 0;
+        }
+
+        .navbar-b .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .navbar-b .brand-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .navbar-b .nav-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+            font-size: .925rem;
+            padding: .5rem .9rem !important;
+        }
+
+        .navbar-b .nav-link:hover,
+        .navbar-b .nav-link.active {
+            color: var(--color-primary-dark) !important;
+            font-weight: 600;
+        }
+
+        .btn-profile {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: 0 0;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            padding: 0;
+            transition: .2s;
+        }
+
+        .btn-profile:hover {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--color-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .alur-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            margin-bottom: 3rem;
+        }
+
+        .alur-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .alur-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 180px;
+            /* fixed width to help alignment */
+        }
+
+        .alur-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .alur-text {
+            font-weight: 600;
+            color: var(--color-text);
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .alur-dash {
+            font-weight: 800;
+            color: var(--color-text);
+        }
+
+        @media (max-width: 991px) {
+            .alur-container {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 250px;
+            }
+
+            .alur-dash {
+                transform: rotate(90deg);
+                margin: 1rem 0;
+                align-self: center;
+            }
+        }
+
+        .footer-b {
+            background: var(--color-light);
+            color: var(--color-text);
+            padding-top: 3rem;
+            margin-top: 4rem;
+        }
+
+        .footer-copyright {
+            background: rgba(0, 0, 0, .04);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2.5rem;
+            font-size: .82rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== KONTEN UTAMA ========== -->
+    <section id="alur-beasiswa" class="alur-section">
+        <div class="container-custom">
+            <h2 class="section-title">Alur Beasiswa</h2>
+            <div class="alur-container">
+                <div class="alur-step">
+                    <div class="alur-number">1</div>
+                    <div class="alur-text">Mencari Informasi Beasiswa</div>
+                </div>
+                <span class="alur-dash">—</span>
+                <div class="alur-step">
+                    <div class="alur-number">2</div>
+                    <div class="alur-text">Memahami Persyaratan</div>
+                </div>
+                <span class="alur-dash">—</span>
+                <div class="alur-step">
+                    <div class="alur-number">3</div>
+                    <div class="alur-text">Menyiapkan Dokumen</div>
+                </div>
+                <span class="alur-dash">—</span>
+                <div class="alur-step">
+                    <div class="alur-number">4</div>
+                    <div class="alur-text">Mendaftar Beasiswa</div>
+                </div>
+            </div>
+            <div class="alur-container mt-4">
+                <div class="alur-step">
+                    <div class="alur-number">5</div>
+                    <div class="alur-text">Seleksi Administrasi</div>
+                </div>
+                <span class="alur-dash">—</span>
+                <div class="alur-step">
+                    <div class="alur-number">6</div>
+                    <div class="alur-text">Tes / Wawancara</div>
+                </div>
+                <span class="alur-dash">—</span>
+                <div class="alur-step">
+                    <div class="alur-number">7</div>
+                    <div class="alur-text">Pengumuman Hasil</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========== END KONTEN ========== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
