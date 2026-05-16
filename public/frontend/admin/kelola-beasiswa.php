@@ -3,7 +3,7 @@
  * Kelola Beasiswa Admin — Manajemen beasiswa (verifikasi, edit, hapus)
  */
 declare(strict_types=1);
-require_once '../../../config/app.php';
+require_once '../../config/app.php';
 require_once CONFIG_PATH . 'Database.php';
 require_once HELPERS_PATH . 'Session.php';
 require_once HELPERS_PATH . 'Response.php';

@@ -9,7 +9,7 @@ define('CONFIG_PATH',  BASE_PATH . '/config/');
 
 define('BASE_URL', '/beasiswa-polije-finale/public');
 
-define('UPLOAD_PATH',   BASE_PATH . '/public/uploads/');
+define('UPLOAD_PATH',   BASE_PATH . '/uploads/');
 define('UPLOAD_URL',    BASE_URL  . '/uploads/');
 define('MAX_FILE_SIZE', 5242880);
 define('ALLOWED_TYPES', ['application/pdf']);

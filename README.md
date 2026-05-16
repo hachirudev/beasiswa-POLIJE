@@ -35,17 +35,18 @@ Aplikasi ini memiliki tiga role pengguna utama:
 
 ```text
 beasiswa-polije/
-├── classes/          # Class Model PHP OOP (User, Beasiswa, Simulasi, dll)
-├── config/           # Konfigurasi Database dan Aplikasi (Konstanta URL/Path)
 ├── desain/           # File statis HTML (Referensi Desain Awal)
-├── helpers/          # Class Helper (Session, Validator, Response, FileUploader)
-├── public/           # Root Document Web
+├── public/           # Root Document Web (Unggah isi folder ini ke htdocs/)
 │   ├── api/          # Endpoint API sederhana (contoh: pencarian)
 │   ├── assets/       # File CSS, JS, dan Gambar (css/style.css, js/main.js)
 │   ├── auth/         # File untuk proses Login, Register, dan Logout
 │   ├── backend/      # File handler PHP untuk memproses form (POST)
+│   ├── classes/      # Class Model PHP OOP (User, Beasiswa, Simulasi, dll)
+│   ├── config/       # Konfigurasi Database dan Aplikasi (Konstanta URL/Path)
 │   ├── frontend/     # File antarmuka / tampilan per role (Admin, Mahasiswa, Mitra)
+│   ├── helpers/      # Class Helper (Session, Validator, Response, FileUploader)
 │   ├── uploads/      # Folder unggahan dokumen (Simulasi & Pustaka)
+│   ├── .htaccess     # Aturan server (Mencegah akses folder classes, config, helpers)
 │   └── index.php     # Halaman Utama (Landing Page)
 └── db_beasiswa.sql   # Skema Database & Data Dummy
 ```
@@ -60,7 +61,7 @@ beasiswa-polije/
    - Import file `db_beasiswa.sql` yang ada di root direktori ke dalam database tersebut. File ini sudah berisi tabel, trigger, dan beberapa data dummy.
 
 3. **Konfigurasi Database**
-   - Buka file `config/Database.php`.
+   - Buka file `public/config/Database.php`.
    - Sesuaikan konfigurasi kredensial database (host, user, password, dbname) jika diperlukan. Secara default:
      ```php
      private $host = "localhost";
@@ -72,7 +73,7 @@ beasiswa-polije/
 4. **Menjalankan Aplikasi**
    - Akses aplikasi di browser melalui URL direktori public Anda, contoh:
      `http://localhost/beasiswa-polije/public/`
-   - Pastikan pengaturan konstanta `BASE_URL` pada file `config/app.php` sesuai dengan path/environment lokal Anda.
+   - Pastikan pengaturan konstanta `BASE_URL` pada file `public/config/app.php` sesuai dengan path/environment lokal Anda.
 
 ## 📄 Catatan Pengembangan
 - Proyek ini menggunakan **PHP Native OOP**, tidak menggunakan framework seperti Laravel/CodeIgniter.

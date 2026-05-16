@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Mencegah akses langsung ke folder internal
+    RewriteRule ^(classes|config|helpers)(/.*)?$ - [F,L]
+</IfModule>
+
+# Atau alternatif tanpa mod_rewrite
+<DirectoryMatch "^.*/(classes|config|helpers)/">
+    Order Deny,Allow
+    Deny from All
+</DirectoryMatch>
