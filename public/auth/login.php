@@ -121,7 +121,7 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
             <div class="mb-3">
                 <label for="input-email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="input-email" name="email" placeholder="contoh@email.com"
-                    required>
+                    autocomplete="username" required>
             </div>
 
             <!-- Password -->
@@ -129,7 +129,7 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
                 <label for="input-password" class="form-label">Password</label>
                 <div class="input-password-wrapper">
                     <input type="password" class="form-control" id="input-password" name="password"
-                        placeholder="Masukkan password" required>
+                        placeholder="Masukkan password" autocomplete="current-password" required>
                     <button type="button" class="btn-toggle-password" id="btn-toggle-password"
                         aria-label="Tampilkan password">
                         <i class="bi bi-eye"></i>

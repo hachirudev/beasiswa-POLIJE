@@ -130,7 +130,7 @@ $pageDescription = 'Daftar akun mahasiswa untuk mengakses layanan Beasiswa POLIJ
             <div class="mb-3">
                 <label for="input-email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="input-email" name="email" placeholder="contoh@email.com"
-                    required>
+                    autocomplete="username" required>
             </div>
 
             <!-- NIM -->
@@ -157,7 +157,7 @@ $pageDescription = 'Daftar akun mahasiswa untuk mengakses layanan Beasiswa POLIJ
                 <label for="input-password" class="form-label">Password</label>
                 <div class="input-password-wrapper">
                     <input type="password" class="form-control" id="input-password" name="password"
-                        placeholder="Minimal 8 karakter" minlength="8" required>
+                        placeholder="Minimal 8 karakter" minlength="8" autocomplete="new-password" required>
                     <button type="button" class="btn-toggle-password" data-target="input-password"
                         aria-label="Tampilkan password">
                         <i class="bi bi-eye"></i>
@@ -170,7 +170,7 @@ $pageDescription = 'Daftar akun mahasiswa untuk mengakses layanan Beasiswa POLIJ
                 <label for="input-password-confirm" class="form-label">Konfirmasi Password</label>
                 <div class="input-password-wrapper">
                     <input type="password" class="form-control" id="input-password-confirm" name="password_confirm"
-                        placeholder="Ulangi password" minlength="8" required>
+                        placeholder="Ulangi password" minlength="8" autocomplete="new-password" required>
                     <button type="button" class="btn-toggle-password" data-target="input-password-confirm"
                         aria-label="Tampilkan konfirmasi password">
                         <i class="bi bi-eye"></i>
