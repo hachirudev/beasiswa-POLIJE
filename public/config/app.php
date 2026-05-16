@@ -7,7 +7,7 @@ define('CLASSES_PATH', BASE_PATH . '/classes/');
 define('HELPERS_PATH', BASE_PATH . '/helpers/');
 define('CONFIG_PATH',  BASE_PATH . '/config/');
 
-define('BASE_URL', '/beasiswa-polije-finale/public');
+define('BASE_URL', '');
 
 define('UPLOAD_PATH',   BASE_PATH . '/uploads/');
 define('UPLOAD_URL',    BASE_URL  . '/uploads/');
