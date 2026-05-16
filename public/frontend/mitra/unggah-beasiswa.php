@@ -24,7 +24,7 @@ foreach ($listTag as $t) {
     $tagsByKategori[$t['kategori_tag']][] = $t;
 }
 
-$pageTitle = 'Unggah Beasiswa — ' . APP_NAME;
+$pageTitle = 'Unggah Beasiswa | ' . APP_NAME;
 $pageDescription = 'Unggah informasi beasiswa baru sebagai mitra.';
 $activePage = 'kelola-beasiswa';
 
@@ -45,26 +45,34 @@ require_once __DIR__ . '/../layout/navbar-mitra.php';
                 <div class="row g-4">
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Nama Beasiswa</label>
-                        <input type="text" name="nama_beasiswa" class="form-control" placeholder="Contoh: Beasiswa Djarum Plus" required>
+                        <input type="text" name="nama_beasiswa" class="form-control"
+                            placeholder="Contoh: Beasiswa Djarum Plus" required>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Nama Penyelenggara</label>
-                        <input type="text" name="nama_penyelenggara" class="form-control" value="<?= htmlspecialchars((string)($mitra['nama_mitra'] ?? '')) ?>" readonly style="background-color: #f8f9fa;">
+                        <input type="text" name="nama_penyelenggara" class="form-control"
+                            value="<?= htmlspecialchars((string) ($mitra['nama_mitra'] ?? '')) ?>" readonly
+                            style="background-color: #f8f9fa;">
                     </div>
 
                     <div class="col-12">
                         <label class="form-label fw-bold">Deskripsi Singkat</label>
-                        <input type="text" name="deskripsi_singkat" class="form-control" placeholder="Penjelasan singkat 1-2 kalimat (Maks 150 karakter)" maxlength="150" required>
+                        <input type="text" name="deskripsi_singkat" class="form-control"
+                            placeholder="Penjelasan singkat 1-2 kalimat (Maks 150 karakter)" maxlength="150" required>
                     </div>
 
                     <div class="col-12">
                         <label class="form-label fw-bold">Deskripsi Lengkap</label>
-                        <textarea class="form-control" name="deskripsi_lengkap" rows="5" placeholder="Penjelasan lengkap mengenai program beasiswa ini, latar belakang, dan tujuan program." required></textarea>
+                        <textarea class="form-control" name="deskripsi_lengkap" rows="5"
+                            placeholder="Penjelasan lengkap mengenai program beasiswa ini, latar belakang, dan tujuan program."
+                            required></textarea>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-bold">Informasi Beasiswa (Persyaratan)</label>
-                        <textarea class="form-control" name="informasi_beasiswa" rows="5" placeholder="Sebutkan persyaratan pendaftar, fasilitas yang didapat, tahapan seleksi, dll." required></textarea>
+                        <label class="form-label fw-bold">Informasi Beasiswa</label>
+                        <textarea class="form-control" name="informasi_beasiswa" rows="5"
+                            placeholder="Sebutkan persyaratan pendaftar, fasilitas yang didapat, tahapan seleksi, dll."
+                            required></textarea>
                     </div>
 
                     <div class="col-md-6">
@@ -79,13 +87,16 @@ require_once __DIR__ . '/../layout/navbar-mitra.php';
                     <div class="col-12">
                         <label class="form-label fw-bold">Link Pendaftaran Eksternal (Opsional)</label>
                         <input type="url" name="link_pendaftaran" class="form-control" placeholder="https://...">
-                        <div class="form-text">Isi jika mahasiswa harus mendaftar ke website eksternal penyelenggara.</div>
+                        <div class="form-text">Isi jika mahasiswa harus mendaftar ke website eksternal penyelenggara.
+                        </div>
                     </div>
 
                     <div class="col-12">
                         <label class="form-label fw-bold">Upload Poster</label>
-                        <input type="file" name="poster" class="form-control" accept="image/jpeg,image/png,image/jpg" required>
-                        <div class="form-text">Format yang diizinkan: JPG, JPEG, PNG. Maksimal ukuran file: 2MB. Resolusi disarankan 600x300 pixel.</div>
+                        <input type="file" name="poster" class="form-control" accept="image/jpeg,image/png,image/jpg"
+                            required>
+                        <div class="form-text">Format yang diizinkan: JPG, JPEG, PNG. Maksimal ukuran file: 2MB.
+                            Resolusi disarankan 600x300 pixel.</div>
                     </div>
 
                     <div class="col-12">
@@ -93,22 +104,28 @@ require_once __DIR__ . '/../layout/navbar-mitra.php';
 
                         <div class="row g-3">
                             <?php foreach ($tagsByKategori as $kategori => $tags): ?>
-                            <div class="col-md-4">
-                                <div class="fw-semibold mb-2" style="font-size: 0.9rem; color: var(--color-primary);"><?= htmlspecialchars(ucwords(str_replace('_', ' ', $kategori))) ?></div>
-                                <?php foreach ($tags as $tag): ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="tags[]" value="<?= $tag['id_tag'] ?>" id="tag_<?= $tag['id_tag'] ?>">
-                                    <label class="form-check-label" for="tag_<?= $tag['id_tag'] ?>"><?= htmlspecialchars($tag['nama_tag']) ?></label>
+                                <div class="col-md-4">
+                                    <div class="fw-semibold mb-2" style="font-size: 0.9rem; color: var(--color-primary);">
+                                        <?= htmlspecialchars(ucwords(str_replace('_', ' ', $kategori))) ?>
+                                    </div>
+                                    <?php foreach ($tags as $tag): ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="tags[]"
+                                                value="<?= $tag['id_tag'] ?>" id="tag_<?= $tag['id_tag'] ?>">
+                                            <label class="form-check-label"
+                                                for="tag_<?= $tag['id_tag'] ?>"><?= htmlspecialchars($tag['nama_tag']) ?></label>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <?php endforeach; ?>
-                            </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
 
                     <div class="col-12 text-end mt-5">
-                        <a href="<?= BASE_URL ?>/frontend/mitra/kelola-beasiswa.php" class="btn btn-light px-4 me-2">Batal</a>
-                        <button type="submit" class="btn btn-primary px-4" style="background-color: var(--color-primary); border-color: var(--color-primary); font-weight: 600;">
+                        <a href="<?= BASE_URL ?>/frontend/mitra/kelola-beasiswa.php"
+                            class="btn btn-light px-4 me-2">Batal</a>
+                        <button type="submit" class="btn btn-primary px-4"
+                            style="background-color: var(--color-primary); border-color: var(--color-primary); font-weight: 600;">
                             <i class="bi bi-cloud-arrow-up-fill me-2"></i>Simpan & Unggah Beasiswa
                         </button>
                     </div>

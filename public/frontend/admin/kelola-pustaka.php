@@ -22,7 +22,7 @@ require_once CLASSES_PATH . 'Simulasi.php';
 $pendingBeasiswa = count(array_filter((new Beasiswa($db))->getAll(), fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter((new Simulasi($db))->getAll(), fn($s) => $s['status_simulasi'] === 'pending'));
 
-$pageTitle = 'Kelola Pustaka — Admin ' . APP_NAME;
+$pageTitle = 'Kelola Pustaka | Admin ' . APP_NAME;
 $pageDescription = 'Kelola dokumen panduan dan informasi untuk mahasiswa.';
 $activePage = 'kelola-pustaka';
 

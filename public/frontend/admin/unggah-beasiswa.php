@@ -22,7 +22,7 @@ foreach ($listTag as $t) {
     $tagsByKategori[$t['kategori_tag']][] = $t;
 }
 
-$pageTitle = 'Unggah Beasiswa — Admin ' . APP_NAME;
+$pageTitle = 'Unggah Beasiswa | Admin ' . APP_NAME;
 $pageDescription = 'Unggah beasiswa baru langsung oleh admin.';
 $activePage = 'kelola-beasiswa';
 

@@ -161,10 +161,10 @@ class Beasiswa
         return $success;
     }
 
-    public function updateStatusVerifikasi(int $id, string $status): bool
+    public function updateStatusVerifikasi(int $id, string $status, string $alasan = ''): bool
     {
-        $stmt = $this->db->prepare("UPDATE beasiswa SET status_verifikasi = ? WHERE id_beasiswa = ?");
-        $stmt->bind_param('si', $status, $id);
+        $stmt = $this->db->prepare("UPDATE beasiswa SET status_verifikasi = ?, alasan_penolakan = ? WHERE id_beasiswa = ?");
+        $stmt->bind_param('ssi', $status, $alasan, $id);
         $success = $stmt->execute();
         $stmt->close();
         return $success;
@@ -250,7 +250,7 @@ class Beasiswa
     }
     public function searchAdvanced(array $filters, int $page = 1, int $perPage = 6): array
     {
-        $sql = "SELECT b.*, " . self::STATUS_SQL . ",
+        $sql = "SELECT DISTINCT b.*, " . self::STATUS_SQL . ",
                 COALESCE(m.nama_mitra, a.nama_admin) AS nama_uploader,
                 (SELECT GROUP_CONCAT(t.nama_tag SEPARATOR ', ') FROM beasiswa_tag bt JOIN tag t ON bt.id_tag = t.id_tag WHERE bt.id_beasiswa = b.id_beasiswa) AS tag_names
                 FROM beasiswa b
@@ -282,6 +282,7 @@ class Beasiswa
             $types .= 'i';
         }
 
+        // AND logic: beasiswa harus memiliki SEMUA tag yang dipilih
         if (!empty($filters['tags']) && is_array($filters['tags'])) {
             $tagCount = count($filters['tags']);
             $placeholders = implode(',', array_fill(0, $tagCount, '?'));
@@ -292,6 +293,32 @@ class Beasiswa
             }
             $params[] = $tagCount;
             $types .= 'i';
+        }
+
+        // IPK filter: find beasiswa that have IPK tags with value <= user's IPK
+        if (!empty($filters['ipk']) && is_numeric($filters['ipk'])) {
+            $sql .= " AND EXISTS (
+                SELECT 1 FROM beasiswa_tag bt2
+                JOIN tag t2 ON bt2.id_tag = t2.id_tag
+                WHERE bt2.id_beasiswa = b.id_beasiswa
+                AND t2.kategori_tag = 'IPK'
+                AND CAST(t2.nama_tag AS DECIMAL(3,2)) <= ?
+            )";
+            $params[] = (float) $filters['ipk'];
+            $types .= 'd';
+        }
+
+        // Semester filter: find beasiswa tagged with specific semester
+        if (!empty($filters['semester']) && is_numeric($filters['semester'])) {
+            $sql .= " AND EXISTS (
+                SELECT 1 FROM beasiswa_tag bt3
+                JOIN tag t3 ON bt3.id_tag = t3.id_tag
+                WHERE bt3.id_beasiswa = b.id_beasiswa
+                AND t3.kategori_tag = 'Semester'
+                AND t3.nama_tag = ?
+            )";
+            $params[] = $filters['semester'];
+            $types .= 's';
         }
 
         $countSql = "SELECT COUNT(*) as total FROM ($sql) AS count_table";

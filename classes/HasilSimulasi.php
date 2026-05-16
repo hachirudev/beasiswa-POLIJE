@@ -36,7 +36,7 @@ class HasilSimulasi
     public function update(int $id_simulasi, array $data): bool
     {
         $stmt = $this->db->prepare(
-            "UPDATE hasil_simulasi SET skor = ?, catatan_admin = ?, status_simulasi = ?, id_admin = ?, tgl_review = NOW()
+            "UPDATE hasil_simulasi SET skor = ?, catatan_admin = ?, status_simulasi = ?, id_admin = ?, tgl_review = NOW(), is_read = FALSE
              WHERE id_simulasi = ?"
         );
         $stmt->bind_param(

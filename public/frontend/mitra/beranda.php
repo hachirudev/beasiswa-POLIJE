@@ -17,12 +17,17 @@ Session::requireLogin();
 Session::requireRole('mitra');
 
 $db = Database::getInstance()->getConnection();
-$listBeasiswa = (new Beasiswa($db))->getVerified();
+$searchResult = (new Beasiswa($db))->searchAdvanced([
+    'year' => (int) date('Y'),
+    'month' => (int) date('n')
+]);
+$listBeasiswa = $searchResult['data'];
+$totalPages   = $searchResult['total_pages'];
 $listTag      = (new Tag($db))->getAll();
 $listPustaka  = (new Pustaka($db))->getAll();
 $listFaq      = (new Faq($db))->getAll();
 
-$pageTitle = 'Beranda — ' . APP_NAME;
+$pageTitle = 'Beranda | ' . APP_NAME;
 $pageDescription = 'Temukan berbagai program beasiswa yang tersedia di Politeknik Negeri Jember.';
 $activePage = 'beranda';
 

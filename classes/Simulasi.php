@@ -98,7 +98,7 @@ class Simulasi
     {
         $stmt = $this->db->prepare(
             "SELECT s.*, b.nama_beasiswa, b.nama_penyelenggara,
-                    hs.status_simulasi, hs.skor, hs.is_read
+                    hs.status_simulasi, hs.skor, hs.is_read, hs.catatan_admin, hs.tgl_review
              FROM simulasi s
              JOIN beasiswa b ON s.id_beasiswa = b.id_beasiswa
              LEFT JOIN hasil_simulasi hs ON s.id_simulasi = hs.id_simulasi
@@ -115,10 +115,11 @@ class Simulasi
     public function getAll(): array
     {
         $result = $this->db->query(
-            "SELECT s.*, m.nama, m.NIM, b.nama_beasiswa,
+            "SELECT s.*, m.nama, m.NIM, p.nama_prodi, b.nama_beasiswa,
                     hs.status_simulasi, hs.skor
              FROM simulasi s
              JOIN mahasiswa m ON s.id_mahasiswa = m.id_mahasiswa
+             LEFT JOIN prodi p ON m.id_prodi = p.id_prodi
              JOIN beasiswa b ON s.id_beasiswa = b.id_beasiswa
              LEFT JOIN hasil_simulasi hs ON s.id_simulasi = hs.id_simulasi
              ORDER BY s.created_at DESC"
@@ -139,9 +140,10 @@ class Simulasi
     public function getPending(): array
     {
         $result = $this->db->query(
-            "SELECT s.*, m.nama, m.NIM, b.nama_beasiswa
+            "SELECT s.*, m.nama, m.NIM, p.nama_prodi, b.nama_beasiswa
              FROM simulasi s
              JOIN mahasiswa m ON s.id_mahasiswa = m.id_mahasiswa
+             LEFT JOIN prodi p ON m.id_prodi = p.id_prodi
              JOIN beasiswa b ON s.id_beasiswa = b.id_beasiswa
              JOIN hasil_simulasi hs ON s.id_simulasi = hs.id_simulasi
              WHERE hs.status_simulasi = 'pending'
@@ -208,7 +210,7 @@ class Simulasi
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
-        
+
         return (int) $result['total'];
     }
 }

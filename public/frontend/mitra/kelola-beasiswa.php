@@ -26,7 +26,7 @@ $totalDiunggah = count($listBeasiswa);
 $pendingVerifikasi = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'pending'));
 $totalSimulasi = $simulasiObj->countByMitra($idMitra);
 
-$pageTitle = 'Kelola Beasiswa — ' . APP_NAME;
+$pageTitle = 'Kelola Beasiswa | ' . APP_NAME;
 $pageDescription = 'Kelola beasiswa yang telah Anda unggah sebagai mitra.';
 $activePage = 'kelola-beasiswa';
 
@@ -137,11 +137,13 @@ require_once __DIR__ . '/../layout/navbar-mitra.php';
                                         <span class="badge" style="background: #fff3cd; color: #856404; padding: 0.5em 0.8em;">Pending</span>
                                     <?php endif; ?>
                                 </td>
-                                <td class="py-3 px-4 text-end">
-                                    <form action="<?= BASE_URL ?>/backend/beasiswa/delete.php" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus beasiswa ini?');">
-                                        <input type="hidden" name="id_beasiswa" value="<?= $b['id_beasiswa'] ?>">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
-                                    </form>
+                                <td class="py-3 px-4">
+                                    <div class="d-flex justify-content-end gap-1">
+                                        <form action="<?= BASE_URL ?>/backend/beasiswa/delete.php" method="POST" class="m-0" onsubmit="return confirm('Yakin ingin menghapus beasiswa ini?');">
+                                            <input type="hidden" name="id_beasiswa" value="<?= $b['id_beasiswa'] ?>">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

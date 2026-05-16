@@ -23,16 +23,16 @@ $listSimulasi = $simulasiObj->getAll();
 
 // Hitung statistik
 $totalBeasiswa = count($listBeasiswa);
-$dibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran'] === 'dibuka'));
-$belumDibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran'] === 'belum_dibuka'));
-$ditutup = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran'] === 'ditutup'));
+$dibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'dibuka'));
+$belumDibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'belum_dibuka'));
+$ditutup = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'ditutup'));
 
 $pendingBeasiswa = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter($listSimulasi, fn($s) => $s['status_simulasi'] === 'pending'));
 
 $latestBeasiswa = array_slice($listBeasiswa, 0, 5);
 
-$pageTitle = 'Dashboard Admin — ' . APP_NAME;
+$pageTitle = 'Dashboard Admin | ' . APP_NAME;
 $pageDescription = 'Panel kontrol administratif ' . APP_NAME . '.';
 $activePage = 'dashboard';
 

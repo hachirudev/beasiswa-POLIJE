@@ -22,7 +22,7 @@ require_once CLASSES_PATH . 'Simulasi.php';
 $pendingBeasiswa = count(array_filter((new Beasiswa($db))->getAll(), fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter((new Simulasi($db))->getAll(), fn($s) => $s['status_simulasi'] === 'pending'));
 
-$pageTitle = 'Kelola Mitra — Admin ' . APP_NAME;
+$pageTitle = 'Kelola Mitra | Admin ' . APP_NAME;
 $pageDescription = 'Kelola daftar akun mitra penyelenggara beasiswa.';
 $activePage = 'kelola-mitra';
 
@@ -78,7 +78,7 @@ require_once __DIR__ . '/../layout/sidebar-admin.php';
                                 </td>
                                 <td class="py-3 px-4 text-muted"><?= htmlspecialchars($m['bidang_usaha']) ?></td>
                                 <td class="py-3 px-4 text-muted"><?= htmlspecialchars($m['email']) ?></td>
-                                <td class="py-3 px-4 text-muted"><?= htmlspecialchars($m['no_telepon'] ?? '-') ?></td>
+                                <td class="py-3 px-4 text-muted"><?= htmlspecialchars($m['telepon'] ?? '-') ?></td>
                                 <td class="py-3 px-4">
                                     <?php if ($m['website']): ?>
                                     <a href="<?= htmlspecialchars($m['website']) ?>" target="_blank" style="color:var(--color-primary);text-decoration:none;font-size:0.9rem;">
@@ -118,7 +118,7 @@ require_once __DIR__ . '/../layout/sidebar-admin.php';
                         <div class="col-md-6"><label class="form-label fw-bold">Nama Mitra</label><input type="text" name="nama_mitra" class="form-control" placeholder="Contoh: PT Djarum" required></div>
                         <div class="col-md-6"><label class="form-label fw-bold">Bidang Usaha</label><input type="text" name="bidang_usaha" class="form-control" placeholder="Contoh: Manufaktur / FMCG" required></div>
                         <div class="col-md-6"><label class="form-label fw-bold">Email</label><input type="email" name="email" class="form-control" placeholder="Contoh: info@perusahaan.com" required></div>
-                        <div class="col-md-6"><label class="form-label fw-bold">Telepon</label><input type="tel" name="no_telepon" class="form-control" placeholder="Contoh: +62 21 1234 5678" required></div>
+                        <div class="col-md-6"><label class="form-label fw-bold">Telepon</label><input type="tel" name="telepon" class="form-control" placeholder="Contoh: +62 21 1234 5678" required></div>
                         <div class="col-md-6"><label class="form-label fw-bold">Website</label><input type="url" name="website" class="form-control" placeholder="Contoh: https://perusahaan.com"></div>
                         <div class="col-md-6"><label class="form-label fw-bold">Password</label><input type="password" name="password" class="form-control" placeholder="Minimal 8 karakter" required><div class="form-text">Password awal yang akan digunakan mitra untuk login.</div></div>
                     </div>

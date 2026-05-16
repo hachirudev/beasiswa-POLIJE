@@ -16,7 +16,7 @@ Session::requireRole('mitra');
 $db = Database::getInstance()->getConnection();
 $mitra = (new Mitra($db))->getById(Session::getId());
 
-$pageTitle = 'Profil Mitra — ' . APP_NAME;
+$pageTitle = 'Profil Mitra | ' . APP_NAME;
 $pageDescription = 'Lihat dan kelola informasi akun mitra Anda.';
 $activePage = 'profil';
 
@@ -83,34 +83,7 @@ require_once __DIR__ . '/../layout/navbar-mitra.php';
 
     </div>
 
-    <!-- Card Ganti Password -->
-    <div class="profile-card p-4 p-md-5 mb-4">
-        <h5 class="fw-bold mb-3 d-flex align-items-center gap-2" style="color: var(--color-primary-dark);">
-            <i class="bi bi-shield-lock"></i> Ganti Password
-        </h5>
-        <hr class="mb-4 mt-0" style="border-top: 2px solid var(--color-light); opacity: 1;">
 
-        <form action="<?= BASE_URL ?>/backend/akun/update-profil.php" method="POST">
-            <div class="row g-3">
-                <div class="col-md-12">
-                    <label for="passwordLama" class="form-label">Password Lama</label>
-                    <input type="password" class="form-control" id="passwordLama" name="passwordLama" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="passwordBaru" class="form-label">Password Baru</label>
-                    <input type="password" class="form-control" id="passwordBaru" name="passwordBaru" required>
-                    <div class="form-text">Gunakan minimal 8 karakter kombinasi huruf & angka.</div>
-                </div>
-                <div class="col-md-6">
-                    <label for="konfirmasiPassword" class="form-label">Konfirmasi Password Baru</label>
-                    <input type="password" class="form-control" id="konfirmasiPassword" name="konfirmasiPassword" required>
-                </div>
-                <div class="col-12 mt-3 text-end">
-                    <button type="submit" class="btn btn-primary-custom"><i class="bi bi-key-fill me-2"></i>Perbarui Password</button>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>
 <!-- ========== END KONTEN ========== -->
 

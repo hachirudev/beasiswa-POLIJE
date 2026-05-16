@@ -1,10 +1,13 @@
 <!-- ========== SECTION: JENIS BEASISWA ========== -->
 <section id="jenis-beasiswa" class="py-5" style="background: var(--color-white);">
     <div class="container">
-        <h2 class="text-center" style="font-weight: 800; font-size: 2.2rem; color: var(--color-dark); margin-bottom: 1.5rem;">Kategori Jenis Beasiswa</h2>
-        <p class="text-center" style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3.5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+        <h2 class="text-center"
+            style="font-weight: 800; font-size: 2.2rem; color: var(--color-dark); margin-bottom: 1.5rem;">Kategori Jenis
+            Beasiswa</h2>
+        <p class="text-center"
+            style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3.5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6;">
             Politeknik Negeri Jember menyediakan akses ke berbagai jenis beasiswa untuk mendukung
-            perjalanan akademik mahasiswa. Kenali jenis beasiswa yang sesuai dengan profil Anda.
+            perjalanan akademik mahasiswa.
         </p>
 
         <div class="row g-4">
@@ -27,7 +30,8 @@
                     <h3 class="type-title">Government Scholarship</h3>
                     <p class="type-desc">Government Scholarship adalah beasiswa yang diberikan oleh pemerintah untuk
                         membantu pelajar atau mahasiswa dalam membiayai pendidikan, baik di dalam maupun luar negeri.
-                        Program ini bertujuan meningkatkan kualitas sumber daya manusia dan pemerataan akses pendidikan.</p>
+                        Program ini bertujuan meningkatkan kualitas sumber daya manusia dan pemerataan akses pendidikan.
+                    </p>
                 </div>
             </div>
 

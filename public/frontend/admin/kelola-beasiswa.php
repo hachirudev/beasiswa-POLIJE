@@ -24,7 +24,7 @@ $listSimulasi = $simulasiObj->getAll();
 $pendingBeasiswa = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter($listSimulasi, fn($s) => $s['status_simulasi'] === 'pending'));
 
-$pageTitle = 'Kelola Beasiswa — Admin ' . APP_NAME;
+$pageTitle = 'Kelola Beasiswa | Admin ' . APP_NAME;
 $pageDescription = 'Kelola dan verifikasi beasiswa yang diunggah mitra.';
 $activePage = 'kelola-beasiswa';
 
@@ -75,9 +75,9 @@ require_once __DIR__ . '/../layout/sidebar-admin.php';
                                 <td class="py-3 px-4 fw-semibold"><?= htmlspecialchars($b['nama_beasiswa']) ?></td>
                                 <td class="py-3 px-4 text-muted"><?= htmlspecialchars($b['nama_penyelenggara'] ?? 'Penyelenggara') ?></td>
                                 <td class="py-3 px-4">
-                                    <?php if ($b['status_pendaftaran'] === 'dibuka'): ?>
+                                    <?php if ($b['status_pendaftaran_computed'] === 'dibuka'): ?>
                                         <span class="badge badge-status" style="background:#e8f5e9;color:#28a745;">Pendaftaran Dibuka</span>
-                                    <?php elseif ($b['status_pendaftaran'] === 'ditutup'): ?>
+                                    <?php elseif ($b['status_pendaftaran_computed'] === 'ditutup'): ?>
                                         <span class="badge badge-status" style="background:#f8d7da;color:#721c24;">Pendaftaran Ditutup</span>
                                     <?php else: ?>
                                         <span class="badge badge-status" style="background:#fff3cd;color:#856404;">Pendaftaran Belum Dibuka</span>
@@ -93,19 +93,21 @@ require_once __DIR__ . '/../layout/sidebar-admin.php';
                                     <?php endif; ?>
                                 </td>
                                 <td class="py-3 px-4 text-muted"><?= date('d M Y', strtotime($b['upload_at'] ?? 'now')) ?></td>
-                                <td class="py-3 px-4 text-center">
-                                    <?php if ($b['status_verifikasi'] === 'pending'): ?>
-                                        <form action="<?= BASE_URL ?>/backend/beasiswa/verifikasi.php" method="POST" class="d-inline">
+                                <td class="py-3 px-4">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <?php if ($b['status_verifikasi'] === 'pending'): ?>
+                                            <form action="<?= BASE_URL ?>/backend/beasiswa/verifikasi.php" method="POST" class="m-0">
+                                                <input type="hidden" name="id_beasiswa" value="<?= $b['id_beasiswa'] ?>">
+                                                <input type="hidden" name="status" value="terverifikasi">
+                                                <button type="submit" class="btn btn-sm btn-success" title="Verifikasi"><i class="bi bi-check-lg"></i></button>
+                                            </form>
+                                            <button class="btn btn-sm btn-warning btn-tolak" data-id="<?= $b['id_beasiswa'] ?>" title="Tolak" data-bs-toggle="modal" data-bs-target="#modalTolak"><i class="bi bi-x-lg"></i></button>
+                                        <?php endif; ?>
+                                        <form action="<?= BASE_URL ?>/backend/beasiswa/delete.php" method="POST" class="m-0" onsubmit="return confirm('Yakin ingin menghapus beasiswa ini?');">
                                             <input type="hidden" name="id_beasiswa" value="<?= $b['id_beasiswa'] ?>">
-                                            <input type="hidden" name="status" value="terverifikasi">
-                                            <button type="submit" class="btn btn-sm btn-success me-1" title="Verifikasi"><i class="bi bi-check-lg"></i></button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
                                         </form>
-                                        <button class="btn btn-sm btn-warning me-1 btn-tolak" data-id="<?= $b['id_beasiswa'] ?>" title="Tolak" data-bs-toggle="modal" data-bs-target="#modalTolak"><i class="bi bi-x-lg"></i></button>
-                                    <?php endif; ?>
-                                    <form action="<?= BASE_URL ?>/backend/beasiswa/delete.php" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus beasiswa ini?');">
-                                        <input type="hidden" name="id_beasiswa" value="<?= $b['id_beasiswa'] ?>">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus"><i class="bi bi-trash"></i></button>
-                                    </form>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

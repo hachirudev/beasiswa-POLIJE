@@ -33,8 +33,10 @@ if ($v->fails()) {
     Response::redirectTo(BASE_URL . '/frontend/admin/kelola-beasiswa.php');
 }
 
+$alasan = trim($_POST['alasan'] ?? '');
+
 $beasiswa = new Beasiswa($db);
-$success = $beasiswa->updateStatusVerifikasi($id_beasiswa, $status);
+$success = $beasiswa->updateStatusVerifikasi($id_beasiswa, $status, $alasan);
 
 if ($success) {
     $label = $status === 'terverifikasi' ? 'diverifikasi' : 'ditolak';

@@ -1,6 +1,6 @@
 <?php
 /**
- * Beranda Mahasiswa — Halaman utama satu halaman panjang
+ * Beranda Mahasiswa
  */
 declare(strict_types=1);
 require_once '../../../config/app.php';
@@ -18,7 +18,10 @@ Session::requireLogin();
 Session::requireRole('mahasiswa');
 
 $db = Database::getInstance()->getConnection();
-$searchResult = (new Beasiswa($db))->searchAdvanced([]);
+$searchResult = (new Beasiswa($db))->searchAdvanced([
+    'year' => (int) date('Y'),
+    'month' => (int) date('n')
+]);
 $listBeasiswa = $searchResult['data'];
 $totalPages   = $searchResult['total_pages'];
 $listTag      = (new Tag($db))->getAll();
@@ -26,7 +29,7 @@ $listPustaka  = (new Pustaka($db))->getAll();
 $listFaq      = (new Faq($db))->getAll();
 $jumlahNotif  = (new HasilSimulasi($db))->countUnread(Session::getId());
 
-$pageTitle = 'Beranda — ' . APP_NAME;
+$pageTitle = 'Beranda | ' . APP_NAME;
 $pageDescription = 'Temukan berbagai program beasiswa yang tersedia di Politeknik Negeri Jember.';
 $activePage = 'beranda';
 
@@ -49,7 +52,16 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 <?php endif; ?>
-
+<?php if ($msg = Session::getFlash('info_profil')): ?>
+<div class="alert alert-info alert-dismissible fade show m-3 d-flex align-items-center gap-2">
+    <i class="bi bi-info-circle-fill flex-shrink-0" style="font-size: 1.25rem;"></i>
+    <div>
+        <?= htmlspecialchars($msg) ?>
+        <a href="<?= BASE_URL ?>/frontend/mahasiswa/profil.php" class="alert-link ms-1 text-decoration-underline">Atur Profil Sekarang <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+</div>
+<?php endif; ?>
 <!-- ===== SECTIONS ===== -->
 <?php require_once __DIR__ . '/../sections/section-beranda.php'; ?>
 <?php require_once __DIR__ . '/../sections/section-tentang.php'; ?>

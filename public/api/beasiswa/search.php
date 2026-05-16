@@ -15,10 +15,12 @@ try {
     $beasiswaObj = new Beasiswa($db);
 
     $filters = [
-        'q'     => $_GET['q'] ?? '',
-        'year'  => (int) ($_GET['year'] ?? 0),
-        'month' => (int) ($_GET['month'] ?? 0),
-        'tags'  => isset($_GET['tags']) && is_array($_GET['tags']) ? $_GET['tags'] : []
+        'q'        => $_GET['q'] ?? '',
+        'year'     => (int) ($_GET['year'] ?? 0),
+        'month'    => (int) ($_GET['month'] ?? 0),
+        'tags'     => isset($_GET['tags']) && is_array($_GET['tags']) ? $_GET['tags'] : [],
+        'ipk'      => $_GET['ipk'] ?? '',
+        'semester' => $_GET['semester'] ?? ''
     ];
     $page = max(1, (int) ($_GET['page'] ?? 1));
 

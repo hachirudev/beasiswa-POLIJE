@@ -1,6 +1,13 @@
 <!-- ========== NAVBAR MAHASISWA ========== -->
 <?php
-$jumlahNotif = $jumlahNotif ?? 0;
+if (!isset($db)) {
+    require_once CONFIG_PATH . 'Database.php';
+    $db = Database::getInstance()->getConnection();
+}
+if (!class_exists('HasilSimulasi')) {
+    require_once CLASSES_PATH . 'HasilSimulasi.php';
+}
+$jumlahNotif = (new HasilSimulasi($db))->countUnread((int)($_SESSION['id'] ?? 0));
 $userName = $_SESSION['nama'] ?? 'Mahasiswa';
 ?>
 <nav class="navbar navbar-expand-lg navbar-beasiswa sticky-top" id="navbar-mahasiswa">

@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once '../../config/app.php';
 require_once HELPERS_PATH . 'Session.php';
 require_once HELPERS_PATH . 'Response.php';
-require_once CONFIG_PATH  . 'Database.php';
+require_once CONFIG_PATH . 'Database.php';
 require_once CLASSES_PATH . 'User.php';
 require_once CLASSES_PATH . 'Mahasiswa.php';
 require_once CLASSES_PATH . 'Mitra.php';
@@ -14,16 +14,19 @@ Session::start();
 // Sudah login → redirect ke dashboard
 if (Session::isLoggedIn()) {
     $role = Session::getRole();
-    if ($role === 'mahasiswa') Response::redirectTo(BASE_URL . '/frontend/mahasiswa/beranda.php');
-    if ($role === 'mitra')     Response::redirectTo(BASE_URL . '/frontend/mitra/beranda.php');
-    if ($role === 'admin')     Response::redirectTo(BASE_URL . '/frontend/admin/dashboard.php');
+    if ($role === 'mahasiswa')
+        Response::redirectTo(BASE_URL . '/frontend/mahasiswa/beranda.php');
+    if ($role === 'mitra')
+        Response::redirectTo(BASE_URL . '/frontend/mitra/beranda.php');
+    if ($role === 'admin')
+        Response::redirectTo(BASE_URL . '/frontend/admin/dashboard.php');
 }
 
 // ========== Proses POST ==========
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $role     = trim($_POST['role']     ?? '');
-    $email    = trim($_POST['email']    ?? '');
-    $password = $_POST['password']      ?? '';
+    $role = trim($_POST['role'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
 
     // Validasi tidak boleh kosong
     if ($email === '' || $password === '' || $role === '') {
@@ -42,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Inisialisasi class sesuai role
     $userObj = match ($role) {
         'mahasiswa' => new Mahasiswa($db),
-        'mitra'     => new Mitra($db),
-        'admin'     => new Admin($db),
+        'mitra' => new Mitra($db),
+        'admin' => new Admin($db),
     };
 
     $user = $userObj->login($email, $password);
@@ -54,6 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'mahasiswa':
                 Session::set('id', $user['id_mahasiswa']);
                 Session::set('nama', $user['nama']);
+                if ((float) $user['IPK'] === 0.0) {
+                    Session::setFlash('info_profil', 'Harap melengkapi data Profil Anda di halaman Profil.');
+                }
                 break;
             case 'mitra':
                 Session::set('id', $user['id_mitra']);
@@ -69,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Redirect ke dashboard sesuai role
         $dashboards = [
             'mahasiswa' => '/frontend/mahasiswa/beranda.php',
-            'mitra'     => '/frontend/mitra/beranda.php',
-            'admin'     => '/frontend/admin/dashboard.php',
+            'mitra' => '/frontend/mitra/beranda.php',
+            'admin' => '/frontend/admin/dashboard.php',
         ];
         Response::redirectTo(BASE_URL . $dashboards[$role]);
     } else {
@@ -79,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$pageTitle = 'Login — ' . APP_NAME;
+$pageTitle = 'Login | ' . APP_NAME;
 $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasiswa.';
 ?>
 <?php require_once '../frontend/layout/header.php'; ?>
@@ -89,10 +95,11 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
     <div class="auth-card">
         <!-- Brand -->
         <a href="<?= BASE_URL ?>/" class="auth-brand">
-            <span class="brand-icon">
-                <i class="bi bi-mortarboard-fill"></i>
-            </span>
-            Beasiswa POLIJE
+            <img src="<?= BASE_URL ?>/assets/img/logo polije.png" alt="Logo"
+                style="height: 40px; width: auto; object-fit: contain;">
+            <span
+                style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; letter-spacing: -0.5px;">Beasiswa
+                POLIJE</span>
         </a>
 
         <h1 class="auth-title">Masuk</h1>
@@ -101,20 +108,20 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
         <!-- Flash message -->
         <?php $flashError = Session::getFlash('error'); ?>
         <?php if ($flashError): ?>
-        <div class="alert alert-danger auth-alert" role="alert"><?= htmlspecialchars($flashError) ?></div>
+            <div class="alert alert-danger auth-alert" role="alert"><?= htmlspecialchars($flashError) ?></div>
         <?php endif; ?>
 
         <?php $flashSuccess = Session::getFlash('success'); ?>
         <?php if ($flashSuccess): ?>
-        <div class="alert alert-success auth-alert" role="alert"><?= htmlspecialchars($flashSuccess) ?></div>
+            <div class="alert alert-success auth-alert" role="alert"><?= htmlspecialchars($flashSuccess) ?></div>
         <?php endif; ?>
 
         <form id="form-login" method="POST" action="<?= BASE_URL ?>/auth/login.php">
             <!-- Email -->
             <div class="mb-3">
                 <label for="input-email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="input-email" name="email"
-                       placeholder="contoh@email.com" required>
+                <input type="email" class="form-control" id="input-email" name="email" placeholder="contoh@email.com"
+                    required>
             </div>
 
             <!-- Password -->
@@ -122,9 +129,9 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
                 <label for="input-password" class="form-label">Password</label>
                 <div class="input-password-wrapper">
                     <input type="password" class="form-control" id="input-password" name="password"
-                           placeholder="Masukkan password" required>
+                        placeholder="Masukkan password" required>
                     <button type="button" class="btn-toggle-password" id="btn-toggle-password"
-                            aria-label="Tampilkan password">
+                        aria-label="Tampilkan password">
                         <i class="bi bi-eye"></i>
                     </button>
                 </div>
@@ -164,4 +171,12 @@ $pageDescription = 'Masuk ke akun Beasiswa POLIJE untuk mengakses layanan beasis
 </div>
 <!-- ========== END KONTEN ========== -->
 
-<?php require_once '../frontend/layout/footer.php'; ?>
+<!-- ========== FOOTER ========== -->
+<footer class="footer-landing" id="footer-landing" style="background-color: var(--color-light);">
+    <div class="container">
+        Copyright &copy; 2026 Beasiswa POLIJE
+    </div>
+</footer>
+<!-- ========== END FOOTER ========== -->
+
+<script src="<?= BASE_URL ?>/assets/js/main.js"></script>

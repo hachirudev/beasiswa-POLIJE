@@ -30,7 +30,7 @@ $aktif_kuliah       = (int) ($_POST['aktif_kuliah']       ?? 0);
 $nama_ortu          = trim($_POST['nama_ortu']            ?? '');
 $penghasilan_ortu   = (float) ($_POST['penghasilan_ortu'] ?? 0);
 $pekerjaan_ortu     = trim($_POST['pekerjaan_ortu']       ?? '');
-$jml_tanggungan     = (int) ($_POST['jml_tanggungan']     ?? 0);
+$jml_tanggungan     = (int) ($_POST['tanggungan_ortu']    ?? 0);
 $sktm               = (int) ($_POST['sktm']               ?? 0);
 
 // Validasi
@@ -45,26 +45,26 @@ if ($v->fails()) {
     $errors = $v->getErrors();
     $firstError = reset($errors);
     Session::setFlash('error', $firstError[0]);
-    Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id=' . $id_beasiswa);
+    Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id_beasiswa=' . $id_beasiswa);
 }
 
 // Upload file (PDF, maks 5MB)
 $uploadedFiles = [];
-if (!empty($_FILES['dokumen']) && $_FILES['dokumen']['error'][0] !== UPLOAD_ERR_NO_FILE) {
+if (!empty($_FILES['file_simulasi']) && $_FILES['file_simulasi']['error'][0] !== UPLOAD_ERR_NO_FILE) {
     try {
         $uploadDir = UPLOAD_PATH . 'simulasi' . DIRECTORY_SEPARATOR;
         $uploader  = new FileUploader($uploadDir);
-        $paths     = $uploader->uploadMultiple($_FILES['dokumen']);
+        $paths     = $uploader->uploadMultiple($_FILES['file_simulasi']);
 
         foreach ($paths as $i => $path) {
             $uploadedFiles[] = [
-                'nama_file'  => $_FILES['dokumen']['name'][$i],
+                'nama_file'  => $_FILES['file_simulasi']['name'][$i],
                 'file_path'  => $path,
             ];
         }
     } catch (Exception $e) {
         Session::setFlash('error', $e->getMessage());
-        Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id=' . $id_beasiswa);
+        Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id_beasiswa=' . $id_beasiswa);
     }
 }
 
@@ -96,5 +96,5 @@ if ($id_simulasi !== false) {
     Response::redirectTo(BASE_URL . '/frontend/mahasiswa/pesan.php');
 } else {
     Session::setFlash('error', 'Gagal mengirim simulasi. Silakan coba lagi.');
-    Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id=' . $id_beasiswa);
+    Response::redirectTo(BASE_URL . '/frontend/mahasiswa/simulasi.php?id_beasiswa=' . $id_beasiswa);
 }

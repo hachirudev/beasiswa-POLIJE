@@ -23,7 +23,7 @@ $listSimulasi = $simulasiObj->getAll();
 $pendingBeasiswa = count(array_filter($beasiswaObj->getAll(), fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter($listSimulasi, fn($s) => $s['status_simulasi'] === 'pending'));
 
-$pageTitle = 'Review Simulasi — Admin ' . APP_NAME;
+$pageTitle = 'Review Simulasi | Admin ' . APP_NAME;
 $pageDescription = 'Review simulasi pendaftaran beasiswa mahasiswa.';
 $activePage = 'review-simulasi';
 
@@ -70,7 +70,7 @@ require_once __DIR__ . '/../layout/sidebar-admin.php';
                             <tr <?= $s['status_simulasi'] === 'pending' ? 'style="background:#fffef5;"' : '' ?>>
                                 <td class="py-3 px-4">
                                     <div class="fw-semibold"><?= htmlspecialchars($s['nama']) ?></div>
-                                    <div class="text-muted" style="font-size:0.8rem;"><?= htmlspecialchars((string)($s['NIM'] ?? '')) ?> • <?= htmlspecialchars($s['program_studi'] ?? 'Prodi') ?></div>
+                                    <div class="text-muted" style="font-size:0.8rem;"><?= htmlspecialchars((string)($s['NIM'] ?? '')) ?> • <?= htmlspecialchars($s['nama_prodi'] ?? 'Prodi') ?></div>
                                 </td>
                                 <td class="py-3 px-4 text-muted"><?= htmlspecialchars($s['nama_beasiswa'] ?? 'Beasiswa') ?></td>
                                 <td class="py-3 px-4 text-muted"><?= date('d M Y', strtotime($s['created_at'] ?? 'now')) ?></td>

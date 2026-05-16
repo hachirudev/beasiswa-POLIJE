@@ -1,7 +1,8 @@
 <!-- ========== SECTION: ALUR BEASISWA ========== -->
 <section id="alur-beasiswa" class="alur-section" style="background: var(--color-lighter);">
     <div class="container">
-        <h2 class="text-center" style="font-size: 2rem; font-weight: 800; color: var(--color-dark); margin-bottom: 3rem;">Alur Beasiswa</h2>
+        <h2 class="text-center"
+            style="font-size: 2rem; font-weight: 800; color: var(--color-dark); margin-bottom: 3rem;">Alur Beasiswa</h2>
         <div class="alur-container">
             <div class="alur-step">
                 <div class="alur-number">1</div>

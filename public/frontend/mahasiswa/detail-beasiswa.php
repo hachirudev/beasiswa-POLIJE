@@ -14,14 +14,14 @@ Session::requireLogin();
 Session::requireRole('mahasiswa');
 
 $db = Database::getInstance()->getConnection();
-$id = (int)($_GET['id'] ?? 0);
+$id = (int) ($_GET['id'] ?? 0);
 $beasiswa = (new Beasiswa($db))->getWithTags($id);
 
 if (!$beasiswa) {
     Response::redirectTo(BASE_URL . '/frontend/mahasiswa/beranda.php');
 }
 
-$pageTitle = htmlspecialchars($beasiswa['nama_beasiswa']) . ' — ' . APP_NAME;
+$pageTitle = htmlspecialchars($beasiswa['nama_beasiswa']) . ' | ' . APP_NAME;
 $pageDescription = 'Detail informasi beasiswa yang tersedia di Politeknik Negeri Jember.';
 $activePage = 'beranda';
 
@@ -44,7 +44,9 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
             </div>
             <div class="detail-info">
                 <h1><?= htmlspecialchars($beasiswa['nama_beasiswa']) ?></h1>
-                <p class="penyelenggara"><i class="bi bi-building me-1"></i><?= htmlspecialchars($beasiswa['nama_penyelenggara'] ?? 'Penyelenggara') ?></p>
+                <p class="penyelenggara"><i
+                        class="bi bi-building me-1"></i><?= htmlspecialchars($beasiswa['nama_penyelenggara'] ?? 'Penyelenggara') ?>
+                </p>
                 <p class="desc"><?= nl2br(htmlspecialchars($beasiswa['deskripsi_singkat'])) ?></p>
                 <div>
                     <?php if (!empty($beasiswa['tags'])): ?>
@@ -53,7 +55,9 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-                <p class="date-range"><i class="bi bi-calendar3 me-1"></i><?= date('d M Y', strtotime($beasiswa['tgl_buka'] ?? 'now')) ?> &ndash; <?= date('d M Y', strtotime($beasiswa['tgl_tutup'] ?? 'now')) ?></p>
+                <p class="date-range"><i
+                        class="bi bi-calendar3 me-1"></i><?= date('d M Y', strtotime($beasiswa['tgl_buka'] ?? 'now')) ?>
+                    &ndash; <?= date('d M Y', strtotime($beasiswa['tgl_tutup'] ?? 'now')) ?></p>
             </div>
         </div>
 
@@ -63,8 +67,8 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
             <div class="col-md-12">
                 <h5 class="fw-bold mb-3">Deskripsi Lengkap</h5>
                 <div class="desc mb-4 text-dark"><?= $beasiswa['deskripsi_lengkap'] ?? '' ?></div>
-                
-                <h5 class="fw-bold mb-3">Informasi Beasiswa (Persyaratan)</h5>
+
+                <h5 class="fw-bold mb-3">Informasi Beasiswa</h5>
                 <div class="desc text-dark"><?= $beasiswa['informasi_beasiswa'] ?? '' ?></div>
             </div>
         </div>
@@ -72,13 +76,15 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
         <!-- Action buttons -->
         <div class="section-divider"></div>
         <div class="action-buttons">
-            <a href="<?= BASE_URL ?>/frontend/mahasiswa/simulasi.php?id_beasiswa=<?= $beasiswa['id_beasiswa'] ?>" class="btn-simulasi" id="btn-simulasi">
+            <a href="<?= BASE_URL ?>/frontend/mahasiswa/simulasi.php?id_beasiswa=<?= $beasiswa['id_beasiswa'] ?>"
+                class="btn-simulasi" id="btn-simulasi">
                 <i class="bi bi-clipboard2-check me-1"></i>Simulasi Pendaftaran Beasiswa
             </a>
             <?php if (!empty($beasiswa['link_pendaftaran'])): ?>
-            <a href="<?= htmlspecialchars($beasiswa['link_pendaftaran']) ?>" class="btn-daftar" id="btn-daftar-beasiswa" target="_blank">
-                <i class="bi bi-box-arrow-up-right me-1"></i>Daftar Beasiswa
-            </a>
+                <a href="<?= htmlspecialchars($beasiswa['link_pendaftaran']) ?>" class="btn-daftar" id="btn-daftar-beasiswa"
+                    target="_blank">
+                    <i class="bi bi-box-arrow-up-right me-1"></i>Daftar Beasiswa
+                </a>
             <?php endif; ?>
         </div>
     </div>

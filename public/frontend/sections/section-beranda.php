@@ -46,18 +46,30 @@
                     <div class="filter-section">
                         <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fIpk">IPK Minimum <i class="bi bi-chevron-up"></i></div>
                         <div class="collapse show filter-options" id="fIpk">
-                            <?php foreach ($listTag as $t): if ($t['kategori_tag'] === 'IPK'): ?>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ipk[]" id="k<?= $t['id_tag'] ?>" value="<?= $t['id_tag'] ?>"><label class="form-check-label" for="k<?= $t['id_tag'] ?>"><?= htmlspecialchars($t['nama_tag']) ?></label></div>
-                            <?php endif; endforeach; ?>
+                            <div class="filter-input">
+                                <label for="filter-ipk">Tampilkan beasiswa dengan IPK min ≤</label>
+                                <input type="number" class="form-control" id="filter-ipk" placeholder="Contoh: 3.00" min="0" max="4" step="0.01">
+                            </div>
                         </div>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-heading" data-bs-toggle="collapse" data-bs-target="#fSemester">Semester <i class="bi bi-chevron-up"></i></div>
                         <div class="collapse show filter-options" id="fSemester">
-                            <?php foreach ($listTag as $t): if ($t['kategori_tag'] === 'Semester'): ?>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="semester[]" id="s<?= $t['id_tag'] ?>" value="<?= $t['id_tag'] ?>"><label class="form-check-label" for="s<?= $t['id_tag'] ?>"><?= htmlspecialchars($t['nama_tag']) ?></label></div>
-                            <?php endif; endforeach; ?>
+                            <div class="filter-input">
+                                <label for="filter-semester">Tampilkan beasiswa untuk semester</label>
+                                <select class="form-select" id="filter-semester">
+                                    <option value="">Semua Semester</option>
+                                    <option value="1">Semester 1</option>
+                                    <option value="2">Semester 2</option>
+                                    <option value="3">Semester 3</option>
+                                    <option value="4">Semester 4</option>
+                                    <option value="5">Semester 5</option>
+                                    <option value="6">Semester 6</option>
+                                    <option value="7">Semester 7</option>
+                                    <option value="8">Semester 8</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,7 +85,7 @@
 
                 <!-- Year & Month -->
                 <div class="year-nav">
-                    <span class="year-label" id="year-label">2025</span>
+                    <span class="year-label" id="year-label"><?= date('Y') ?></span>
                     <button id="btn-prev-year"><i class="bi bi-chevron-left"></i></button>
                     <button id="btn-next-year"><i class="bi bi-chevron-right"></i></button>
                 </div>

@@ -22,7 +22,7 @@ require_once CLASSES_PATH . 'Simulasi.php';
 $pendingBeasiswa = count(array_filter((new Beasiswa($db))->getAll(), fn($b) => $b['status_verifikasi'] === 'pending'));
 $pendingSimulasi = count(array_filter((new Simulasi($db))->getAll(), fn($s) => $s['status_simulasi'] === 'pending'));
 
-$pageTitle = 'Kelola FAQ — Admin ' . APP_NAME;
+$pageTitle = 'Kelola FAQ | Admin ' . APP_NAME;
 $pageDescription = 'Kelola daftar pertanyaan yang sering diajukan.';
 $activePage = 'kelola-faq';
 

@@ -103,6 +103,11 @@ if ($action === 'update_profil') {
 
 // ========== ACTION: ganti_password ==========
 if ($action === 'ganti_password') {
+    if ($role !== 'mahasiswa') {
+        Session::setFlash('error', 'Aksi tidak diizinkan untuk akun Anda.');
+        Response::redirectTo(BASE_URL . $profilUrl);
+    }
+
     $passwordLama  = $_POST['password_lama']  ?? '';
     $passwordBaru  = $_POST['password_baru']  ?? '';
     $passwordKonf  = $_POST['password_konfirmasi'] ?? '';

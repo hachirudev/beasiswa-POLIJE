@@ -19,7 +19,7 @@ $hasilObj = new HasilSimulasi($db);
 $simulasiList = (new Simulasi($db))->getByMahasiswa(Session::getId());
 $hasilObj->markAllAsRead(Session::getId());
 
-$pageTitle = 'Riwayat & Pesan Simulasi — ' . APP_NAME;
+$pageTitle = 'Riwayat & Pesan Simulasi | ' . APP_NAME;
 $pageDescription = 'Pantau status pengajuan simulasi beasiswa Anda dan lihat hasil review.';
 $activePage = 'pesan';
 
@@ -43,53 +43,67 @@ require_once __DIR__ . '/../layout/navbar-mahasiswa.php';
     <div class="pesan-list">
         <?php if (!empty($simulasiList)): ?>
             <?php foreach ($simulasiList as $s): ?>
-            <?php 
+                <?php
                 $statusClass = 'status-pending';
                 $statusIcon = 'bi-clock-fill';
                 $statusText = 'Menunggu Review';
-                
-                if ($s['status'] === 'lulus') {
+                $simStatus = $s['status_simulasi'] ?? 'pending';
+
+                if ($simStatus === 'lulus') {
                     $statusClass = 'status-lulus';
                     $statusIcon = 'bi-check-circle-fill';
                     $statusText = 'Lulus Kualifikasi';
-                } elseif ($s['status'] === 'tidak_lulus') {
+                } elseif ($simStatus === 'tidak_lulus') {
                     $statusClass = 'status-tidak';
                     $statusIcon = 'bi-x-circle-fill';
                     $statusText = 'Tidak Memenuhi';
                 }
-            ?>
-            <div class="pesan-card">
-                <div class="pesan-top">
-                    <div class="pesan-info">
-                        <h3><?= htmlspecialchars($s['nama_beasiswa']) ?></h3>
-                        <div class="date"><i class="bi bi-calendar3 me-1"></i> Diajukan: <?= date('d M Y', strtotime($s['tanggal_pengajuan'])) ?>
-                        <?php if (!empty($s['tanggal_review'])): ?>
-                            • Direview: <?= date('d M Y', strtotime($s['tanggal_review'])) ?>
-                        <?php endif; ?>
+                ?>
+                <div class="pesan-card">
+                    <div class="pesan-top">
+                        <div class="pesan-info">
+                            <h3><?= htmlspecialchars($s['nama_beasiswa']) ?></h3>
+                            <div class="date"><i class="bi bi-calendar3 me-1"></i> Diajukan:
+                                <?= date('d M Y', strtotime($s['tgl_submit'] ?? $s['created_at'] ?? 'now')) ?>
+                                <?php if (!empty($s['tgl_review'])): ?>
+                                    • Direview: <?= date('d M Y', strtotime($s['tgl_review'])) ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="status-badge <?= $statusClass ?>">
+                            <i class="bi <?= $statusIcon ?>"></i> <?= $statusText ?>
                         </div>
                     </div>
-                    <div class="status-badge <?= $statusClass ?>">
-                        <i class="bi <?= $statusIcon ?>"></i> <?= $statusText ?>
-                    </div>
-                </div>
-                <div class="pesan-body">
-                    <?php if ($s['status'] === 'pending'): ?>
-                        <p class="text-muted mb-0">Pengajuan simulasi Anda sedang dalam antrean dan akan segera direview oleh admin. Silakan cek kembali secara berkala.</p>
-                    <?php else: ?>
-                        <?php if ($s['status'] === 'lulus'): ?>
-                            <p>Selamat! Berdasarkan hasil simulasi, profil Anda memenuhi standar untuk mendaftar beasiswa ini. Silakan lanjutkan pendaftaran resmi melalui website penyelenggara.</p>
+                    <div class="pesan-body">
+                        <?php if ($simStatus === 'pending'): ?>
+                            <p class="text-muted mb-0">Pengajuan simulasi Anda sedang dalam antrean dan akan segera direview oleh
+                                admin. Silakan cek kembali secara berkala.</p>
                         <?php else: ?>
-                            <p>Mohon maaf, berdasarkan hasil simulasi, profil Anda belum memenuhi standar kualifikasi untuk beasiswa ini. Jangan menyerah dan coba beasiswa lainnya!</p>
+                            <?php if ($simStatus === 'lulus'): ?>
+                                <p>Selamat! Berdasarkan hasil simulasi, profil Anda memenuhi standar untuk mendaftar beasiswa ini.
+                                    Silakan lanjutkan pendaftaran resmi melalui website penyelenggara.</p>
+                            <?php else: ?>
+                                <p>Mohon maaf, berdasarkan hasil simulasi, profil Anda belum memenuhi standar kualifikasi untuk beasiswa
+                                    ini. Jangan menyerah dan coba beasiswa lainnya!</p>
+                            <?php endif; ?>
+
+                            <div class="review-box">
+                                <div class="review-score <?= $simStatus === 'tidak_lulus' ? 'text-danger' : '' ?>">
+                                    <?= htmlspecialchars((string) ($s['skor'] ?? '0')) ?> / 100
+                                </div>
+                                <div class="review-score-label <?= $simStatus === 'tidak_lulus' ? 'text-danger' : '' ?>">Skor
+                                    Kelayakan</div>
+                                <p class="review-note">"<?= nl2br(htmlspecialchars($s['catatan_admin'] ?? '')) ?>" - Admin</p>
+                            </div>
                         <?php endif; ?>
-                        
-                        <div class="review-box">
-                            <div class="review-score <?= $s['status'] === 'tidak_lulus' ? 'text-danger' : '' ?>"><?= htmlspecialchars((string)$s['skor']) ?> / 100</div>
-                            <div class="review-score-label <?= $s['status'] === 'tidak_lulus' ? 'text-danger' : '' ?>">Skor Kelayakan</div>
-                            <p class="review-note">"<?= nl2br(htmlspecialchars($s['catatan'] ?? '')) ?>" — Admin</p>
+
+                        <div class="mt-3">
+                            <a href="<?= BASE_URL ?>/frontend/mahasiswa/detail-riwayat.php?id=<?= $s['id_simulasi'] ?>" class="btn btn-outline-primary btn-sm fw-semibold">
+                                <i class="bi bi-file-earmark-text me-1"></i> Lihat Formulir yang Diisi
+                            </a>
                         </div>
-                    <?php endif; ?>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="text-center py-5">

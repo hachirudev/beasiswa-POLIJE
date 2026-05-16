@@ -44,12 +44,13 @@ if (!$existing) {
     Response::redirectTo(BASE_URL . '/frontend/admin/kelola-pustaka.php');
 }
 
+$uploadDir = UPLOAD_PATH . 'pustaka' . DIRECTORY_SEPARATOR;
+
 // Jika ada file baru: hapus lama, upload baru
 $filePath = $existing['file_path'];
 
 if (!empty($_FILES['file_pustaka']) && $_FILES['file_pustaka']['error'] === UPLOAD_ERR_OK) {
     try {
-        $uploadDir = UPLOAD_PATH . 'pustaka' . DIRECTORY_SEPARATOR;
         $uploader  = new FileUploader($uploadDir);
 
         // Hapus file lama
@@ -65,10 +66,28 @@ if (!empty($_FILES['file_pustaka']) && $_FILES['file_pustaka']['error'] === UPLO
     }
 }
 
+$previewPath = $existing['preview_dokumen'];
+if (!empty($_FILES['preview_dokumen']) && $_FILES['preview_dokumen']['error'] === UPLOAD_ERR_OK) {
+    try {
+        $previewUploader  = new FileUploader($uploadDir);
+        $previewUploader->setAllowedTypes(['image/jpeg', 'image/png']);
+        $previewUploader->setMaxSize(2 * 1024 * 1024);
+
+        if (!empty($existing['preview_dokumen'])) {
+            $previewUploader->delete($existing['preview_dokumen']);
+        }
+
+        $previewPath = $previewUploader->upload($_FILES['preview_dokumen']);
+    } catch (Exception $e) {
+        Session::setFlash('error', 'Preview Gambar: ' . $e->getMessage());
+        Response::redirectTo(BASE_URL . '/frontend/admin/kelola-pustaka.php');
+    }
+}
+
 $data = [
     'nama_dokumen'      => $nama_dokumen,
     'deskripsi_dokumen' => $deskripsi_dokumen,
-    'preview_dokumen'   => $preview_dokumen,
+    'preview_dokumen'   => $previewPath,
     'file_path'         => $filePath,
 ];
 

@@ -16,6 +16,16 @@ class FileUploader
         }
     }
 
+    public function setAllowedTypes(array $types): void
+    {
+        $this->allowedTypes = $types;
+    }
+
+    public function setMaxSize(int $size): void
+    {
+        $this->maxSize = $size;
+    }
+
     public function upload(array $file): string
     {
         $this->validateFile($file);

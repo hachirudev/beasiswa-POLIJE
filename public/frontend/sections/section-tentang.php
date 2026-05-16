@@ -24,14 +24,14 @@
                 </p>
 
                 <div class="d-flex flex-column align-items-start gap-3">
-                    <button class="btn"
-                        style="background: #222; color: #fff; font-weight: 600; border-radius: 2rem; padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="bi bi-arrow-right-circle-fill"></i> BAGIKAN
+                    <button class="btn" onclick="shareWebsite()"
+                        style="background: #222; color: #fff; font-weight: 600; border-radius: 2rem; padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.2s;">
+                        <i class="bi bi-share-fill"></i> BAGIKAN
                     </button>
-                    <button class="btn"
-                        style="background: #4caf50; color: #fff; font-weight: 600; border-radius: 2rem; padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <a href="https://wa.me/6282223333444" target="_blank" class="btn text-decoration-none"
+                        style="background: #4caf50; color: #fff; font-weight: 600; border-radius: 2rem; padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.2s;">
                         <i class="bi bi-whatsapp"></i> +62 8222 3333 444
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -44,4 +44,26 @@
         </div>
     </div>
 </section>
+
+<script>
+function shareWebsite() {
+    const shareData = {
+        title: 'Beasiswa POLIJE',
+        text: 'Temukan informasi beasiswa terbaru di Politeknik Negeri Jember!',
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).catch((error) => console.log('Error sharing:', error));
+    } else {
+        // Fallback untuk browser PC yang tidak mensupport Web Share API
+        navigator.clipboard.writeText(shareData.url).then(() => {
+            alert('Tautan halaman berhasil disalin ke clipboard!');
+        }).catch(err => {
+            console.error('Gagal menyalin tautan: ', err);
+            alert('Gagal menyalin tautan.');
+        });
+    }
+}
+</script>
 <!-- ========== END SECTION ========== -->
