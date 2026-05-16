@@ -6,10 +6,10 @@ class Database
     private static ?Database $instance = null;
     private mysqli $conn;
 
-    private string $host = 'localhost';
-    private string $user = 'root';
-    private string $pass = '';
-    private string $db = 'db_beasiswa';
+    private string $host = 'sql301.infinityfree.com';
+    private string $user = 'if0_41934259';
+    private string $pass = 'qpA2gDl1mdOU2i';
+    private string $db = 'if0_41934259_db_beasiswa';
 
     private function __construct()
     {

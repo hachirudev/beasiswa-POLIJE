@@ -1,9 +1,3 @@
-﻿-- MySQL dump 10.13  Distrib 8.4.3, for Win64 (x86_64)
---
--- Host: localhost    Database: db_beasiswa
--- ------------------------------------------------------
--- Server version	8.4.3
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -86,68 +80,6 @@ LOCK TABLES `beasiswa` WRITE;
 INSERT INTO `beasiswa` VALUES (7,'Beasiswa Sobat Bumi 2026','Pertamina Foundation','Beasiswa bagi mahasiswa S1/D4/D3 yang berprestasi dan peduli lingkungan.','Program ini mengajak generasi muda menjadi pelopor keberlanjutan, memberikan bantuan UKT/SPP, biaya hidup, serta pelatihan kapasitas dan karakter. Bertujuan mendukung misi pemerintah menuju Indonesia Emas 2045.','Jenjang: S1/D4 (semester 2-6), D3 (semester 2-4). IPK: > 3,00. Persyaratan: WNI, aktif organisasi/lingkungan, buat karya tulis & motivation letter. Prioritas: daerah operasi Pertamina.','https://www.pertaminafoundation.org/news','poster_1778637873_6e0455a0.jpeg','2026-05-31','2026-06-13','belum_dibuka','terverifikasi','2026-05-13 02:04:33',NULL,1,NULL),(8,'Beasiswa Astra1st 2026','PT Astra International Tbk','Program pengembangan diri untuk mahasiswa S1 yang memadukan beasiswa dan pengalaman langsung di industri.','Sebagai Astra Ambassador, peserta mendapat pembelajaran bisnis, pengembangan diri, dan mengerjakan proyek nyata di grup Astra selama 5 bulan. Peserta terlibat langsung dalam pembuatan solusi dan strategi perusahaan.','Jenjang: S1 (semester 4 atau 6). IPK: > 3,00. Persyaratan: WNI, punya prestasi non-akademis (organisasi, magang), tidak terima beasiswa sejenis lain.','https://daftarbeasiswa.id/beasiswa-astra-1st/','poster_1778638165_2e40d654.png','2026-05-01','2026-05-31','belum_dibuka','terverifikasi','2026-05-13 02:09:25',NULL,1,NULL),(9,'Beasiswa Indonesia Bangkit (BIB) 2026','Kementerian Agama, Republik Indonesia','Beasiswa dari pemerintah untuk memperluas akses pendidikan tinggi di lingkungan pendidikan keagamaan.','Program ini memberikan kesempatan melanjutkan pendidikan S1, S2, hingga S3. Tujuan utamanya adalah mengejar ketertinggalan di bidang sains dan teknologi di lingkungan Kementerian Agama, melahirkan generasi berkompetensi keagamaan sekaligus iptek.','Jenjang: S1, S2, S3. Jalur: unggulan keagamaan, akselerasi, double degree, pesantren, targeted, partnership. Proses seleksi: administrasi, skolastik, wawancara.','https://beasiswa.kemenag.go.id/','poster_1778638420_79bc275b.jpg','2026-04-01','2026-05-31','belum_dibuka','terverifikasi','2026-05-13 02:13:40',NULL,1,NULL),(10,'Beasiswa Pemprov Kepri 2026','Pemerintah Provinsi Kepulauan Riau','Bantuan stimulan satu tahun sekali untuk mahasiswa D3, S1, dan S2 asal atau kuliah di Kepri.','Bertujuan meringankan beban biaya pendidikan dengan total anggaran Rp3 miliar. Beasiswa ini diberikan berdasarkan prestasi akademik dan status kurang mampu, serta bersifat bantuan stimulan yang disesuaikan dengan anggaran tahunan daerah.','Jenjang: D3, S1, S2. Nominal: D3/S1 = Rp2,5 juta; S2 = Rp4 juta. Persyaratan: D3 (sem 3-6), S1 (sem 3-8), S2 (sem 3-6). Proses seleksi selesai Juni 2026.','https://beasiswa.kepriprov.go.id/','poster_1778638590_79e09e33.jpg','2026-04-06','2026-05-06','belum_dibuka','terverifikasi','2026-05-13 02:16:30',NULL,1,NULL),(13,'BSI Scholarship 2026 (Jalur Unggulan)','Prestasi Kita Foundation','Beasiswa penuh UKT bagi mahasiswa baru dari PTN top 10, fokus pada ekonomi syariah.','Bekerja sama dengan Danantara Indonesia, program ini menawarkan UKT penuh, uang saku Rp1,5 juta per bulan, laptop, serta pembinaan leadership, character building, dan kesempatan magang. Program ini bertujuan mencetak generasi unggul yang siap berkontribusi di sektor ekonomi syariah.','Jenjang: S1.Persyaratan: mahasiswa baru jalur undangan PTN top 10, berasal dari keluarga kurang mampu (SKTM/KIP), tidak terima beasiswa lain.','https://bsischolarship.id/','poster_1778641424_759dd9ec.png','2026-04-02','2026-04-12','belum_dibuka','terverifikasi','2026-05-13 03:03:44',1,NULL,NULL),(15,'Bantuan Pendidikan Kebanksentralan Bank Indonesia 2026','Bank Indonesia','Beasiswa untuk mahasiswa S1/D4/D3 dari keluarga kurang mampu yang berkomitmen pada literasi kebanksentralan.','Penerima diharapkan menjadi agen perubahan literasi kebanksentralan dan bergabung dalam komunitas Generasi Baru Indonesia (GenBI). Bank Indonesia membuka program ini untuk mendukung peningkatan kualitas SDM unggul dan berdaya saing.','Jenjang: S1/D4 (maks. 23 tahun), D3 (maks. 22 tahun). IPK: > 3,00 (skala 4). Persyaratan: S3, IPK min 3,00, diutamakan memiliki SKTM.','https://bisik.id/read/bantuan-pendidikan-kebanksentralan-bi-2026-dibuka-1774344253106#:~:text=Bantuan%20Pendidikan%20Kebanksentralan%20BI%202026%20kini%20resmi%20dibuka.,dana%20bulanan%20dan%20diharapkan%20aktif%20mendukung%20literasi%20kebanksentralan.','poster_1778642236_ded57140.jpg','2026-04-27','2026-05-05','belum_dibuka','terverifikasi','2026-05-13 03:17:16',NULL,1,NULL),(17,'Beasiswa Garuda Sarjana 2026','Kementerian Pendidikan Tinggi, Sains, dan Teknologi (Kemdiktisaintek)','Program beasiswa S1 untuk menyiapkan talenta terbaik Indonesia yang mampu bersaing di kancah global.','Pemerintah memperluas skema studi melalui program joint degree dan double degree dengan perguruan tinggi luar negeri. Seleksi tahun ini didasarkan pada peringkat program studi (prodi) terbaik dunia (QS World University Rankings by Subject), bukan universitas, serta difokuskan pada 10 bidang prioritas nasional.','Jenjang: S1.Persyaratan: talenta terbaik bangsa, seleksi berdasarkan peringkat prodi top dunia.','https://beasiswagaruda.kemdiktisaintek.go.id/','poster_1778642427_05958aa1.jpg','2026-05-13','2026-06-27','belum_dibuka','terverifikasi','2026-05-13 03:20:27',NULL,1,NULL),(18,'GREAT Scholarship 2026','Pemerintah Inggris, British Council, & Universitas Mitra','Beasiswa S-2 di berbagai kampus unggulan di Inggris Raya.','Program kerja sama bergengsi untuk mahasiswa internasional dari Indonesia yang ingin melanjutkan studi selama 1 tahun. Selain bantuan biaya kuliah, penerima dapat membangun jaringan profesional dan mendapatkan izin tinggal hingga 2 tahun setelah lulus (Graduate Visa).','Jenjang: S2.Nominal: hingga ┬ú10.000. Persyaratan: WNI, diterima di universitas mitra, rencana studi 1 tahun.','https://www.beritasatu.com/nasional/2992948/daftar-beasiswa-22-kampus-inggris-dan-irlandia-2026','poster_1778663624_6309135c.jpg','2026-06-01','2026-06-30','belum_dibuka','terverifikasi','2026-05-13 09:13:44',NULL,1,NULL);
 /*!40000 ALTER TABLE `beasiswa` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_beasiswa_uploader_insert` BEFORE INSERT ON `beasiswa` FOR EACH ROW BEGIN
-
-  IF NOT (
-
-    (NEW.id_mitra IS NOT NULL AND NEW.id_admin IS NULL) OR
-
-    (NEW.id_mitra IS NULL AND NEW.id_admin IS NOT NULL)
-
-  ) THEN
-
-    SIGNAL SQLSTATE '45000'
-
-    SET MESSAGE_TEXT = 'Tepat satu dari id_mitra atau id_admin harus berisi nilai.';
-
-  END IF;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_beasiswa_uploader_update` BEFORE UPDATE ON `beasiswa` FOR EACH ROW BEGIN
-
-  IF NOT (
-
-    (NEW.id_mitra IS NOT NULL AND NEW.id_admin IS NULL) OR
-
-    (NEW.id_mitra IS NULL AND NEW.id_admin IS NOT NULL)
-
-  ) THEN
-
-    SIGNAL SQLSTATE '45000'
-
-    SET MESSAGE_TEXT = 'Tepat satu dari id_mitra atau id_admin harus berisi nilai.';
-
-  END IF;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `beasiswa_tag`
