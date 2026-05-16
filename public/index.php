@@ -32,8 +32,8 @@ $pageDescription = 'Portal Beasiswa Resmi Politeknik Negeri Jember. Platform unt
                 POLIJE</span>
         </a>
         <div class="d-flex gap-2">
-            <a href="../public/auth/login.php" class="btn btn-login-landing" id="btn-login">Log in</a>
-            <a href="../public/auth/register.php" class="btn btn-signup-landing" id="btn-signup">Sign up</a>
+            <a href="<?= BASE_URL ?>/auth/login.php" class="btn btn-login-landing" id="btn-login">Log in</a>
+            <a href="<?= BASE_URL ?>/auth/register.php" class="btn btn-signup-landing" id="btn-signup">Sign up</a>
         </div>
     </div>
 </nav>
@@ -52,7 +52,7 @@ $pageDescription = 'Portal Beasiswa Resmi Politeknik Negeri Jember. Platform unt
                     mahasiswa dalam mengakses berbagai peluang pembiayaan pendidikan, mulai dari kemitraan industri
                     hingga bantuan internal kampus.
                 </p>
-                <a href="../public/auth/register.php" class="btn-mulai" id="btn-mulai-disini">
+                <a href="<?= BASE_URL ?>/auth/register.php" class="btn-mulai" id="btn-mulai-disini">
                     <span class="icon-circle"><i class="bi bi-arrow-right"></i></span>
                     Mulai Disini
                 </a>
@@ -61,7 +61,7 @@ $pageDescription = 'Portal Beasiswa Resmi Politeknik Negeri Jember. Platform unt
             <!-- Gambar tugu Polije -->
             <div class="col-lg-6 hero-image-wrapper">
                 <div class="hero-image-circle">
-                    <img src="../public/assets/img/tugu circle.png" alt="Tugu Politeknik Negeri Jember"
+                    <img src="<?= BASE_URL ?>/assets/img/tugu circle.png" alt="Tugu Politeknik Negeri Jember"
                         id="img-tugu-polije">
                 </div>
             </div>

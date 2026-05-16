@@ -123,7 +123,7 @@
         var q = searchInput ? searchInput.value.trim() : '';
         var tags = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
 
-        var url = new URL(window.location.origin + '/beasiswa-polije-finale/public/api/beasiswa/search.php');
+        var url = new URL(window.location.origin + window.BASE_URL + '/api/beasiswa/search.php');
         url.searchParams.append('q', q);
         url.searchParams.append('year', currentYear);
         if (currentMonth > 0) {
@@ -167,7 +167,7 @@
 
         var html = '';
         data.forEach(b => {
-            var poster = b.poster_url ? '/beasiswa-polije-finale/public/uploads/poster/' + b.poster_url : '/beasiswa-polije-finale/public/assets/img/poster-beasiswa.png';
+            var poster = b.poster_url ? window.BASE_URL + '/uploads/poster/' + b.poster_url : window.BASE_URL + '/assets/img/poster-beasiswa.png';
             var penyelenggara = b.nama_penyelenggara ? b.nama_penyelenggara : 'Penyelenggara';
 
             var tagsHtml = '';
@@ -205,7 +205,7 @@
                             <span class="text-end">Deadline<br><strong>${tglTutup}</strong></span>
                         </div>
                         <div class="status-badge ${statusClass}">${statusLabel}</div>
-                        <a href="/beasiswa-polije-finale/public/frontend/mahasiswa/detail-beasiswa.php?id=${b.id_beasiswa}" class="btn-see">See Program Beasiswa</a>
+                        <a href="${window.BASE_URL}/frontend/mahasiswa/detail-beasiswa.php?id=${b.id_beasiswa}" class="btn-see">See Program Beasiswa</a>
                     </div>
                 </div>
             </div>`;
