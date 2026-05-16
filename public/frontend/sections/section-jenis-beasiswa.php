@@ -1,8 +1,8 @@
 <!-- ========== SECTION: JENIS BEASISWA ========== -->
-<section id="jenis-beasiswa" class="py-5" style="background: var(--color-white);">
+<section id="jenis-beasiswa" class="py-5" style="background: var(--color-lighter);">
     <div class="container">
         <h2 class="text-center"
-            style="font-weight: 800; font-size: 2.2rem; color: var(--color-dark); margin-bottom: 1.5rem;">Kategori Jenis
+            style="font-weight: 800; font-size: 2.2rem; color: var(--color-dark); margin-bottom: 1.5rem;">Jenis
             Beasiswa</h2>
         <p class="text-center"
             style="font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 3.5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6;">

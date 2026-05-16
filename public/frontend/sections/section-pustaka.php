@@ -1,5 +1,5 @@
 <!-- ========== SECTION: PUSTAKA ========== -->
-<section id="pustaka" class="py-5" style="background: var(--color-white);">
+<section id="pustaka" class="py-5" style="background: var(--color-lighter);">
     <div class="container">
         <h2 class="text-center"
             style="font-weight: 800; font-size: 2rem; color: var(--color-dark); margin-bottom: 2rem;">Pustaka</h2>

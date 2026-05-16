@@ -4,15 +4,15 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-   --color-primary: #005CE6;
-   --color-primary-dark: #004ABF;
-   --color-secondary: #003899;
-   --color-light: #80AAFF;
-   --color-lighter: #CCE0FF;
+   --color-primary: #00B4D8;
+   --color-primary-dark: #003b99;
+   --color-secondary: #0044b9;
+   --color-light: #99dfff;
+   --color-lighter: #D7EBF4;
    --color-text: #0A0F1E;
    --color-text-muted: #4A5568;
    --color-white: #ffffff;
-   --color-dark: #001566;
+   --color-dark: #001876;
    --sidebar-width: 260px;
 }
 
@@ -531,7 +531,7 @@ body {
    width: 36px;
    height: 36px;
    border-radius: 50%;
-   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+   background: linear-gradient(180deg, var(--color-primary), var(--color-primary-dark));
    display: flex;
    align-items: center;
    justify-content: center;
@@ -574,7 +574,7 @@ body {
 }
 
 .hero-section {
-   background: linear-gradient(160deg, var(--color-lighter) 0%, var(--color-light) 35%, var(--color-primary) 100%);
+   background: linear-gradient(180deg, var(--color-lighter) 0%, var(--color-primary) 100%);
    min-height: 100vh;
    display: flex;
    align-items: center;
@@ -707,7 +707,7 @@ body {
    display: flex;
    align-items: center;
    justify-content: center;
-   background: linear-gradient(160deg, var(--color-lighter) 0%, var(--color-light) 35%, var(--color-primary) 100%);
+   background: linear-gradient(180deg, var(--color-lighter) 0%, var(--color-primary) 100%);
    padding: 2rem 1rem;
 }
 
@@ -2546,16 +2546,19 @@ body {
    background: var(--color-primary-dark);
    transform: translateY(-3px);
 }
+
 .animate-from-left {
    opacity: 0;
    transform: translateX(-60px);
    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .animate-from-right {
    opacity: 0;
    transform: translateX(60px);
    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .animate-from-left.animate-show,
 .animate-from-right.animate-show {
    opacity: 1;

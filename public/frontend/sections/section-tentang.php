@@ -1,5 +1,6 @@
 <!-- ========== SECTION: TENTANG KAMI ========== -->
-<section id="tentang-kami" class="py-5" style="background: var(--color-lighter);">
+<section id="tentang-kami" class="py-5"
+    style="background: linear-gradient(90deg, var(--color-white) 0%, var(--color-primary) 100%);">
     <div class="container">
         <div class="row align-items-center g-5">
             <!-- Teks -->
@@ -8,8 +9,8 @@
                     Beasiswa POLIJE</h2>
 
                 <div class="d-inline-flex align-items-center bg-white rounded-3 shadow-sm px-3 py-2 mb-4">
-                    <img src="<?= BASE_URL ?>/assets/img/logo polije.png"
-                        alt="Logo Polije" style="width: 40px; height: 40px; margin-right: 15px; object-fit: contain;">
+                    <img src="<?= BASE_URL ?>/assets/img/logo polije.png" alt="Logo Polije"
+                        style="width: 40px; height: 40px; margin-right: 15px; object-fit: contain;">
                     <span
                         style="color: var(--color-primary); font-weight: 800; font-size: 1.1rem; line-height: 1.2;">Beasiswa<br>POLIJE</span>
                 </div>
@@ -46,24 +47,24 @@
 </section>
 
 <script>
-function shareWebsite() {
-    const shareData = {
-        title: 'Beasiswa POLIJE',
-        text: 'Temukan informasi beasiswa terbaru di Politeknik Negeri Jember!',
-        url: 'https://beasiswa-polije.infinityfreeapp.com/'
-    };
+    function shareWebsite() {
+        const shareData = {
+            title: 'Beasiswa POLIJE',
+            text: 'Temukan informasi beasiswa terbaru di Politeknik Negeri Jember!',
+            url: window.location.href
+        };
 
-    if (navigator.share) {
-        navigator.share(shareData).catch((error) => console.log('Error sharing:', error));
-    } else {
-        // Fallback untuk browser PC yang tidak mensupport Web Share API
-        navigator.clipboard.writeText(shareData.url).then(() => {
-            alert('Tautan halaman berhasil disalin ke clipboard!');
-        }).catch(err => {
-            console.error('Gagal menyalin tautan: ', err);
-            alert('Gagal menyalin tautan.');
-        });
+        if (navigator.share) {
+            navigator.share(shareData).catch((error) => console.log('Error sharing:', error));
+        } else {
+            // Fallback untuk browser PC yang tidak mensupport Web Share API
+            navigator.clipboard.writeText(shareData.url).then(() => {
+                alert('Tautan halaman berhasil disalin ke clipboard!');
+            }).catch(err => {
+                console.error('Gagal menyalin tautan: ', err);
+                alert('Gagal menyalin tautan.');
+            });
+        }
     }
-}
 </script>
 <!-- ========== END SECTION ========== -->

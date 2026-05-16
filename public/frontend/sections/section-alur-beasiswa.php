@@ -1,5 +1,6 @@
 <!-- ========== SECTION: ALUR BEASISWA ========== -->
-<section id="alur-beasiswa" class="alur-section" style="background: var(--color-lighter);">
+<section id="alur-beasiswa" class="alur-section"
+    style="background: linear-gradient(90deg, var(--color-white) 0%, var(--color-primary) 100%);">
     <div class="container">
         <h2 class="text-center"
             style="font-size: 2rem; font-weight: 800; color: var(--color-dark); margin-bottom: 3rem;">Alur Beasiswa</h2>
