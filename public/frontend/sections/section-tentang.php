@@ -50,7 +50,7 @@ function shareWebsite() {
     const shareData = {
         title: 'Beasiswa POLIJE',
         text: 'Temukan informasi beasiswa terbaru di Politeknik Negeri Jember!',
-        url: window.location.href
+        url: 'https://beasiswa-polije.infinityfreeapp.com/'
     };
 
     if (navigator.share) {
