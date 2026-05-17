@@ -22,7 +22,7 @@ $simulasiObj = new Simulasi($db);
 $listBeasiswa = $beasiswaObj->getByMitra($idMitra);
 
 // Hitung statistik
-$totalDiunggah = count($listBeasiswa);
+$totalDiunggah = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'terverifikasi'));
 $pendingVerifikasi = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'pending'));
 $totalSimulasi = $simulasiObj->countByMitra($idMitra);
 
