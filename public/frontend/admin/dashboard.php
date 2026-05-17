@@ -22,7 +22,7 @@ $listBeasiswa = $beasiswaObj->getAll();
 $listSimulasi = $simulasiObj->getAll();
 
 // Hitung statistik
-$totalBeasiswa = count($listBeasiswa);
+$totalBeasiswa = count(array_filter($listBeasiswa, fn($b) => $b['status_verifikasi'] === 'terverifikasi'));
 $dibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'dibuka'));
 $belumDibuka = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'belum_dibuka'));
 $ditutup = count(array_filter($listBeasiswa, fn($b) => $b['status_pendaftaran_computed'] === 'ditutup'));
