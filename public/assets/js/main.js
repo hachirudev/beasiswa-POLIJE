@@ -205,7 +205,7 @@
                             <span class="text-end">Deadline<br><strong>${tglTutup}</strong></span>
                         </div>
                         <div class="status-badge ${statusClass}">${statusLabel}</div>
-                        <a href="${window.BASE_URL}/frontend/mahasiswa/detail-beasiswa.php?id=${b.id_beasiswa}" class="btn-see">See Program Beasiswa</a>
+                        <a href="${window.BASE_URL}${window.ROLE_DETAIL_PATH || '/frontend/mahasiswa/detail-beasiswa.php'}?id=${b.id_beasiswa}" class="btn-see">See Program Beasiswa</a>
                     </div>
                 </div>
             </div>`;

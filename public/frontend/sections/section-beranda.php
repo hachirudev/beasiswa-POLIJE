@@ -1,3 +1,9 @@
+<?php 
+    $jsRolePath = (Session::getRole() === 'mitra') ? '/frontend/mitra/detail-beasiswa.php' : '/frontend/mahasiswa/detail-beasiswa.php'; 
+?>
+<script>
+    window.ROLE_DETAIL_PATH = "<?= $jsRolePath ?>";
+</script>
 <!-- ========== SECTION: BERANDA ========== -->
 <section id="beranda" class="py-4" style="background: var(--color-lighter);">
     <div class="container">
@@ -129,7 +135,10 @@
                                         }
                                     ?>
                                     <div class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($statusLabel) ?></div>
-                                    <a href="<?= BASE_URL ?>/frontend/mahasiswa/detail-beasiswa.php?id=<?= $b['id_beasiswa'] ?>" class="btn-see">See Program Beasiswa</a>
+                                    <?php 
+                                        $rolePath = (Session::getRole() === 'mitra') ? '/frontend/mitra/detail-beasiswa.php' : '/frontend/mahasiswa/detail-beasiswa.php'; 
+                                    ?>
+                                    <a href="<?= BASE_URL . $rolePath ?>?id=<?= $b['id_beasiswa'] ?>" class="btn-see">See Program Beasiswa</a>
                                 </div>
                             </div>
                         </div>
